@@ -29,6 +29,15 @@ class Usuario extends Model
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function updateToken($token, $email)
+    {
+        $sql = "UPDATE $this->tableName SET token = :token WHERE email = :email";
+        $sql = $this->db->prepare($sql);
+        $sql->bindValue(':token', $token);
+        $sql->bindValue(':email', $email);
+        $sql->execute();
+    }
+
     public function getAll()
     {
         $sql = $this->db->query("SELECT * FROM $this->tableName");

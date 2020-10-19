@@ -14,6 +14,9 @@ class AdminController extends Controller
 
     public function index()
     {
+        echo '<pre>';
+        print_r($_SESSION);
+        echo '</pre>';
         $this->loadView('admin/admin');
     }
 }

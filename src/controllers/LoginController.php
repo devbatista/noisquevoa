@@ -3,8 +3,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use \src\Handlers;
-use \src\models\Usuario;
+use \src\Handlers\LoginHandler;
 
 class LoginController extends Controller
 {
@@ -12,13 +11,15 @@ class LoginController extends Controller
 
     public function index()
     {
-        $this->loadView('login/login');
+        if (!isset($_SESSION['logado'])) {
+            $this->loadView('login/login');
+        } else {
+            $this->redirect('/admin');
+        }
     }
 
     public function autentica()
     {
-        $this->usuario = new Usuario();
-
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $senha = ($_POST['senha'] != '') ? filter_input(INPUT_POST, 'senha') : false;
 
@@ -27,22 +28,22 @@ class LoginController extends Controller
                 'email' => $email,
                 'senha' => $senha
             ];
-            $login = $this->usuario->login($dados);
-            
-            if($login) {
-                echo '<pre>';
-                print_r($login);
-                echo '</pre>';
-                if (password_verify($dados['senha'], $login['senha'])) {
-                    echo 'Dados corretos';
-                } else {
-                    echo "Dados inválidos";
-                }
+            $login = LoginHandler::verifyLogin($dados);
+
+            if ($login) {
+                $_SESSION['logado'] = $login;
+                $this->redirect('/admin');
             } else {
-                echo "não trouxe nada";
+                echo "Dados inválidos";
             }
         } else {
             echo "Dados não enviados";
         }
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['logado']);
+        $this->redirect('/login');
     }
 }
