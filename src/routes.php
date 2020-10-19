@@ -14,3 +14,5 @@ $router->get('/admin', 'AdminController@index');
 $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');
 
 $router->get('/cadastro', 'CadastroController@index');
+$router->get('/cadastro/getPosicoes', 'CadastroController@getPosicoes');
+$router->post('/cadastro/enviar', 'CadastroController@cadastrar');
