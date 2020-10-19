@@ -1,0 +1,11 @@
+table {
+    text-align: center;
+}
+
+button[inserirUsuario] {
+    margin-bottom: 10px;
+}
+
+tbody button {
+    margin: 0 2px;
+}
