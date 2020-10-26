@@ -17,6 +17,7 @@ class Usuario extends Model
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':email', $data['email']);
         $sql->execute();
+
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
@@ -40,6 +41,40 @@ class Usuario extends Model
 
     public function insertUser($data)
     {
-        
+        if ($data) {
+            try {
+                $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO $this->tableName SET nome = :nome, apelido = :apelido, email = :email, senha = :senha, cpf = :cpf, celular = :celular, jogador = :jogador, diretoria = :diretoria, dt_nascimento = :dt_nascimento, posicao = :posicao";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(':nome', $data['nome']);
+                $sql->bindValue(':apelido', $data['apelido']);
+                $sql->bindValue(':email', $data['email']);
+                $sql->bindValue(':senha', $data['senha']);
+                $sql->bindValue(':cpf', $data['cpf']);
+                $sql->bindValue(':celular', $data['celular']);
+                $sql->bindValue(':jogador', $data['jogador']);
+                $sql->bindValue(':diretoria', $data['diretoria']);
+                $sql->bindValue(':dt_nascimento', $data['dt_nascimento']);
+                $sql->bindValue(':posicao', $data['posicao']);
+
+                $sql->execute();
+                $code = [
+                    'code' => 0,
+                    'msg' => 'Cadastro efetuado com sucesso'
+                ];
+            } catch (\PDOException $th) {
+                $code = [
+                    'code' => 1062,
+                    'msg' => $th->getMessage()
+                ];
+            }
+        } else {
+            $code = [
+                'code' => 1,
+                'msg' => 'Erro, atualize a página e envie os dados novamente'
+            ];
+        }
+
+        return $code;
     }
 }

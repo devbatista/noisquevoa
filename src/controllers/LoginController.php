@@ -19,7 +19,7 @@ class LoginController extends Controller
     }
 
     public function autentica()
-    {
+    {   
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $senha = ($_POST['senha'] != '') ? filter_input(INPUT_POST, 'senha') : false;
 
@@ -32,13 +32,24 @@ class LoginController extends Controller
 
             if ($login) {
                 $_SESSION['logado'] = $login;
-                $this->redirect('/admin');
+                $return = [
+                    'code' => 0,
+                    'msg' => 'Acesso liberado'
+                ];
             } else {
-                echo "Dados inválidos";
+                $return = [
+                    'code' => 1,
+                    'msg' => 'Dados inválidos'
+                ];
             }
         } else {
-            echo "Dados não enviados";
+            $return = [
+                'code' => 2,
+                'msg' => 'Dados não enviados'
+            ];
         }
+
+        echo json_encode($return);
     }
 
     public function logout()

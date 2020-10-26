@@ -152,24 +152,26 @@ REPLACE INTO `posicoes` (`id_posicao`, `nome`) VALUES
 	(2, 'Fixo'),
 	(3, 'Ala direita'),
 	(4, 'Ala esquerda'),
-	(5, 'Pivô');
+	(5, 'Pivo');
 /*!40000 ALTER TABLE `posicoes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela nqv.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `apelido` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `senha` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `cpf` varchar(15) CHARACTER SET utf8 NOT NULL,
-  `diretoria` tinyint(4) NOT NULL,
-  `jogador` tinyint(4) NOT NULL,
-  `dt_nascimento` date NOT NULL,
-  `dt_hr_criado` datetime NOT NULL DEFAULT current_timestamp(),
-  `dt_hr_alterado` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `mensalidade` tinyint(4) NOT NULL DEFAULT 0,
-  `ativo` tinyint(4) NOT NULL DEFAULT 1,
+  `nome` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `apelido` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `senha` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `cpf` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
+  `celular` varchar(15) DEFAULT NULL,
+  `diretoria` tinyint(4) DEFAULT NULL,
+  `jogador` tinyint(4) DEFAULT NULL,
+  `foto` varchar(50) DEFAULT NULL,
+  `dt_nascimento` date DEFAULT NULL,
+  `dt_hr_criado` datetime DEFAULT current_timestamp(),
+  `dt_hr_alterado` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `mensalidade` tinyint(4) DEFAULT 0,
+  `ativo` tinyint(4) DEFAULT 1,
   `gols` int(11) DEFAULT NULL,
   `cartoes_amarelos` int(11) DEFAULT NULL,
   `cartoes_vermelhos` int(11) DEFAULT NULL,
@@ -178,13 +180,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `numero_camisa` int(11) DEFAULT NULL,
   `token` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`) USING BTREE,
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `cpf` (`cpf`),
   KEY `posicao` (`posicao`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela nqv.usuarios: 1 rows
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-REPLACE INTO `usuarios` (`id_usuario`, `nome`, `apelido`, `email`, `senha`, `cpf`, `diretoria`, `jogador`, `dt_nascimento`, `dt_hr_criado`, `dt_hr_alterado`, `mensalidade`, `ativo`, `gols`, `cartoes_amarelos`, `cartoes_vermelhos`, `faltas`, `posicao`, `numero_camisa`, `token`) VALUES
-	(1, 'Rafael Batista', 'Batista', 'batist11@gmail.com', '$2y$10$HapomVyd1EPxnLTOwPFF5u1Ozer00pNCLy8/uKfa9mVTb8w5Feivi', '399.328.998-60', 1, 0, '1994-09-13', '2020-06-10 20:16:12', '2020-10-17 10:36:10', 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+REPLACE INTO `usuarios` (`id_usuario`, `nome`, `apelido`, `email`, `senha`, `cpf`, `celular`, `diretoria`, `jogador`, `foto`, `dt_nascimento`, `dt_hr_criado`, `dt_hr_alterado`, `mensalidade`, `ativo`, `gols`, `cartoes_amarelos`, `cartoes_vermelhos`, `faltas`, `posicao`, `numero_camisa`, `token`) VALUES
+	(1, 'RAFAEL BATISTA', 'BATISTA', 'batist11@gmail.com', '$2y$10$HapomVyd1EPxnLTOwPFF5u1Ozer00pNCLy8/uKfa9mVTb8w5Feivi', '399.328.998-60', NULL, 1, 0, NULL, '1994-09-13', '2020-06-10 20:16:12', '2020-10-22 11:59:41', 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, '3caf91a5b6cc6a4fbda5343f0189d235');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

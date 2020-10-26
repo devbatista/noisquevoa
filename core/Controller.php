@@ -11,6 +11,13 @@ class Controller
 
     public function __construct()
     {
+        // header("Access-Control-Allow-Origin:*");
+        // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        // header("Content-Type: application/json");
+        // header('Access-Control-Allow-Headers: X-PINGARUNER');
+        // header('Access-Control-Max-Age: 1728000');
+        // header("Content-Length: 0");
+        // header("Content-Type: text/plain");
     }
 
     protected function redirect($url)

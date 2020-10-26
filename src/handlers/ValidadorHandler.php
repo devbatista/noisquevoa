@@ -34,8 +34,10 @@ class ValidadorHandler
     public static function validarSenha($senha, $confirma)
     {
         if ($senha && $confirma) {
-            if ($senha == $confirma) {
-                return true;
+            if (strlen($senha)) {
+                if (password_verify($confirma, $senha)) {
+                    return true;
+                }
             }
         }
         return false;

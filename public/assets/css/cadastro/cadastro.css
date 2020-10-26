@@ -30,6 +30,7 @@ h1 {
 
 label {
     font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 label.form-check-label {
