@@ -17,7 +17,7 @@
 
     <head>
 
-        <h1>CRUD SIMPLES - MVC</h1>
+        <h1>CRUD - LARAVEL</h1>
 
     </head>
     <hr>

@@ -1,10 +1,10 @@
 <?php
 
-namespace src\controllers;
+namespace src\controllers\admin;
 
 use \core\Controller;
 
-class AdminController extends Controller
+class PartidasController extends Controller
 {
 
     public function __construct()
@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         $this->loadView('admin/header');
-        $this->loadView('admin/admin');
+        $this->loadView('admin/partidas');
         $this->loadView('admin/footer');
     }
 }

@@ -458,43 +458,6 @@
 </div>
 </div>
 
-
-
-<!-- Flot -->
-<script src="<?= $base ?>/assets/plugins/flot/jquery.flot.js"></script>
-<script src="<?= $base ?>/assets/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="<?= $base ?>/assets/plugins/flot/jquery.flot.spline.js"></script>
-<script src="<?= $base ?>/assets/plugins/flot/jquery.flot.resize.js"></script>
-<script src="<?= $base ?>/assets/plugins/flot/jquery.flot.pie.js"></script>
-
-<!-- Peity -->
-<script src="<?= $base ?>/assets/plugins/peity/jquery.peity.min.js"></script>
-<script src="<?= $base ?>/assets/plugins/peity/peity-demo.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="<?= $base ?>/assets/js/admin/inspinia.js"></script>
-<script src="<?= $base ?>/assets/plugins/pace/pace.min.js"></script>
-
-<!-- jQuery UI -->
-<script src="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- GITTER -->
-<script src="<?= $base ?>/assets/plugins/gritter/jquery.gritter.min.js"></script>
-
-<!-- Sparkline -->
-<script src="<?= $base ?>/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-<!-- Sparkline demo data  -->
-<script src="<?= $base ?>/assets/plugins/sparkline/sparkline-demo.js"></script>
-
-<!-- ChartJS-->
-<script src="<?= $base ?>/assets/plugins/chartJs/Chart.min.js"></script>
-
-<!-- Toastr -->
-<script src="<?= $base ?>/assets/plugins/toastr/toastr.min.js"></script>
-
-<!-- Admin -->
-<script src="<?= $base ?>/assets/js/admin/admin.js"></script>
 </body>
 
 </html>

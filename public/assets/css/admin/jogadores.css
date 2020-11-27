@@ -1,0 +1,23 @@
+.wrapper-content {
+    padding: 20px 40px 40px!important;
+}
+
+.imgJogador {
+    width: 150px;
+    height: 200px;
+    padding: 0;
+}
+
+.dadosJogador {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.dadosJogador .row {
+    margin-bottom: 7px;
+}
+
+.ibox-content:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}

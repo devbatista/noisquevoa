@@ -28,6 +28,42 @@
     <script src="<?= $base ?>/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?= $base ?>/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+    <!-- Flot -->
+    <script src="<?= $base ?>/assets/plugins/flot/jquery.flot.js"></script>
+    <script src="<?= $base ?>/assets/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="<?= $base ?>/assets/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="<?= $base ?>/assets/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="<?= $base ?>/assets/plugins/flot/jquery.flot.pie.js"></script>
+
+    <!-- Peity -->
+    <script src="<?= $base ?>/assets/plugins/peity/jquery.peity.min.js"></script>
+    <script src="<?= $base ?>/assets/plugins/peity/peity-demo.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="<?= $base ?>/assets/js/admin/inspinia.js"></script>
+    <script src="<?= $base ?>/assets/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- GITTER -->
+    <script src="<?= $base ?>/assets/plugins/gritter/jquery.gritter.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="<?= $base ?>/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="<?= $base ?>/assets/plugins/sparkline/sparkline-demo.js"></script>
+
+    <!-- ChartJS-->
+    <script src="<?= $base ?>/assets/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="<?= $base ?>/assets/plugins/toastr/toastr.min.js"></script>
+
+    <!-- Admin -->
+    <script src="<?= $base ?>/assets/js/admin/index.js"></script>
+
 </head>
 
 <body>
@@ -37,10 +73,10 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="rounded-circle" src="<?= $base ?>/assets/img/avatar.png" />
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="block m-t-xs font-bold">David Williams</span>
-                                <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                                <span class="block m-t-xs font-bold">Rafael Batista</span>
+                                <span class="text-muted text-xs block">Diretoria<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="dropdown-item" href="profile.html">Profile</a></li>
@@ -51,27 +87,48 @@
                             </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            NQV
                         </div>
                     </li>
                     <li class="active">
-                        <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                        <a href="<?= $base ?>/admin"><i class="fa fa-home"></i> <span class="nav-label">Home</span></a>
                     </li>
                     <li>
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+                        <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="graph_flot.html">Flot Charts</a></li>
-                            <li><a href="graph_morris.html">Morris.js Charts</a></li>
-                            <li><a href="graph_rickshaw.html">Rickshaw Charts</a></li>
-                            <li><a href="graph_chartjs.html">Chart.js</a></li>
-                            <li><a href="graph_chartist.html">Chartist</a></li>
-                            <li><a href="c3.html">c3 charts</a></li>
-                            <li><a href="graph_peity.html">Peity Charts</a></li>
-                            <li><a href="graph_sparkline.html">Sparkline Charts</a></li>
-                        </ul>
+                        <a href="<?= $base ?>/admin/jogadores"><i class="fa fa-users"></i> <span class="nav-label">Jogadores</span></a>
+                    </li>
+                    <li>
+                        <a href="<?= $base ?>/admin/diretoria"><i class="fa fa-cogs"></i> <span class="nav-label">Diretoria</span></a>
+                    </li>
+                    <li>
+                        <a href="<?= $base ?>/admin/diretoria"><i class="fa fa-tasks"></i> <span class="nav-label">Ligas</span></a>
+                    </li>
+                    <li class="dropright">
+                        <a href="#" role="button" id="dropdownMenuLink" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="nav-label">Convite</span></a>
+                        <div class="dropdown-menu">
+                            <form class="p-4" enviarConvite>
+                                <div class="form-group">
+                                    <h4>Enviar cadastro</h4>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormEmail2">Email</label>
+                                    <input type="email" name="convite" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@exemplo.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleDropdownFormName">Nome</label>
+                                    <input type="text" name="nomeConvite" class="form-control" id="exampleDropdownFormName" placeholder="Nome">
+                                </div>
+
+                                <button type="submit" class="btn btn-danger">Enviar</button>
+                            </form>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="<?= $base ?>/admin/posts"><i class="fa fa-sticky-note"></i> <span class="nav-label">Posts</span></a>
                     </li>
                 </ul>
             </div>
@@ -83,9 +140,6 @@
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-danger " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
-                        <li style="padding: 20px">
-                            <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
-                        </li>
                         <li>
                             <a href="<?= $base ?>/logout">
                                 <i class="fa fa-sign-out"></i> Log out

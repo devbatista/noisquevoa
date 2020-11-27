@@ -9,7 +9,9 @@ $router->get('/login', 'LoginController@index');
 $router->get('/logout', 'LoginController@logout');
 $router->post('/login/autentica', 'LoginController@autentica');
 
-$router->get('/admin', 'AdminController@index');
+$router->get('/admin', 'admin\AdminController@index');
+$router->get('/admin/partidas', 'admin\PartidasController@index');
+$router->get('/admin/jogadores', 'admin\JogadoresController@index');
 
 $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');
 

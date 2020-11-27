@@ -14,6 +14,11 @@
     src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg') format('svg');
 }
 
+img.rounded-circle {
+    width: 100px;
+    height: 100px;
+}
+
 .glyphicon {
     position: relative;
     top: 1px;
@@ -1143,6 +1148,10 @@ h5 {
     display: block;
 }
 
+.navbar-static-top {
+    background-color: #fff!important;
+}
+
 .nav.navbar-right>li>a {
     color: #999c9e;
 }
@@ -1527,6 +1536,7 @@ body.mini-navbar .navbar-default .nav>li>.nav-second-level li a {
     color: white;
     display: none;
     padding: 18px 0;
+    background-color: #6b141d;
 }
 
 .navbar-static-side {
@@ -2310,6 +2320,60 @@ fieldset[disabled] .btn-white:focus,
 fieldset[disabled] .btn-white:active,
 fieldset[disabled] .btn-white.active {
     color: #cacaca;
+}
+
+.dropright .dropdown-toggle::after {
+    display: none;
+}
+
+form[enviarConvite] {
+    width: 230px;
+}
+
+.form-control:focus {
+    border-color: #dc3545!important;
+}
+
+.mandante {
+    width: 75px;
+    height: 75px;
+    padding: 0;
+}
+
+.versus {
+    font-size: 55px;
+    text-align: center;
+    padding: 0;
+}
+
+.visitante {
+    width: 75px;
+    height: 75px;
+    padding: 0;
+}
+
+.placar-resultado {
+    font-size: 55px;
+    padding: 0;
+    text-align: center;
+}
+
+.text-grey-opacity {
+    color: #9999994f;
+}
+
+tbody[classificacaoFutLiga]>tr * {
+    font-size: 40px;
+    color: #888;
+}
+
+img.imgClassificacao {
+    width: 40px;
+    height: 40px;
+}
+
+tbody[classificacaoArtilharia]>tr * {
+    color: #888;
 }
 
 .form-control,
@@ -5447,7 +5511,7 @@ body {
     font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #dc3545;
     font-size: 13px;
-    color: #fff;
+    color: #dc3545;
     overflow-x: hidden;
 }
 
