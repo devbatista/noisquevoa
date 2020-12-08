@@ -303,4 +303,4 @@
     </div>
 </div>
 
-<script type="text/javascript" src="<? $base ?>/assets/js/admin/admin.js"></script>
+<script type="text/javascript" src="<?= $base ?>/assets/js/admin/admin.js"></script>

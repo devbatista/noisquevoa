@@ -9,11 +9,16 @@
 
     <title>Nois Que Voa - Administração</title>
 
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $base ?>/assets/img/favicon.ico">
+
     <link href="<?= $base ?>/assets/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="<?= $base ?>/assets/plugins/icon-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Toastr style -->
     <link href="<?= $base ?>/assets/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link href="<?= $base ?>/assets/plugins/datatables/datatables.min.css" rel="stylesheet">
 
     <!-- Gritter -->
     <link href="<?= $base ?>/assets/plugins/gritter/jquery.gritter.css" rel="stylesheet">
@@ -61,6 +66,9 @@
     <!-- Toastr -->
     <script src="<?= $base ?>/assets/plugins/toastr/toastr.min.js"></script>
 
+    <!-- Datatables -->
+    <script src="<?= $base ?>/assets/plugins/datatables/datatables.min.js"></script>
+
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>
 
@@ -97,13 +105,13 @@
                         <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
                     </li>
                     <li>
-                        <a href="<?= $base ?>/admin/jogadores"><i class="fa fa-users"></i> <span class="nav-label">Jogadores</span></a>
+                        <a href="<?= $base ?>/admin/elenco"><i class="fa fa-users"></i> <span class="nav-label">Elenco</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/diretoria"><i class="fa fa-cogs"></i> <span class="nav-label">Diretoria</span></a>
                     </li>
                     <li>
-                        <a href="<?= $base ?>/admin/diretoria"><i class="fa fa-tasks"></i> <span class="nav-label">Ligas</span></a>
+                        <a href="<?= $base ?>/admin/ligas"><i class="fa fa-tasks"></i> <span class="nav-label">Ligas</span></a>
                     </li>
                     <li class="dropright">
                         <a href="#" role="button" id="dropdownMenuLink" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="nav-label">Convite</span></a>

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     carregarPosicao();
 
     $('input[name=cpf]').mask('000.000.000-00');
@@ -11,8 +11,8 @@ function carregarPosicao() {
         dataType: 'json',
         success: (dados) => {
             let html = '<option disabled selected value="0" style="color:#808080">Sem posição</option>';
-            $('select#posicao').html(function () {
-                $.each(dados, function (i, v) {
+            $('select#posicao').html(function() {
+                $.each(dados, function(i, v) {
                     html += '<option value="' + this.id_posicao + '">' + this.nome + '</option>';
                 });
                 return html;
@@ -56,8 +56,7 @@ function validarSenhas() {
 function validaCPF(cpf) {
     if (typeof cpf !== "string") return false;
     cpf = cpf.replace(/[\s.-]*/igm, '');
-    if (
-        !cpf ||
+    if (!cpf ||
         cpf.length != 11 ||
         cpf == "00000000000" ||
         cpf == "11111111111" ||
@@ -88,7 +87,7 @@ function validaCPF(cpf) {
     return true
 }
 
-$('input[name=cpf]').on('keyup', function (e) {
+$('input[name=cpf]').on('keyup', function(e) {
     let cpf = $(this).val();
     let validador = validaCPF(cpf);
     if (cpf.length == 0) {
@@ -108,15 +107,15 @@ $('input[name=cpf]').on('keyup', function (e) {
     }
 });
 
-$('input[name=senha]').on('keyup', function () {
+$('input[name=senha]').on('keyup', function() {
     tamanhoSenha();
 });
 
-$('input[name=confirmarSenha]').on('keyup', function () {
+$('input[name=confirmarSenha]').on('keyup', function() {
     validarSenhas();
 });
 
-$('form[cadastrar]').on('submit', function (e) {
+$('form[cadastrar]').on('submit', function(e) {
     e.preventDefault();
     $('form').ajaxSubmit({
         url: window.origin + '/cadastro/enviar',
@@ -125,19 +124,37 @@ $('form[cadastrar]').on('submit', function (e) {
         beforeSubmit: () => {
 
         },
-        success: (dados) => {
-        }
+        success: (dados) => {}
     });
 });
 
-$('input[name=jogador]').on('click', function () {
+$('input[name=jogador]').on('click', function() {
     let posicao = $('select[name=posicao]');
+    let comissao_tecnica = $('input[name=comissao_tecnica]');
     if ($('input[name=jogador]').is(':checked') == true) {
         posicao.removeAttr('disabled');
         posicao.attr('required', true);
+        comissao_tecnica.attr('disabled', true);
     } else {
         $('select[name=posicao]').val('0');
         posicao.attr('disabled', true);
-        posicao.removeAttr('required')
+        posicao.removeAttr('required');
+        comissao_tecnica.removeAttr('disabled');
+    }
+})
+
+$('input[name=comissao_tecnica]').on('click', function() {
+    let jogador = $('input[name=jogador]');
+    let posicao = $('select[name=posicao]');
+    if ($('input[name=comissao_tecnica]').is(':checked') != true) {
+        jogador.removeAttr('disabled');
+        jogador.attr('required', true);
+    } else {
+        $('input[name=jogador]').prop('checked', false)
+        $('select[name=jogador]').val('0');
+        jogador.attr('disabled', true);
+        jogador.removeAttr('required');
+        posicao.attr('disabled', true);
+        posicao.removeAttr('required');
     }
 })

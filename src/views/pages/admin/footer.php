@@ -3,7 +3,7 @@
         Criado por <strong><a class="direitos" href="https://www.devbatista.com">DevBatista</a></strong>
     </div>
     <div>
-        <strong>Todos os direitos reservados</strong> 2020 &copy;
+        <strong>Todos os direitos reservados</strong> <?= date('Y') ?> &copy;
     </div>
 </div>
 </div>

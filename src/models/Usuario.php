@@ -44,7 +44,7 @@ class Usuario extends Model
         if ($data) {
             try {
                 $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO $this->tableName SET nome = :nome, apelido = :apelido, email = :email, senha = :senha, cpf = :cpf, celular = :celular, jogador = :jogador, diretoria = :diretoria, dt_nascimento = :dt_nascimento, posicao = :posicao";
+                $sql = "INSERT INTO $this->tableName SET nome = :nome, apelido = :apelido, email = :email, senha = :senha, cpf = :cpf, celular = :celular, jogador = :jogador, diretoria = :diretoria, comissao_tecnica = :comissao_tecnica, dt_nascimento = :dt_nascimento, posicao = :posicao";
                 $sql = $this->db->prepare($sql);
                 $sql->bindValue(':nome', $data['nome']);
                 $sql->bindValue(':apelido', $data['apelido']);
@@ -54,6 +54,7 @@ class Usuario extends Model
                 $sql->bindValue(':celular', $data['celular']);
                 $sql->bindValue(':jogador', $data['jogador']);
                 $sql->bindValue(':diretoria', $data['diretoria']);
+                $sql->bindValue(':comissao_tecnica', $data['comissao_tecnica']);
                 $sql->bindValue(':dt_nascimento', $data['dt_nascimento']);
                 $sql->bindValue(':posicao', $data['posicao']);
 

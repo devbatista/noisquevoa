@@ -8,7 +8,7 @@ function formatar(mascara, documento) {
     }
 }
 
-$('form').on('submit', function(e) {
+$('form[login]').on('submit', function(e) {
     e.preventDefault();
     $('form').ajaxSubmit({
         url: window.origin + '/login/autentica',
@@ -42,3 +42,17 @@ $('form').on('submit', function(e) {
         }
     });
 });
+
+$('form[login] a').click(function(e) {
+    e.preventDefault();
+    $('form[login]').addClass('d-none');
+    $('form[esqueciSenha]').removeClass('d-none');
+    $('form[esqueciSenha]').parent().find('h2').text('Alterar senha');
+})
+
+$('form[esqueciSenha] a').click(function(e) {
+    e.preventDefault();
+    $('form[esqueciSenha]').addClass('d-none');
+    $('form[login]').removeClass('d-none');
+    $('form[esqueciSenha]').parent().find('h2').text('Faça o login');
+})

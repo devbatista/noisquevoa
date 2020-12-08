@@ -48,6 +48,15 @@ p.padding {
     padding: 20px;
 }
 
+.form-control:focus {
+    border-color: #e05b67;
+    box-shadow: 0 0 0 0.2rem rgb(234 175 180);
+}
+
+a:hover {
+    color: #c82333;
+}
+
 @media only screen and (max-width:500px) {
     img.logo {
         width: 80%;

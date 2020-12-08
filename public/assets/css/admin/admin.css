@@ -3233,6 +3233,7 @@ table.dataTable thead .sorting_desc_disabled {
 
 .dataTables_filter label {
     margin-right: 5px;
+    float: right;
 }
 
 .html5buttons {

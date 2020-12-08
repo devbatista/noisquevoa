@@ -11,7 +11,8 @@ $router->post('/login/autentica', 'LoginController@autentica');
 
 $router->get('/admin', 'admin\AdminController@index');
 $router->get('/admin/partidas', 'admin\PartidasController@index');
-$router->get('/admin/jogadores', 'admin\JogadoresController@index');
+$router->get('/admin/elenco', 'admin\ElencoController@index');
+$router->get('/admin/diretoria', 'admin\DiretoriaController@index');
 
 $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');
 

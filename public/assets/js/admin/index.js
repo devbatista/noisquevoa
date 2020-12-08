@@ -1,14 +1,17 @@
 $(document).ready(function() {
-    setTimeout(function() {
-        toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            showMethod: 'slideDown',
-            timeOut: 4000
-        };
-        toastr.success('Área administrativa', 'NOIS QUE VOA SC');
 
-    }, 1300);
+    itensMenuAtivar();
+
+    // setTimeout(function() {
+    //     toastr.options = {
+    //         closeButton: true,
+    //         progressBar: true,
+    //         showMethod: 'slideDown',
+    //         timeOut: 4000
+    //     };
+    //     toastr.success('Área administrativa', 'NOIS QUE VOA SC');
+
+    // }, 1300);
 
 
     var data1 = [
@@ -133,3 +136,15 @@ $(document).ready(function() {
     });
 
 });
+
+function itensMenuAtivar() {
+    let url = window.location.href;
+    let listaMenu = $('ul.metismenu li a');
+    listaMenu.each(function(i, v) {
+        if (this.href == url) {
+            $(this).parent().addClass('active');
+        } else {
+            $(this).parent().removeClass('active');
+        }
+    });
+}

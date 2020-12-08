@@ -29,11 +29,12 @@ class CadastroController extends Controller
             $retorno = '';
             $jogador = filter_input(INPUT_POST, 'jogador', FILTER_VALIDATE_INT);
             $diretoria = filter_input(INPUT_POST, 'diretoria', FILTER_VALIDATE_INT);
+            $comissao = filter_input(INPUT_POST, 'comissao_tecnica', FILTER_VALIDATE_INT);
             $posicao = filter_input(INPUT_POST, 'posicao', FILTER_VALIDATE_INT);
 
             $dados = [
-                'nome' => strtoupper(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING)),
-                'apelido' => strtoupper(filter_input(INPUT_POST, 'apelido')),
+                'nome' => filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING),
+                'apelido' => filter_input(INPUT_POST, 'apelido'),
                 'email' => $this->retirarAcentos(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)),
                 'senha' => password_hash(filter_input(INPUT_POST, 'senha'), PASSWORD_DEFAULT),
                 'confirma' => filter_input(INPUT_POST, 'confirmarSenha'),
@@ -41,6 +42,7 @@ class CadastroController extends Controller
                 'celular' => filter_input(INPUT_POST, 'whatsapp'),
                 'jogador' => ($jogador) ? $jogador : 0,
                 'diretoria' => ($diretoria) ? $diretoria : 0,
+                'comissao_tecnica' => ($comissao) ? $comissao : 0,
                 'dt_nascimento' => date("Y-m-d", strtotime(filter_input(INPUT_POST, 'nascimento'))),
                 'posicao' => ($posicao) ? $posicao : null
             ];

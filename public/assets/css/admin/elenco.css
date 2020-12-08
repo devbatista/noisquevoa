@@ -1,0 +1,61 @@
+.wrapper-content {
+    padding: 20px 40px 40px!important;
+}
+
+.imgElenco {
+    width: 150px;
+    height: 200px;
+    padding: 0;
+}
+
+.dadosElenco {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.dadosElenco .row {
+    margin-bottom: 7px;
+}
+
+.ibox-content:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.buttons {
+    padding-bottom: 50px;
+}
+
+.form-control:focus {
+    border-color: #f10404;
+    box-shadow: 0 0 0 0.2rem rgb(255 2 1 / 18%);
+}
+
+div.cadastro {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h1 {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+label {
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+label.form-check-label {
+    font-weight: normal;
+}
+
+button[type=submit] {
+    margin-bottom: 20px;
+}
+
+div#erroTamanhoSenha,
+div#erroConfirmaSenha,
+div#cpfInvalido {
+    color: rgb(242, 28, 3)
+}

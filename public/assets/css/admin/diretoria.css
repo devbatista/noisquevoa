@@ -2,22 +2,26 @@
     padding: 20px 40px 40px!important;
 }
 
-.imgJogador {
+.imgDiretoria {
     width: 150px;
     height: 200px;
     padding: 0;
 }
 
-.dadosJogador {
+.dadosDiretoria {
     font-size: 20px;
     padding: 10px;
 }
 
-.dadosJogador .row {
+.dadosDiretoria .row {
     margin-bottom: 7px;
 }
 
 .ibox-content:hover {
     background-color: #ddd;
     cursor: pointer;
+}
+
+.buttons {
+    padding-bottom: 50px;
 }

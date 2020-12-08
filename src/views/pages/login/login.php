@@ -23,7 +23,8 @@
             <div class="col-lg-6 col-md-6 col-sm-5">
                 <h2>Faça o login</h2>
 
-                <form action="" method="POST" data-toggle="validator">
+                <!-- Form de login -->
+                <form login action="" method="POST" data-toggle="validator">
 
                     <input type="email" name="email" placeholder="Email" class="form-control">
                     <input type="password" name="senha" placeholder="Senha" class="form-control">
@@ -36,7 +37,21 @@
 
                 </form>
 
-                <p class="gray padding">2020</p>
+                <!-- Esqueci minha senha -->
+                <form esqueciSenha action="" method="POST" data-toggle="validator" novalidate="true" class="d-none">
+
+                    <input type="email" name="email" placeholder="Email" class="form-control">
+    
+
+                    <label class="remember" for="remember">
+                        <a href="">Voltar</a>                        
+                    </label>
+
+                    <input type="submit" class="btn btn-danger btn-block" value="Enviar">
+
+                </form>
+
+                <p class="gray padding"><?= date('Y') ?></p>
             </div>
         </div>
     </div>
