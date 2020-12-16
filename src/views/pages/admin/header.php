@@ -26,6 +26,9 @@
     <link href="<?= $base ?>/assets/css/admin/animate.css" rel="stylesheet">
     <link href="<?= $base ?>/assets/css/admin/admin.css" rel="stylesheet">
 
+    <!-- Summernote -->
+    <link href="<?= $base ?>/assets/plugins/summernote/summernote.min.css" rel="stylesheet">
+
     <!-- scripts -->
     <script src="<?= $base ?>/assets/plugins/jquery/jquery.min.js"></script>
     <script src="<?= $base ?>/assets/js/admin/popper.min.js"></script>
@@ -68,6 +71,9 @@
 
     <!-- Datatables -->
     <script src="<?= $base ?>/assets/plugins/datatables/datatables.min.js"></script>
+
+    <!-- Summernote -->
+    <script src="<?= $base ?>/assets/plugins/summernote/summernote.min.js"></script>
 
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>

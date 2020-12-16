@@ -21,11 +21,13 @@
                                         <thead class="thead-danger">
                                             <tr>
                                                 <th scope="col">Data/hora</th>
+                                                <th scope="col"></th>
                                                 <th scope="col">Mandante</th>
                                                 <th scope="col">#</th>
                                                 <th scope="col">X</th>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Visitante</th>
+                                                <th scope="col"></th>
                                                 <th scope="col">Local</th>
                                                 <th scope="col">Liga</th>
                                             </tr>
@@ -33,31 +35,37 @@
                                         <tbody>
                                             <tr>
                                                 <td>13/09/2020 - 10h00</td>
-                                                <td>Nois Que Voa</td>
+                                                <td><img src="<?= $base ?>/assets/img/noisquevoa.png" alt=""></td>
+                                                <td><b>Nois Que Voa</b></td>
                                                 <td></td>
                                                 <td>X</td>
                                                 <td></td>
                                                 <td>Visitante</td>
+                                                <td><img src="<?= $base ?>/assets/img/escudo.jpg" alt=""></td>
                                                 <td>CDC Vila Friburgo</td>
                                                 <td>Futliga</td>
                                             </tr>
                                             <tr>
                                                 <td>13/09/2020 - 10h00</td>
-                                                <td>Nois Que Voa</td>
+                                                <td><img src="<?= $base ?>/assets/img/noisquevoa.png" alt=""></td>
+                                                <td><b>Nois Que Voa</b></td>
                                                 <td></td>
                                                 <td>X</td>
                                                 <td></td>
                                                 <td>Visitante</td>
+                                                <td><img src="<?= $base ?>/assets/img/escudo.jpg" alt=""></td>
                                                 <td>CDC Vila Friburgo</td>
                                                 <td>Futliga</td>
                                             </tr>
                                             <tr>
                                                 <td>13/09/2020 - 10h00</td>
-                                                <td>Nois Que Voa</td>
+                                                <td><img src="<?= $base ?>/assets/img/noisquevoa.png" alt=""></td>
+                                                <td><b>Nois Que Voa</b></td>
                                                 <td></td>
                                                 <td>X</td>
                                                 <td></td>
                                                 <td>Visitante</td>
+                                                <td><img src="<?= $base ?>/assets/img/escudo.jpg" alt=""></td>
                                                 <td>CDC Vila Friburgo</td>
                                                 <td>Futliga</td>
                                             </tr>

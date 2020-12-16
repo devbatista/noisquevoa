@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Simples - em MVC</title>
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $base ?>/assets/img/favicon.ico">
+    <title>Nois Que Voa Sport Clube</title>
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/icon-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/css/style.css">
@@ -14,10 +15,3 @@
 </head>
 
 <body>
-
-    <head>
-
-        <h1>CRUD - LARAVEL</h1>
-
-    </head>
-    <hr>

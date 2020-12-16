@@ -78,4 +78,10 @@ class Usuario extends Model
 
         return $code;
     }
+
+    public function getJogadores()
+    {
+        $sql = $this->db->query("SELECT * FROM $this->tableName WHERE jogador = 1");
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

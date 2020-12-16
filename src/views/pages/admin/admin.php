@@ -2,7 +2,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right">2021</span>
+                <span class="label label-danger float-right"><?= date('Y') ?></span>
                 <h5>Jogos</h5>
             </div>
             <div class="ibox-content">
@@ -13,7 +13,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right">2021</span>
+                <span class="label label-danger float-right"><?= date('Y') ?></span>
                 <h5>Vitórias</h5>
             </div>
             <div class="ibox-content">
@@ -24,7 +24,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right">2021</span>
+                <span class="label label-danger float-right"><?= date('Y') ?></span>
                 <h5>Derrotas</h5>
             </div>
             <div class="ibox-content">
@@ -35,7 +35,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right">2021</span>
+                <span class="label label-danger float-right"><?= date('Y') ?></span>
                 <h5>Empates</h5>
             </div>
             <div class="ibox-content">
@@ -181,7 +181,7 @@
                     </div>
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>Assistências 2021</h5>
+                            <h5>Assistências <?= date('Y') ?></h5>
                         </div>
                         <div class="ibox-content">
                         <div>
@@ -234,7 +234,7 @@
                 <div class="col-lg-4">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>Artilharia 2021</h5>
+                            <h5>Artilharia <?= date('Y') ?></h5>
                         </div>
                         <div class="ibox-content">
                             <div>
