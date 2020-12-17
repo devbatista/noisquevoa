@@ -53,101 +53,16 @@
                         <div class="ibox-title">
                             <h5>Próximas partidas</h5>
                         </div>
-                        <div class="ibox-content">
-                            <div class="row justify-content-center">
-                                <span class="text-muted">Futliga</span>
-                            </div>
-                            <div class="row justify-content-center">
-                                <span class="text-muted"><b>13/09/2020</b> Ipasure <b>8h00</b></span>
-                            </div>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-5 text-center mandante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Nois Que Voa" class="mandante">
-                                </div>
-                                <div class="col-2 versus text-muted">X</div>
-                                <div class="col-5 text-center visitante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Visitante" class="visitante">
-                                </div>
-                            </div>
+                        <!-- <div class="ibox-content">
+
                         </div>
                         <div class="ibox-content">
-                            <div class="row justify-content-center">
-                                <span class="text-muted">Futliga</span>
-                            </div>
-                            <div class="row justify-content-center">
-                                <span class="text-muted"><b>13/09/2020</b> Ipasure <b>9h00</b></span>
-                            </div>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-5 text-center mandante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Nois Que Voa" class="mandante">
-                                </div>
-                                <div class="col-2 versus text-muted">X</div>
-                                <div class="col-5 text-center visitante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Visitante" class="visitante">
-                                </div>
-                            </div>
-                        </div>
+                            
+                        </div> -->
                     </div>
                     <div class="ibox ">
                         <div class="ibox-title">
                             <h5>Partidas anteriores</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row justify-content-center">
-                                <span class="text-muted">2º quadro</span>
-                            </div>
-                            <div class="row justify-content-center">
-                                <span class="text-muted"><b>13/09/2020</b> Ipasure <b>8h00</b></span>
-                            </div>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-3 text-center mandante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Nois Que Voa" class="mandante">
-                                </div>
-                                <div class="col-2 placar-resultado text-muted">2</div>
-                                <div class="col-2 versus text-grey-opacity">X</div>
-                                <div class="col-2 placar-resultado text-muted">0</div>
-                                <div class="col-3 text-center visitante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Visitante" class="visitante">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row justify-content-center">
-                                <span class="text-muted">2º quadro</span>
-                            </div>
-                            <div class="row justify-content-center">
-                                <span class="text-muted"><b>13/09/2020</b> Ipasure <b>8h00</b></span>
-                            </div>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-3 text-center mandante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Nois Que Voa" class="mandante">
-                                </div>
-                                <div class="col-2 placar-resultado text-muted">2</div>
-                                <div class="col-2 versus text-grey-opacity">X</div>
-                                <div class="col-2 placar-resultado text-muted">0</div>
-                                <div class="col-3 text-center visitante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Visitante" class="visitante">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row justify-content-center">
-                                <span class="text-muted">2º quadro</span>
-                            </div>
-                            <div class="row justify-content-center">
-                                <span class="text-muted"><b>13/09/2020</b> Ipasure <b>8h00</b></span>
-                            </div>
-                            <div class="row" style="margin-top: 10px">
-                                <div class="col-3 text-center mandante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Nois Que Voa" class="mandante">
-                                </div>
-                                <div class="col-2 placar-resultado text-muted">2</div>
-                                <div class="col-2 versus text-grey-opacity">X</div>
-                                <div class="col-2 placar-resultado text-muted">0</div>
-                                <div class="col-3 text-center visitante">
-                                    <img src="<?= $base ?>/assets/img/escudo.jpg" alt="Visitante" class="visitante">
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,10 +96,10 @@
                     </div>
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>Assistências <?= date('Y') ?></h5>
+                            <h5>Assistências</h5>
                         </div>
                         <div class="ibox-content">
-                        <div>
+                            <div>
                                 <table class="table text-center p-0">
                                     <thead>
                                         <tr>
@@ -194,37 +109,8 @@
                                             <th scope="col">JGS</th>
                                         </tr>
                                     </thead>
-                                    <tbody classificacaoArtilharia>
-                                        <tr>
-                                            <th scope="row">1º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
+                                    <tbody classificacaoAssistencias>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -234,7 +120,7 @@
                 <div class="col-lg-4">
                     <div class="ibox ">
                         <div class="ibox-title">
-                            <h5>Artilharia <?= date('Y') ?></h5>
+                            <h5>Artilharia</h5>
                         </div>
                         <div class="ibox-content">
                             <div>
@@ -248,48 +134,7 @@
                                         </tr>
                                     </thead>
                                     <tbody classificacaoArtilharia>
-                                        <tr>
-                                            <th scope="row">1º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">6º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">7º</th>
-                                            <td>Batista</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>

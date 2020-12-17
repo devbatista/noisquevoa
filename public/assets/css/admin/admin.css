@@ -1500,33 +1500,33 @@ body.mini-navbar .navbar-default .nav>li>.nav-second-level li a {
 }
 
 .navbar-default .special_link a {
-    background: #1ab394;
+    background: #bd2a38;
     color: white;
 }
 
 .navbar-default .special_link a:hover {
-    background: #17987e !important;
+    background: #bd2a38 !important;
     color: white;
 }
 
 .navbar-default .special_link a span.label {
     background: #fff;
-    color: #1ab394;
+    color: #bd2a38;
 }
 
 .navbar-default .landing_link a {
-    background: #1cc09f;
+    background: #bd2a38;
     color: white;
 }
 
 .navbar-default .landing_link a:hover {
-    background: #1ab394 !important;
+    background: #bd2a38 !important;
     color: white;
 }
 
 .navbar-default .landing_link a span.label {
     background: #fff;
-    color: #1cc09f;
+    color: #bd2a38;
 }
 
 .logo-element {
@@ -1678,7 +1678,7 @@ body.canvas-menu .logo-element {
 
 body.mini-navbar .nav-header {
     padding: 0;
-    background-color: #1ab394;
+    background-color: #bd2a38;
 }
 
 body.canvas-menu .nav-header {

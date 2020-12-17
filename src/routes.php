@@ -11,12 +11,13 @@ $router->post('/login/autentica', 'LoginController@autentica');
 
 $router->get('/admin', 'admin\AdminController@index');
 $router->get('/admin/partidas', 'admin\PartidasController@index');
+$router->get('/admin/estatisticas', 'admin\EstatisticasController@index');
 $router->get('/admin/elenco', 'admin\ElencoController@index');
 $router->get('/admin/diretoria', 'admin\DiretoriaController@index');
 $router->get('/admin/posts', 'admin\PostsController@index');
 
 // API
-$router->get('/admin/dados', 'admin\AdminController@getData');
+$router->get('/admin/home/dados', 'admin\AdminController@getData');
 // END API
 
 $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');

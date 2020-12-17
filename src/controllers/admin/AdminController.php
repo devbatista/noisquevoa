@@ -4,21 +4,17 @@ namespace src\controllers\admin;
 
 use \core\Controller;
 use \src\models\Partida;
-use \src\models\Usuario; 
+use \src\models\Usuario;
 
 class AdminController extends Controller
 {
     public $partidas;
-    public $jogadores;
 
     public function __construct()
     {
         $this->detectarLogin();
         $this->partidas = new Partida();
         $this->partidas = $this->partidas->getJogos();
-
-        $this->jogadores = new Usuario();
-        $this->jogadores = $this->jogadores->getJogadores();
     }
 
     public function index()
@@ -41,14 +37,12 @@ class AdminController extends Controller
             'partidas_anteriores' => $this->getPartidasAnteriores(),
         ];
 
-        print_r($dados);exit;
-
         echo json_encode($dados);
     }
 
     private function getQtdJogos()
     {
-        $qtdJogos = count($this->partidas);
+        $qtdJogos = count($this->getPartidasAnteriores());
 
         return $qtdJogos;
     }
@@ -57,7 +51,7 @@ class AdminController extends Controller
     {
         $vitorias = 0;
 
-        foreach ($this->partidas as $value) {
+        foreach ($this->getPartidasAnteriores() as $value) {
             if ($value['gols_pro'] > $value['gols_contra']) {
                 $vitorias++;
             }
@@ -70,7 +64,7 @@ class AdminController extends Controller
     {
         $empates = 0;
 
-        foreach ($this->partidas as $value) {
+        foreach ($this->getPartidasAnteriores() as $value) {
             if ($value['gols_pro'] == $value['gols_contra']) {
                 $empates++;
             }
@@ -83,7 +77,7 @@ class AdminController extends Controller
     {
         $derrotas = 0;
 
-        foreach ($this->partidas as $value) {
+        foreach ($this->getPartidasAnteriores() as $value) {
             if ($value['gols_pro'] < $value['gols_contra']) {
                 $derrotas++;
             }
@@ -95,8 +89,10 @@ class AdminController extends Controller
     private function getArtilharia()
     {
         $artilharia = [];
+        $jogadores = new Usuario();
+        $jogadores = $jogadores->getArtilheiros();
 
-        foreach ($this->jogadores as $key => $value) {
+        foreach ($jogadores as $key => $value) {
             $artilharia[$key] = [
                 'apelido' => $value['apelido'],
                 'gols' => $value['gols'] ? $value['gols'] : 0,
@@ -110,8 +106,10 @@ class AdminController extends Controller
     private function getAssistencias()
     {
         $assistencias = [];
+        $jogadores = new Usuario();
+        $jogadores = $jogadores->getAssistencias();
 
-        foreach ($this->jogadores as $key => $value) {
+        foreach ($jogadores as $key => $value) {
             $assistencias[$key] = [
                 'apelido' => $value['apelido'],
                 'assistencias' => $value['assistencias'] ? $value['assistencias'] : 0,
@@ -127,7 +125,7 @@ class AdminController extends Controller
         $proxPartidas = [];
 
         foreach ($this->partidas as $key => $value) {
-            if($value['data_hora_partida'] > date('Y-m-d H:i:s') && $key <= 1) {
+            if ($value['data_hora_partida'] > date('Y-m-d H:i:s') && count($proxPartidas) <= 2 && $value['concluido'] == 0) {
                 $proxPartidas[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
@@ -135,6 +133,8 @@ class AdminController extends Controller
                     'horario' => date('H:i', strtotime($value['data_hora_partida'])),
                     'nqv' => '/assets/img/noisquevoa.png',
                     'adversario' => $value['logo_adversario'],
+                    'tipo_mv' => $value['mandante_visitante'],
+                    'concluido' => $value['concluido'],
                 ];
             }
         }
@@ -147,7 +147,7 @@ class AdminController extends Controller
         $partidasAnteriores = [];
 
         foreach ($this->partidas as $key => $value) {
-            if($value['data_hora_partida'] < date('Y-m-d H:i:s') && $key <= 2) {
+            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) <= 3 && $value['concluido'] == 1) {
                 $partidasAnteriores[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
@@ -156,6 +156,7 @@ class AdminController extends Controller
                     'nqv' => '/assets/img/noisquevoa.png',
                     'gols_pro' => $value['gols_pro'],
                     'gols_contra' => $value['gols_contra'],
+                    'tipo_mv' => $value['mandante_visitante'],
                     'adversario' => $value['logo_adversario'],
                 ];
             }

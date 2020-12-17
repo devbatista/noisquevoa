@@ -17,8 +17,7 @@ class Partida extends Model
             INNER JOIN liga AS b ON a.id_liga = b.id_liga 
             INNER JOIN equipes AS c ON a.id_adversario = c.id_equipe 
             INNER JOIN local AS d ON a.id_local = d.id_local 
-            INNER JOIN tipo_mv AS e ON a.tipo_mv = e.id_mv 
-            WHERE concluido = 1");
+            INNER JOIN tipo_mv AS e ON a.tipo_mv = e.id_mv");
         
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

@@ -84,4 +84,16 @@ class Usuario extends Model
         $sql = $this->db->query("SELECT * FROM $this->tableName WHERE jogador = 1");
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function getArtilheiros()
+    {
+        $sql = $this->db->query("SELECT apelido, gols, jogos FROM $this->tableName WHERE jogador = 1 ORDER BY gols DESC, jogos ASC LIMIT 7");
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getAssistencias()
+    {
+        $sql = $this->db->query("SELECT apelido, assistencias, jogos FROM $this->tableName WHERE jogador = 1 ORDER BY assistencias DESC, jogos ASC LIMIT 5");
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

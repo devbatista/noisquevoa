@@ -104,11 +104,14 @@
                             NQV
                         </div>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="<?= $base ?>/admin"><i class="fa fa-home"></i> <span class="nav-label">Home</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
+                    </li>
+                    <li>
+                        <a href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/elenco"><i class="fa fa-users"></i> <span class="nav-label">Elenco</span></a>
