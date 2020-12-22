@@ -3553,6 +3553,7 @@ select.form-control:not([size]):not([multiple]) {
     padding: 6px 12px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
+    color: #222;
 }
 
 .form-control:focus,
@@ -5588,6 +5589,10 @@ a:focus {
 
 .b-r {
     border-right: 1px solid #e7eaec;
+}
+
+.swal2-container.swal2-center.swal2-backdrop-show {
+    z-index: 9999;
 }
 
 .hr-line-dashed {

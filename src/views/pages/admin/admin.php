@@ -2,7 +2,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right"><?= date('Y') ?></span>
+                <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Jogos</h5>
             </div>
             <div class="ibox-content">
@@ -13,7 +13,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right"><?= date('Y') ?></span>
+                <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Vitórias</h5>
             </div>
             <div class="ibox-content">
@@ -24,7 +24,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right"><?= date('Y') ?></span>
+                <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Derrotas</h5>
             </div>
             <div class="ibox-content">
@@ -35,7 +35,7 @@
     <div class="col-lg-3">
         <div class="ibox ">
             <div class="ibox-title">
-                <span class="label label-danger float-right"><?= date('Y') ?></span>
+                <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Empates</h5>
             </div>
             <div class="ibox-content">
@@ -53,12 +53,6 @@
                         <div class="ibox-title">
                             <h5>Próximas partidas</h5>
                         </div>
-                        <!-- <div class="ibox-content">
-
-                        </div>
-                        <div class="ibox-content">
-                            
-                        </div> -->
                     </div>
                     <div class="ibox ">
                         <div class="ibox-title">
@@ -84,7 +78,7 @@
                                     </thead>
                                     <tbody classificacaoFutLiga>
                                         <tr>
-                                            <th scope="row">1º</th>
+                                            <th scope="row">Xº</th>
                                             <td style="padding: 3px"><img src="<?= $base ?>/assets/img/escudo.jpg" alt="NQV" class="imgClassificacao"></td>
                                             <td>0</td>
                                             <td>0</td>

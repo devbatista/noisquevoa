@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/icon-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui-min.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/sweetalert/sweetalert.css">
+    <link href="<?= $base ?>/assets/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= $base ?>/assets/css/cadastro/cadastro.css">
 </head>
 
@@ -56,15 +57,15 @@
 
                 <div class="form-group">
                     <label for="">Tipo: </label><br>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline checkbox checkbox-danger">
                         <input class="form-check-input" type="checkbox" id="jogador" value="1" name="jogador">
                         <label class="form-check-label" for="jogador">Jogador</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline checkbox checkbox-danger">
                         <input class="form-check-input" type="checkbox" id="diretoria" value="1" name="diretoria">
                         <label class="form-check-label" for="diretoria">Diretoria</label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div class="form-check form-check-inline checkbox checkbox-danger">
                         <input class="form-check-input" type="checkbox" id="comissao_tecnica" value="1" name="comissao_tecnica">
                         <label class="form-check-label" for="comissao_tecnica">Comissão Técnica</label>
                     </div>

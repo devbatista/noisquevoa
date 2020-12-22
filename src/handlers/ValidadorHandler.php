@@ -93,9 +93,9 @@ class ValidadorHandler
         }
     }
 
-    public static function validarTipo($jogador, $diretoria, $posicao)
+    public static function validarTipo($jogador, $diretoria, $posicao, $comissao)
     {
-        if ((!$jogador && !$diretoria && !$posicao) || ($jogador && !$posicao)) {
+        if ((!$jogador && !$diretoria && !$posicao && !$comissao) || ($jogador && !$posicao)) {
             return false;
         } else {
             return true;

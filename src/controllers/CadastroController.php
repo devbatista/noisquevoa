@@ -54,7 +54,7 @@ class CadastroController extends Controller
                 'senha' => ValidadorHandler::validarSenha($dados['senha'], $dados['confirma']),
                 'cpf' => ValidadorHandler::validarCPF($dados['cpf']),
                 'celular' => ValidadorHandler::validarCelular($dados['celular']),
-                'tipo_usuario' => ValidadorHandler::validarTipo($dados['jogador'], $dados['diretoria'], $dados['posicao']),
+                'tipo_usuario' => ValidadorHandler::validarTipo($dados['jogador'], $dados['diretoria'], $dados['posicao'], $dados['comissao_tecnica']),
                 'dt_nascimento' => ValidadorHandler::validarNascimento($dados['dt_nascimento'])
             ];
 
@@ -70,22 +70,12 @@ class CadastroController extends Controller
 
             if (empty($falseKey)) {
                 $usuario = new Usuario();
-                $teste = $usuario->insertUser($dados);
-
-                $retorno = $teste;
+                $retorno = $usuario->insertUser($dados);
             }
 
             echo json_encode($retorno);
         } else {
             return false;
         }
-    }
-
-    private function retirarAcentos($email)
-    {
-        $comAcentos = array('à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ü', 'ú', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'O', 'Ù', 'Ü', 'Ú');
-        $semAcentos = array('a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', '0', 'U', 'U', 'U');
-
-        return str_replace($comAcentos, $semAcentos, $email);
     }
 }

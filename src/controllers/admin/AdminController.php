@@ -24,6 +24,14 @@ class AdminController extends Controller
         $this->loadView('admin/footer');
     }
 
+    public function getPermissao($id)
+    {
+        $jogadores = new Usuario();
+        $jogadores = $jogadores->getPermissionById($id['id']);
+
+        echo json_encode($jogadores);
+    }
+
     public function getData()
     {
         $dados = [
@@ -94,6 +102,7 @@ class AdminController extends Controller
 
         foreach ($jogadores as $key => $value) {
             $artilharia[$key] = [
+                'id' => $value['id_usuario'],
                 'apelido' => $value['apelido'],
                 'gols' => $value['gols'] ? $value['gols'] : 0,
                 'jogos' => $value['jogos'] ? $value['jogos'] : 0,
@@ -111,6 +120,7 @@ class AdminController extends Controller
 
         foreach ($jogadores as $key => $value) {
             $assistencias[$key] = [
+                'id' => $value['id_usuario'],
                 'apelido' => $value['apelido'],
                 'assistencias' => $value['assistencias'] ? $value['assistencias'] : 0,
                 'jogos' => $value['jogos'] ? $value['jogos'] : 0,

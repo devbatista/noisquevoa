@@ -17,6 +17,9 @@
     <!-- Toastr style -->
     <link href="<?= $base ?>/assets/plugins/toastr/toastr.min.css" rel="stylesheet">
 
+    <!-- Jquery UI -->
+    <link rel="stylesheet" href="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui.min.css">
+
     <!-- Datatables -->
     <link href="<?= $base ?>/assets/plugins/datatables/datatables.min.css" rel="stylesheet">
 
@@ -28,6 +31,12 @@
 
     <!-- Summernote -->
     <link href="<?= $base ?>/assets/plugins/summernote/summernote.min.css" rel="stylesheet">
+
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="<?= $base ?>/assets/plugins/sweetalert/sweetalert.css">
+
+    <!-- Awesome Bootstrap -->
+    <link href="<?= $base ?>/assets/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
     <!-- scripts -->
     <script src="<?= $base ?>/assets/plugins/jquery/jquery.min.js"></script>
@@ -54,6 +63,9 @@
     <!-- jQuery UI -->
     <script src="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 
+    <!-- SweetAlert -->
+    <script type="text/javascript" src="<?= $base ?>/assets/plugins/sweetalert/sweetalert.js"></script>
+
     <!-- GITTER -->
     <script src="<?= $base ?>/assets/plugins/gritter/jquery.gritter.min.js"></script>
 
@@ -69,35 +81,39 @@
     <!-- Toastr -->
     <script src="<?= $base ?>/assets/plugins/toastr/toastr.min.js"></script>
 
+    <!-- Mask -->
+    <script src="<?= $base ?>/assets/plugins/jquery-mask/jquery-mask.js"></script>
+
     <!-- Datatables -->
     <script src="<?= $base ?>/assets/plugins/datatables/datatables.min.js"></script>
 
     <!-- Summernote -->
     <script src="<?= $base ?>/assets/plugins/summernote/summernote.min.js"></script>
 
+    <!-- Jquery Form -->
+    <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
+
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>
 
 </head>
 
-<body>
+<body data-id="<?= $_SESSION['logado']['id_usuario'] ?>">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="<?= $base ?>/assets/img/avatar.png" />
+                            <img alt="image" class="rounded-circle" src="<?= $base . $_SESSION['logado']['foto'] ?>" />
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="block m-t-xs font-bold">Rafael Batista</span>
-                                <span class="text-muted text-xs block">Diretoria<b class="caret"></b></span>
+                                <span class="block m-t-xs font-bold"><?= $_SESSION['logado']['nome'] ?></span>
+                                <span class="text-muted text-xs block"></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
-                                <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
-                                <li><a class="dropdown-item" href="mailbox.html">Mailbox</a></li>
+                                <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
                                 <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                                <li><a class="dropdown-item" href="<?= $base ?>/logout">Logout</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">

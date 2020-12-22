@@ -19,7 +19,7 @@ class LoginController extends Controller
     }
 
     public function autentica()
-    {   
+    {
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $senha = ($_POST['senha'] != '') ? filter_input(INPUT_POST, 'senha') : false;
 
@@ -31,11 +31,24 @@ class LoginController extends Controller
             $login = LoginHandler::verifyLogin($dados);
 
             if ($login) {
-                $_SESSION['logado'] = $login;
-                $return = [
-                    'code' => 0,
-                    'msg' => 'Acesso liberado'
-                ];
+
+                if ($login['aprovado'] == 0) {
+                    $return = [
+                        'code' => 3,
+                        'msg' => 'Aguarde a aprovação do cadastro'
+                    ];
+                } else if($login['ativo'] == 0){
+                    $return = [
+                        'code' => 4,
+                        'msg' => 'Usuário inativo, entre em contato com a diretoria'
+                    ];
+                } else {
+                    $_SESSION['logado'] = $login;
+                    $return = [
+                        'code' => 0,
+                        'msg' => 'Acesso liberado'
+                    ];
+                }
             } else {
                 $return = [
                     'code' => 1,

@@ -18,7 +18,7 @@ $('form[login]').on('submit', function(e) {
             console.log(dados);
             if (dados.code === 0) {
                 window.location.href = window.origin + '/admin';
-            } else if (dados.code === 1 || dados.code === 2) {
+            } else if (dados.code > 0) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
