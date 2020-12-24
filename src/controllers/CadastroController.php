@@ -33,8 +33,8 @@ class CadastroController extends Controller
             $posicao = filter_input(INPUT_POST, 'posicao', FILTER_VALIDATE_INT);
 
             $dados = [
-                'nome' => filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING),
-                'apelido' => filter_input(INPUT_POST, 'apelido'),
+                'nome' => $this->retirarAcentos(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING)),
+                'apelido' => $this->retirarAcentos(filter_input(INPUT_POST, 'apelido')),
                 'email' => $this->retirarAcentos(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)),
                 'senha' => password_hash(filter_input(INPUT_POST, 'senha'), PASSWORD_DEFAULT),
                 'confirma' => filter_input(INPUT_POST, 'confirmarSenha'),

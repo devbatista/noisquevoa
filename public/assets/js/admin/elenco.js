@@ -11,6 +11,7 @@ function carregarPosicao() {
     $.ajax({
         url: window.origin + '/cadastro/getPosicoes',
         dataType: 'json',
+        type: 'get',
         success: (dados) => {
             let html = '<option disabled selected value="0" style="color:#808080">Sem posição</option>';
             $('select#posicao').html(function() {
@@ -168,6 +169,7 @@ function getAprovarCadastro() {
     $.ajax({
         url: window.origin + '/admin/elenco/aprovacao_cadastros',
         dataType: 'json',
+        type: 'get',
         success: (dados) => {
             let countData = Object.keys(dados).length;
             let element = $('.modal-aprovar-cadastro').find('.modal-body');
@@ -179,32 +181,61 @@ function getAprovarCadastro() {
 
                 element.html(function() {
                     $.each(dados, function(i, v) {
-                        html += '<div class="ibox">' +
-                            '<div class="ibox-content">' +
-                            '<div class="row" style="margin-top: 10px">' +
-                            '<div class="col-5 text-center imgAprovacao">' +
-                            '<img src="' + window.origin + this.foto + '" alt="Nois Que Voa" class="imgAprovacao">' +
-                            '</div>' +
-                            '<div class="col-7 dadosAprovar text-muted">' +
-                            '<div class="row">' +
-                            '<b>Nome:</b>&nbsp; ' + this.apelido +
-                            '</div>' +
-                            '<div class="row">' +
-                            '<b>Celular:</b>&nbsp; ' + this.celular +
-                            '</div>' +
-                            '<div class="row">' +
-                            '<b>Email:</b>&nbsp; ' + this.email +
-                            '</div>' +
-                            '<div class="row">' +
-                            '<b>Posição:</b>&nbsp; ' + this.posicao +
-                            '</div>' +
-                            '<div class="row">' +
-                            '<b>Aprovar:</b>&nbsp; <button aprovar type="button" class="btn btn-sm btn-danger" data-id="' + this.id + '"><i class="fa fa-check"></i></button>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>';
+                        if (this.posicao) {
+                            html += '<div class="ibox">' +
+                                '<div class="ibox-content">' +
+                                '<div class="row" style="margin-top: 10px">' +
+                                '<div class="col-5 text-center imgAprovacao">' +
+                                '<img src="' + window.origin + this.foto + '" alt="Nois Que Voa" class="imgAprovacao">' +
+                                '</div>' +
+                                '<div class="col-7 dadosAprovar text-muted">' +
+                                '<div class="row tituloAprovar">' +
+                                '<b>' + this.posicao + '</b>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Nome:</b>&nbsp; ' + this.apelido +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Celular:</b>&nbsp; ' + this.celular +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Email:</b>&nbsp; ' + this.email +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Aprovar:</b>&nbsp; <button aprovar type="button" class="btn btn-sm btn-danger" data-id="' + this.id + '"><i class="fa fa-check"></i></button><button desaprovar type="button" class="btn btn-sm btn-dark" data-id="' + this.id + '"><i class="fa fa-times"></i></button>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        } else {
+                            html += '<div class="ibox">' +
+                                '<div class="ibox-content">' +
+                                '<div class="row" style="margin-top: 10px">' +
+                                '<div class="col-5 text-center imgAprovacao">' +
+                                '<img src="' + window.origin + this.foto + '" alt="Nois Que Voa" class="imgAprovacao">' +
+                                '</div>' +
+                                '<div class="col-7 dadosAprovar text-muted">' +
+                                '<div class="row tituloAprovar">' +
+                                '<b>Comissão Técnica</b>' +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Nome:</b>&nbsp; ' + this.apelido +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Celular:</b>&nbsp; ' + this.celular +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Email:</b>&nbsp; ' + this.email +
+                                '</div>' +
+                                '<div class="row">' +
+                                '<b>Aprovar:</b>&nbsp; <button aprovar type="button" class="btn btn-sm btn-danger" data-id="' + this.id + '"><i class="fa fa-check"></i></button>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        }
                     });
 
                     return html;
@@ -218,6 +249,7 @@ function getAprovarCadastro() {
             }
 
             aprovarCadastro();
+            desaprovarCadastro();
 
         }
     });
@@ -245,6 +277,33 @@ function aprovarCadastro() {
                 });
                 getAprovarCadastro();
                 carregarElenco();
+            }
+        });
+    });
+}
+
+function desaprovarCadastro() {
+    $('button[desaprovar]').click(function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+
+        Swal.fire({
+            title: 'Deseja mesmo desaprovar o cadastro?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#999',
+            confirmButtonText: 'Sim, Desaprovar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: window.origin + '/admin/elenco/desativar_usuario/' + id,
+                    dataType: 'json',
+                    type: 'put',
+                });
+                getAprovarCadastro();
+                carregarDiretoria();
             }
         });
     });
@@ -290,7 +349,7 @@ $('form[editar]').on('submit', function(event) {
     event.preventDefault();
     $('form[editar]').ajaxSubmit({
         url: window.origin + '/admin/elenco/alterar_usuario/' +
-            $(this).data('id'),
+            $(this).attr('data-id'),
         dataType: 'json',
         type: 'post',
         success: (e) => {

@@ -18,7 +18,9 @@ $router->get('/admin/posts', 'admin\PostsController@index');
 
 // API
 $router->get('/admin/getPermissao/{id}', 'admin\AdminController@getPermissao');
+
 $router->get('/admin/home/dados', 'admin\AdminController@getData');
+
 $router->get('/admin/elenco/carregar_elenco', 'admin\ElencoController@getElenco');
 $router->get('/admin/elenco/carregar_por_id/{id}', 'admin\ElencoController@getElencoById');
 $router->get('/admin/elenco/aprovacao_cadastros', 'admin\ElencoController@getAprovarCadastros');
@@ -26,6 +28,15 @@ $router->post('/admin/elenco/cadastrar_usuario', 'admin\ElencoController@inserir
 $router->post('/admin/elenco/alterar_usuario/{id}', 'admin\ElencoController@alterarUsuario');
 $router->put('/admin/elenco/aprovar_cadastro/{id}', 'admin\ElencoController@aprovarCadastro');
 $router->put('/admin/elenco/desativar_usuario/{id}', 'admin\ElencoController@desativarUsuario');
+
+$router->get('/admin/diretoria/carregar_diretoria', 'admin\DiretoriaController@getDiretoria');
+$router->get('/admin/diretoria/aprovacao_cadastros', 'admin\DiretoriaController@getAprovarCadastros');
+$router->put('/admin/diretoria/aprovar_cadastro/{id}', 'admin\DiretoriaController@aprovarCadastro');
+$router->post('/admin/diretoria/cadastrar_diretoria', 'admin\DiretoriaController@inserirUsuario');
+$router->get('/admin/diretoria/carregar_por_id/{id}', 'admin\DiretoriaController@getDiretoriaById');
+$router->post('/admin/diretoria/alterar_diretoria/{id}', 'admin\DiretoriaController@alterarUsuario');
+$router->put('/admin/diretoria/desativar_usuario/{id}', 'admin\DiretoriaController@desativarUsuario');
+
 // END API
 
 $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');

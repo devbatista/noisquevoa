@@ -86,7 +86,7 @@ class Usuario extends Model
         return $code;
     }
 
-    public function inserUserByDiretoria($data)
+    public function insertUserByDiretoria($data)
     {
         $code = [];
         if ($data) {
@@ -112,7 +112,8 @@ class Usuario extends Model
             } catch (\PDOException $th) {
                 $code = [
                     'code' => 1062,
-                    'msg' => $th->getMessage()
+                    'msg' => 'Email ou CPF já cadastrado',
+                    'error' => $th->getMessage()
                 ];
             }
         } else {
@@ -194,7 +195,7 @@ class Usuario extends Model
     public function getUsuariosAprovar($id = false)
     {
         if (!$id) {
-            $sql = $this->db->query("SELECT a.id_usuario, a.foto, a.apelido, a.email, a.dt_nascimento, a.celular, b.nome AS posicao FROM $this->tableName as a INNER JOIN posicoes AS b ON a.posicao = b.id_posicao WHERE aprovado = 0 AND jogador = 1");
+            $sql = $this->db->query("SELECT a.id_usuario, a.foto, a.apelido, a.email, a.dt_nascimento, a.celular, b.nome AS posicao FROM $this->tableName as a LEFT JOIN posicoes AS b ON a.posicao = b.id_posicao WHERE aprovado = 0 AND (jogador = 1 OR comissao_tecnica = 1) AND ativo = 1");
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
@@ -229,5 +230,100 @@ class Usuario extends Model
         if ($id) {
             $sql = $this->db->query("UPDATE $this->tableName SET ativo = 0 WHERE id_usuario = $id");
         }
+    }
+
+    public function getAllDiretoria()
+    {
+        $sql = $this->db->query("SELECT id_usuario, nome, apelido, email, celular, foto, dt_nascimento FROM $this->tableName WHERE diretoria = 1 AND aprovado = 1 AND ativo = 1");
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getDiretoriaById($id = false)
+    {
+        if ($id) {
+            $sql = $this->db->query("SELECT id_usuario, nome, apelido, email, cpf, celular, dt_nascimento FROM $this->tableName WHERE id_usuario = $id AND aprovado = 1 AND diretoria = 1 AND ativo = 1");
+
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+        }
+    }
+
+    public function getDiretoriaAprovar($id = false)
+    {
+        if (!$id) {
+            $sql = $this->db->query("SELECT a.id_usuario, a.nome, a.foto, a.apelido, a.email, a.dt_nascimento, a.celular FROM $this->tableName as a WHERE aprovado = 0 AND diretoria = 1 AND ativo = 1");
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        return false;
+    }
+
+    public function insertDiretoriaByPresidente($data)
+    {
+        $code = [];
+        if ($data) {
+            try {
+                $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO $this->tableName SET nome = :nome, apelido = :apelido, email = :email, senha = :senha, cpf = :cpf, diretoria = 1, aprovado = 1";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(':nome', $data['nome']);
+                $sql->bindValue(':apelido', $data['apelido']);
+                $sql->bindValue(':email', $data['email']);
+                $sql->bindValue(':senha', $data['senha']);
+                $sql->bindValue(':cpf', $data['cpf']);
+                $sql->execute();
+                $code = [
+                    'code' => 0,
+                    'msg' => 'Cadastro efetuado com sucesso'
+                ];
+            } catch (\PDOException $th) {
+                $code = [
+                    'code' => 1062,
+                    'msg' => 'Email ou CPF cadastrado',
+                    'error' => $th->getMessage()
+                ];
+            }
+        } else {
+            $code = [
+                'code' => 1,
+                'msg' => 'Erro, atualize a página e envie os dados novamente'
+            ];
+        }
+
+        return $code;
+    }
+
+    public function alterDiretoria($data)
+    {
+        $code = [];
+        if ($data) {
+            try {
+                $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $sql = "UPDATE $this->tableName SET nome = :nome, apelido = :apelido, celular = :celular WHERE id_usuario = :id;";
+                $sql = $this->db->prepare($sql);
+                $sql->bindValue(':nome', $data['nome']);
+                $sql->bindValue(':apelido', $data['apelido']);
+                $sql->bindValue(':celular', $data['celular']);
+                $sql->bindValue(':id', $data['id']);
+
+                $sql->execute();
+                $code = [
+                    'code' => 0,
+                    'msg' => 'Usuário alterado com sucesso'
+                ];
+            } catch (\PDOException $th) {
+                $code = [
+                    'code' => 1062,
+                    'msg' => $th->getMessage(),
+                ];
+            }
+        } else {
+            $code = [
+                'code' => 1,
+                'msg' => 'Erro, atualize a página e envie os dados novamente'
+            ];
+        }
+
+        return $code;
     }
 }

@@ -53,7 +53,7 @@
 
                         <div class="form-group">
                             <label for="cpf">CPF: </label>
-                            <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" name="cpf" required>
+                            <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF" name="cpf" required>
                         </div>
 
                         <div class="form-group">
@@ -82,7 +82,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-danger">Salvar mudanças</button>
+                <button type="button" class="btn btn-danger">Adicionar</button>
             </div>
         </div>
     </div>

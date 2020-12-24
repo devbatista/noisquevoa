@@ -66,8 +66,8 @@ div.modal-aprovar-cadastro .ibox-content {
 }
 
 img.imgAprovacao {
-    width: 100px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     padding: 0;
 }
 
@@ -99,4 +99,13 @@ img.imgElenco {
 
 div.modal-footer-editar {
     display: block!important;
+}
+
+div.row.tituloAprovar {
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+button[aprovar] {
+    margin-right: 5px;
 }

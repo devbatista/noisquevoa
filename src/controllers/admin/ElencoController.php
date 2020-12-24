@@ -80,7 +80,7 @@ class ElencoController extends Controller
                 'id' => $value['id_usuario'],
                 'foto' => $value['foto'],
                 'apelido' => $value['apelido'],
-                'celular' => $value['celular'],
+                'celular' => ($value['celular']) ? $value['celular'] : '',
                 'email' => $value['email'],
                 'posicao' => $value['posicao'],
             ];
@@ -104,8 +104,8 @@ class ElencoController extends Controller
             $posicao = filter_input(INPUT_POST, 'posicao', FILTER_VALIDATE_INT);
 
             $dados = [
-                'nome' => filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING),
-                'apelido' => filter_input(INPUT_POST, 'apelido'),
+                'nome' => $this->retirarAcentos(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING)),
+                'apelido' => $this->retirarAcentos(filter_input(INPUT_POST, 'apelido')),
                 'email' => $this->retirarAcentos(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)),
                 'senha' => password_hash('NoisQueVoa@2021', PASSWORD_DEFAULT),
                 'cpf' => filter_input(INPUT_POST, 'cpf'),
@@ -133,7 +133,7 @@ class ElencoController extends Controller
 
             if (empty($falseKey)) {
                 $usuario = new Usuario();
-                $retorno = $usuario->inserUserByDiretoria($dados);
+                $retorno = $usuario->insertUserByDiretoria($dados);
             }
 
             echo json_encode($retorno);
