@@ -121,10 +121,48 @@ $('form[cadastrar]').on('submit', function(e) {
         url: window.origin + '/cadastro/enviar',
         dataType: 'json',
         type: 'post',
-        beforeSubmit: () => {
-
-        },
-        success: (dados) => {}
+        success: (dados) => {
+            if (dados.code === 0) {
+                Swal.fire({
+                    title: dados.msg,
+                    text: 'Aguarde a aprovação pela diretoria',
+                    showConfirmButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    window.location.href = window.origin;
+                });
+            } else if (dados.code == 1062 || dados.code != 2) {
+                swal.fire({
+                    icon: 'error',
+                    title: dados.msg,
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#999',
+                    cancelButtonText: 'Voltar'
+                })
+            } else if (dados.code == 2) {
+                swal.fire({
+                    icon: 'error',
+                    title: dados.msg,
+                    text: 'Tipos permitidos: ' + dados.tipos_permitidos + ' / Tamanho permitido: ' + dados.tamanho_permitido,
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#999',
+                    cancelButtonText: 'Voltar'
+                })
+            } else {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Erro na requisição',
+                    text: 'Atualize a página e tente novamente...',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#999',
+                    cancelButtonText: 'Voltar'
+                })
+            }
+        }
     });
 });
 

@@ -30,6 +30,15 @@ class Usuario extends Model
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function getByEmail($email)
+    {
+        if ($email) {
+            $sql = $this->db->query("SELECT * FROM $this->tableName WHERE email = '$email'");
+
+            return $sql->fetch(\PDO::FETCH_ASSOC);
+        }
+    }
+
     public function getPermissionById($id)
     {
         $sql = $this->db->query("SELECT id_usuario, nome, apelido, diretoria, presidencia, comissao_tecnica, jogador FROM $this->tableName WHERE id_usuario = $id");
@@ -68,12 +77,14 @@ class Usuario extends Model
                 $sql->execute();
                 $code = [
                     'code' => 0,
+                    'id' => $this->db->lastInsertId(),
                     'msg' => 'Cadastro efetuado com sucesso'
                 ];
             } catch (\PDOException $th) {
                 $code = [
                     'code' => 1062,
-                    'msg' => $th->getMessage()
+                    'msg' => 'Email e/ou CPF já cadastrado',
+                    'error' => $th->getMessage()
                 ];
             }
         } else {
@@ -84,6 +95,17 @@ class Usuario extends Model
         }
 
         return $code;
+    }
+
+    public function updatePhotoUser($foto, $id)
+    {
+        if ($foto && $id) {
+            $sql = $this->db->query("UPDATE $this->tableName SET foto = '$foto' WHERE id_usuario = $id");
+
+            return true;
+        }
+
+        return false;
     }
 
     public function insertUserByDiretoria($data)

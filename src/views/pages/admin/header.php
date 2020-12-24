@@ -93,12 +93,11 @@
     <!-- Jquery Form -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
 
-    <!-- Admin -->
-    <script src="<?= $base ?>/assets/js/admin/index.js"></script>
 
 </head>
 
 <body data-id="<?= $_SESSION['logado']['id_usuario'] ?>">
+    <script src="<?= $base ?>/assets/js/admin/index.js"></script>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">

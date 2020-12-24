@@ -2,3 +2,4 @@ composer.phar
 /vendor/
 .DS_Store
 /src/Config.php
+/src/controllers/EmailController.php

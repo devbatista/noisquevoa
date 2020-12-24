@@ -3,16 +3,19 @@
 namespace src\controllers;
 
 use \core\Controller;
+use \src\Config;
 use \src\models\Posicao;
 use \src\models\Usuario;
 use \src\handlers\ValidadorHandler;
 
 class CadastroController extends Controller
-{
+{   
+    public $usuario;
 
     public function index()
     {
         $this->loadView('cadastro/cadastro');
+        $this->usuario = new Usuario();
     }
 
     public function getPosicoes()
@@ -25,6 +28,8 @@ class CadastroController extends Controller
 
     public function cadastrar()
     {
+        $validarImagem = false;
+
         if ($_POST) {
             $retorno = '';
             $jogador = filter_input(INPUT_POST, 'jogador', FILTER_VALIDATE_INT);
@@ -46,6 +51,22 @@ class CadastroController extends Controller
                 'dt_nascimento' => date("Y-m-d", strtotime(filter_input(INPUT_POST, 'nascimento'))),
                 'posicao' => ($posicao) ? $posicao : null
             ];
+
+            if(isset($_FILES['foto'])) {
+                $validarImagem = $this->validarImagem($_FILES['foto']);
+
+                if(!$validarImagem) {
+                    $errorImg = [
+                        'code' => 2,
+                        'msg' => 'Erro no upload da imagem',
+                        'tipos_permitidos' => 'jpg/jpeg/png',
+                        'tamanho_permitido' => 'até 2MB',
+                    ];
+
+                    echo json_encode($errorImg);
+                    return false;
+                }
+            }
 
             $validador = [
                 'nome' => ValidadorHandler::validarNome($dados['nome']),
@@ -69,13 +90,26 @@ class CadastroController extends Controller
             unset($dados['confirma']);
 
             if (empty($falseKey)) {
-                $usuario = new Usuario();
-                $retorno = $usuario->insertUser($dados);
+                $inserUser = new Usuario();
+                $retorno = $inserUser->insertUser($dados);
+            }
+
+            if($retorno['code'] == 0 && $validarImagem) {
+                $foto = $this->salvarImagem($_FILES['foto'], $retorno['id']);
+                $foto = '/'.$foto;
+
+                $updateFoto = new Usuario();
+                $updateFoto->updatePhotoUser($foto, $retorno['id']);
             }
 
             echo json_encode($retorno);
         } else {
             return false;
         }
+    }
+
+    public function testar_img()
+    {
+        print_r($_FILES);
     }
 }

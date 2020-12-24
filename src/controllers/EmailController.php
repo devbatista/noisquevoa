@@ -3,10 +3,103 @@
 namespace src\controllers;
 
 use \core\Controller;
+use \src\models\Usuario;
 use \PHPMailer\PHPMailer\PHPMailer;
 
 class EmailController extends Controller
 {
+    public $mailer;
+
+    public function __construct()
+    {
+        $this->mailer = new PHPMailer;
+    }
+
+    public function esqueciMinhaSenha()
+    {
+        $code = [];
+
+        if(!$_POST['email']) {
+            $code = [
+                'code' => 2,
+                'msg' => 'Dados não enviados',
+            ];
+            
+            echo json_encode($code);
+            return false;
+        }
+
+        $email = $this->retirarAcentos(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL));
+
+        $dados = new Usuario();
+        $dados = $dados->getByEmail($email);
+
+        if(!$dados) {
+            $code = [
+                'code' => 1,
+                'msg' => 'Email não existente no banco de dados, efetue o cadastro',
+            ];
+
+            echo json_encode($code);
+            return false;
+        }
+
+        $para = $email;
+        $id = $dados['id_usuario'];
+        $nome = $dados['apelido'];
+
+        $msg = $this->emailBody();
+
+        try {
+            $this->mailer->SMTPAuth = true;
+
+            $this->mailer->SMTPDebug = 0;
+            // Ativar o Debug em 3 para verificar possíveis erros
+            // $this->mailer->SMTPDebug = 3; 
+
+            $this->mailer->Username = 'diretoria@noisquevoa.com.br';
+            $this->mailer->Password = 'showdebola#10';
+
+            $this->mailer->SMTPSecure = 'ssl';
+
+            $this->mailer->Host = 'mail.noisquevoa.com.br';
+            $this->mailer->Port = 465;
+
+            $this->mailer->setFrom('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addReplyTo('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addAddress($para, $nome);
+
+            $this->mailer->isHTML(true);
+
+            $this->mailer->Subject = 'Envio de email com PHPMailer';
+            $this->mailer->Body = $msg;
+            $this->mailer->AltBody = $msg;
+
+            if (!$this->mailer->send()) {
+                $return = [
+                    'code' => 1,
+                    'msg' => "Mensagem não enviada, tente novamente"
+                ];
+                echo json_encode($return);
+            } else {
+                $return = [
+                    'code' => 0,
+                    'msg' => "Mensagem enviada com sucesso!"
+                ];
+                echo json_encode($return);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    private function emailBody()
+    {
+        $msg = '';
+
+        return $msg;
+    }
+
     public function enviarPHPMailer()
     {
         $mailer = new PHPMailer;

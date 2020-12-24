@@ -58,7 +58,8 @@ class Controller
         $this->_render('pages', $viewName, $viewData);
     }
 
-    protected function detectarLogin() {
+    protected function detectarLogin()
+    {
         $this->loggedUser = LoginHandler::checkLogin();
 
         if ($this->loggedUser === false) {
@@ -72,5 +73,90 @@ class Controller
         $semAcentos = array('a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', '0', 'U', 'U', 'U');
 
         return str_replace($comAcentos, $semAcentos, $email);
+    }
+
+    protected function validarImagem($imagem)
+    {
+        $permitidos = ['image/jpeg', 'image/jpg', 'image/png'];
+
+        if ((in_array($imagem['type'], $permitidos)) && ($imagem['size'] <= 2097152) && ($imagem['error'] == 0)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function salvarImagem($foto, $id)
+    {
+        $width = 500;
+        $heigth = 500;
+        $finalX = 0;
+        $finalY = 0;
+        $tipo = '';
+
+
+        $tipo = $this->tipoImg($foto['type']);
+
+        $arquivo = 'assets/img/perfil/' . $id . $tipo;
+        move_uploaded_file($foto['tmp_name'], $arquivo);
+
+        list($larguraOriginal, $alturaOriginal) = getimagesize($arquivo);
+
+        $ratio = $larguraOriginal / $alturaOriginal;
+        $ratioDest = $width / $heigth;
+
+        if ($ratioDest > $ratio) {
+            $finalWidth = $heigth * $ratio;
+            $finalHeight = $heigth;
+        } else {
+            $finalHeight = $width / $ratio;
+            $finalWidth = $width;
+        }
+
+        if ($finalWidth < $width) {
+            $finalWidth = $width;
+            $finalHeight = $width / $ratio;
+
+            $finalY = - (($finalHeight - $heigth) / 2);
+        } else {
+            $finalHeight = $heigth;
+            $finalWidth = $heigth * $ratio;
+
+            $finalX = - (($finalWidth - $width) / 2);
+        }
+
+        $imagem = imagecreatetruecolor($width, $heigth);
+        if ($tipo == '.jpeg' || $tipo == '.jpg') {
+            $originalImg = imagecreatefromjpeg($arquivo);;
+        } else {
+            $originalImg = imagecreatefrompng($arquivo);
+        }
+
+        imagecopyresampled($imagem, $originalImg, $finalX, $finalY, 0, 0, $finalWidth, $finalHeight, $larguraOriginal, $alturaOriginal);
+
+        if ($tipo == '.jpeg' || $tipo == '.jpg') {
+            imagejpeg($imagem, $arquivo, 100);
+        } else {
+            imagepng($imagem, $arquivo, 9);
+        }
+
+        return $arquivo;
+    }
+
+    private function tipoImg($tipo)
+    {
+        $type = '';
+
+        if ($tipo == 'image/jpeg') {
+            $type = '.jpeg';
+        } else if ($tipo == 'image/jpg') {
+            $type = '.jpg';
+        } else if ($tipo == 'image/png') {
+            $type = '.png';
+        } else {
+            return false;
+        }
+
+        return $type;
     }
 }

@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-12 col-sm-12" elenco>
-                    <div class="buttons">
+                    <div class="buttons d-none">
                         <div class="float-left">
                             <button type="button" class="btn btn-danger disabled" data-target=".modal-aprovar-cadastro">Aprovar Cadastro</button>
                         </div>

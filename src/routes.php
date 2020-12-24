@@ -15,6 +15,7 @@ $router->get('/admin/estatisticas', 'admin\EstatisticasController@index');
 $router->get('/admin/elenco', 'admin\ElencoController@index');
 $router->get('/admin/diretoria', 'admin\DiretoriaController@index');
 $router->get('/admin/posts', 'admin\PostsController@index');
+$router->get('/admin/ligas', 'admin\LigasController@index');
 
 // API
 $router->get('/admin/getPermissao/{id}', 'admin\AdminController@getPermissao');
@@ -36,11 +37,19 @@ $router->post('/admin/diretoria/cadastrar_diretoria', 'admin\DiretoriaController
 $router->get('/admin/diretoria/carregar_por_id/{id}', 'admin\DiretoriaController@getDiretoriaById');
 $router->post('/admin/diretoria/alterar_diretoria/{id}', 'admin\DiretoriaController@alterarUsuario');
 $router->put('/admin/diretoria/desativar_usuario/{id}', 'admin\DiretoriaController@desativarUsuario');
-
 // END API
+
+// Emails
+$router->post('/email/esqueci_minha_senha', 'EmailController@esqueciMinhaSenha');
 
 $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');
 
 $router->get('/cadastro', 'CadastroController@index');
 $router->get('/cadastro/getPosicoes', 'CadastroController@getPosicoes');
 $router->post('/cadastro/enviar', 'CadastroController@cadastrar');
+
+
+
+
+
+$router->get('/cadastro/testar_img', 'CadastroController@testar_img');

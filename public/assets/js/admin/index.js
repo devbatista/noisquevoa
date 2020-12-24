@@ -1,7 +1,31 @@
+getPermissao($('body').data('id'));
+
+function getPermissao(id) {
+    $.ajax({
+        url: window.origin + '/admin/getPermissao/' + id,
+        dataType: 'json',
+        type: 'get',
+        success: (e) => {
+            if (e.presidencia == 1) {
+                $('body').attr('permissao', 'presidencia');
+                $('span.text-muted.text-xs.block').html('Presidência<b class="caret"></b>');
+            } else if (e.diretoria == 1) {
+                $('body').attr('permissao', 'diretoria');
+                $('span.text-muted.text-xs.block').html('Diretoria<b class="caret"></b>');
+            } else if (e.comissao_tecnica == 1) {
+                $('body').attr('permissao', 'comissao_tecnica');
+                $('span.text-muted.text-xs.block').html('Comissão Técnica<b class="caret"></b>');
+            } else if (e.jogador == 1) {
+                $('body').attr('permissao', 'jogador');
+                $('span.text-muted.text-xs.block').html('Jogador<b class="caret"></b>');
+            }
+        }
+    });
+}
+
 $(document).ready(function() {
 
     itensMenuAtivar();
-    getPermissao($('body').data('id'));
 
     // setTimeout(function() {
     //     toastr.options = {
@@ -146,29 +170,6 @@ function itensMenuAtivar() {
             $(this).parent().addClass('active');
         } else {
             $(this).parent().removeClass('active');
-        }
-    });
-}
-
-function getPermissao(id) {
-    $.ajax({
-        url: window.origin + '/admin/getPermissao/' + id,
-        dataType: 'json',
-        type: 'get',
-        success: (e) => {
-            if (e.presidencia == 1) {
-                $('body').attr('permissao', 'presidencia');
-                $('span.text-muted.text-xs.block').html('Presidência<b class="caret"></b>');
-            } else if (e.diretoria == 1) {
-                $('body').attr('permissao', 'diretoria');
-                $('span.text-muted.text-xs.block').html('Diretoria<b class="caret"></b>');
-            } else if (e.comissao_tecnica == 1) {
-                $('body').attr('permissao', 'comissao_tecnica');
-                $('span.text-muted.text-xs.block').html('Comissão Técnica<b class="caret"></b>');
-            } else if (e.jogador == 1) {
-                $('body').attr('permissao', 'jogador');
-                $('span.text-muted.text-xs.block').html('Jogador<b class="caret"></b>');
-            }
         }
     });
 }

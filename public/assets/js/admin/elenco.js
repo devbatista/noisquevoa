@@ -2,10 +2,28 @@ $(document).ready(function() {
     $('input[name=cpf]').mask('000.000.000-00');
     $('input[name=whatsapp]').mask('(00) 00000-0000');
 
-    carregarPosicao();
-    getAprovarCadastro();
     carregarElenco();
+
+    permissao();
 });
+
+function permissao() {
+    let permissao = $('body').attr('permissao');
+    if (permissao == 'presidencia' || permissao == 'diretoria') {
+        $('div.buttons').removeClass('d-none');
+        carregarPosicao();
+        getAprovarCadastro();
+    } else {
+        $('div.buttons').remove();
+        $('.modal').remove();
+
+        setTimeout(() => {
+            $('.wrapper-content .ibox-content').hover(function() {
+                $(this).css('cursor', 'auto');
+            });
+        }, 50);
+    }
+}
 
 function carregarPosicao() {
     $.ajax({

@@ -10,12 +10,11 @@ function formatar(mascara, documento) {
 
 $('form[login]').on('submit', function(e) {
     e.preventDefault();
-    $('form').ajaxSubmit({
+    $(this).ajaxSubmit({
         url: window.origin + '/login/autentica',
         dataType: 'json',
         type: 'post',
         success: (dados) => {
-            console.log(dados);
             if (dados.code === 0) {
                 window.location.href = window.origin + '/admin';
             } else if (dados.code > 0) {
@@ -37,7 +36,7 @@ $('form[login]').on('submit', function(e) {
                     showCancelButton: true,
                     cancelButtonColor: '#d33',
                     cancelButtonText: 'Voltar'
-                })
+                });
             }
         }
     });
@@ -49,6 +48,48 @@ $('form[login] a').click(function(e) {
     $('form[esqueciSenha]').removeClass('d-none');
     $('form[esqueciSenha]').parent().find('h2').text('Alterar senha');
 })
+
+$('form[esqueciSenha]').on('submit', function(e) {
+    e.preventDefault();
+    $(this).ajaxSubmit({
+        url: window.origin + '/email/esqueci_minha_senha',
+        dataType: 'json',
+        type: 'post',
+        success: (dados) => {
+            console.log(dados);
+            if (dados.code == 0) {
+                return true;
+            }
+
+            if (dados.code == 1) {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Oops',
+                    text: dados.msg,
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Voltar'
+                });
+
+                return false;
+            }
+
+            if (dados.code == 2) {
+                swal.fire({
+                    icon: 'error',
+                    title: dados.msg,
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Voltar'
+                });
+
+                return false;
+            }
+        }
+    });
+});
 
 $('form[esqueciSenha] a').click(function(e) {
     e.preventDefault();

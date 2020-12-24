@@ -51,3 +51,8 @@ div#erroConfirmaSenha,
 div#cpfInvalido {
     color: rgb(242, 28, 3)
 }
+
+input[type=file] {
+    background-color: #fff;
+    border: 1px solid #bbb;
+}
