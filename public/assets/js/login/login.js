@@ -55,10 +55,23 @@ $('form[esqueciSenha]').on('submit', function(e) {
         url: window.origin + '/email/esqueci_minha_senha',
         dataType: 'json',
         type: 'post',
+        beforeSubmit: () => {
+            $('input[value="Enviar"]').attr('disabled', true).val('Carregando...');
+        },
         success: (dados) => {
+            $('input[value="Carregando..."]').removeAttr('disabled').val('Enviar');
             console.log(dados);
             if (dados.code == 0) {
-                return true;
+                swal.fire({
+                    title: dados.msg,
+                    text: 'Verifique a caixa de entrada do seu email',
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    window.location.href = window.origin;
+                });
             }
 
             if (dados.code == 1) {
@@ -75,7 +88,7 @@ $('form[esqueciSenha]').on('submit', function(e) {
                 return false;
             }
 
-            if (dados.code == 2) {
+            if (dados.code == 2 || dados.code == 3) {
                 swal.fire({
                     icon: 'error',
                     title: dados.msg,

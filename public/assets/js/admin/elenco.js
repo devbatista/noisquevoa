@@ -5,14 +5,15 @@ $(document).ready(function() {
     carregarElenco();
 
     permissao();
+    getAprovarCadastro();
 });
 
 function permissao() {
-    let permissao = $('body').attr('permissao');
-    if (permissao == 'presidencia' || permissao == 'diretoria') {
+    let presidencia = $('body').attr('presidencia');
+    let diretoria = $('body').attr('diretoria');
+    if (presidencia == 1 || diretoria == 1) {
         $('div.buttons').removeClass('d-none');
         carregarPosicao();
-        getAprovarCadastro();
     } else {
         $('div.buttons').remove();
         $('.modal').remove();
@@ -193,7 +194,7 @@ function getAprovarCadastro() {
             let element = $('.modal-aprovar-cadastro').find('.modal-body');
 
             if (countData > 0) {
-                $('.float-left button').text('Aprovar Cadastro (' + countData + ')').removeClass('disabled').attr('data-toggle', 'modal');
+                $('.pull-left button').text('Aprovar Cadastro (' + countData + ')').removeClass('disabled').attr('data-toggle', 'modal');
 
                 let html = '';
 
@@ -259,11 +260,11 @@ function getAprovarCadastro() {
                     return html;
                 })
             } else {
-                $('.float-left button').text('Aprovar Cadastro (0)').addClass('disabled');
+                $('.pull-left button').text('Aprovar Cadastro (0)').addClass('disabled');
 
                 element.html('<h5>Não há cadastro a serem aprovados</h5>');
 
-                $('.float-left button').removeAttr('data-toggle');
+                $('.pull-left button').removeAttr('data-toggle');
             }
 
             aprovarCadastro();

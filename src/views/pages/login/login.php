@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?= $base ?>/assets/img/favicon.ico">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/icon-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui-min.css">
+    <link rel="stylesheet" href="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/sweetalert/sweetalert.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/css/login/login.css">
 </head>
@@ -59,7 +59,7 @@
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui-min.js"></script>
+    <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/sweetalert/sweetalert.js"></script>
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/validator/validator.min.js"></script>
     <script type="text/javascript" src="<?= $base ?>/assets/js/login/login.js"></script>

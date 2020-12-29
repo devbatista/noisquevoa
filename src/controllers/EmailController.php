@@ -36,7 +36,7 @@ class EmailController extends Controller
 
         if(!$dados) {
             $code = [
-                'code' => 1,
+                'code' => 3,
                 'msg' => 'Email não existente no banco de dados, efetue o cadastro',
             ];
 
@@ -48,9 +48,11 @@ class EmailController extends Controller
         $id = $dados['id_usuario'];
         $nome = $dados['apelido'];
 
-        $msg = $this->emailBody();
+        $msg = $this->emailBody($id, $nome);
 
         try {
+            $this->mailer->isSMTP();
+
             $this->mailer->SMTPAuth = true;
 
             $this->mailer->SMTPDebug = 0;
@@ -58,7 +60,7 @@ class EmailController extends Controller
             // $this->mailer->SMTPDebug = 3; 
 
             $this->mailer->Username = 'diretoria@noisquevoa.com.br';
-            $this->mailer->Password = 'showdebola#10';
+            $this->mailer->Password = '@No1sQueVo4#2021';
 
             $this->mailer->SMTPSecure = 'ssl';
 
@@ -71,22 +73,25 @@ class EmailController extends Controller
 
             $this->mailer->isHTML(true);
 
-            $this->mailer->Subject = 'Envio de email com PHPMailer';
+            $this->mailer->Subject = 'Recuperação de senha - Nois Que Voa SC';
             $this->mailer->Body = $msg;
             $this->mailer->AltBody = $msg;
 
             if (!$this->mailer->send()) {
                 $return = [
                     'code' => 1,
-                    'msg' => "Mensagem não enviada, tente novamente"
+                    'msg' => "Mensagem não enviada, tente novamente",
+                    'error' => $this->mailer->ErrorInfo,
                 ];
                 echo json_encode($return);
+                return false;
             } else {
                 $return = [
                     'code' => 0,
                     'msg' => "Mensagem enviada com sucesso!"
                 ];
                 echo json_encode($return);
+                return true;
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -95,7 +100,7 @@ class EmailController extends Controller
 
     private function emailBody()
     {
-        $msg = '';
+        $msg = 'teste';
 
         return $msg;
     }

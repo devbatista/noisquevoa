@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-12 col-sm-12" elenco>
                     <div class="buttons d-none">
-                        <div class="float-left">
-                            <button type="button" class="btn btn-danger disabled" data-target=".modal-aprovar-cadastro">Aprovar Cadastro</button>
+                        <div class="pull-left col-lg-6 col-12 p-0">
+                            <button type="button" class="btn btn-danger disabled pull-left" data-target=".modal-aprovar-cadastro">Aprovar Cadastro</button>
                         </div>
-                        <div class="float-right">
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".modal-cadastro-elenco">Cadastrar Jogador/Comissão Técnica</button>
+                        <div class="pull-right col-lg-6 col-12 p-0">
+                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".modal-cadastro-elenco">Cadastrar Jogador/Comissão Técnica</button>
                         </div>
                     </div>
                     <div class="mostrarElenco">

@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-lg-3">
-        <div class="ibox ">
+    <div class="col-lg-3 col-6">
+        <div class="ibox">
             <div class="ibox-title">
                 <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Jogos</h5>
@@ -10,8 +10,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox ">
+    <div class="col-lg-3 col-6">
+        <div class="ibox">
             <div class="ibox-title">
                 <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Vitórias</h5>
@@ -21,8 +21,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox ">
+    <div class="col-lg-3 col-6">
+        <div class="ibox">
             <div class="ibox-title">
                 <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Derrotas</h5>
@@ -32,8 +32,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
-        <div class="ibox ">
+    <div class="col-lg-3 col-6">
+        <div class="ibox">
             <div class="ibox-title">
                 <span class="label label-danger pull-right"><?= date('Y') ?></span>
                 <h5>Empates</h5>
@@ -49,19 +49,19 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="ibox ">
+                    <div class="ibox">
                         <div class="ibox-title">
                             <h5>Próximas partidas</h5>
                         </div>
                     </div>
-                    <div class="ibox ">
+                    <div class="ibox">
                         <div class="ibox-title">
                             <h5>Partidas anteriores</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="ibox ">
+                    <div class="ibox">
                         <div class="ibox-title">
                             <h5>Classificação Futliga</h5>
                         </div>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ibox ">
+                    <div class="ibox">
                         <div class="ibox-title">
                             <h5>Assistências</h5>
                         </div>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="ibox ">
+                    <div class="ibox">
                         <div class="ibox-title">
                             <h5>Artilharia</h5>
                         </div>

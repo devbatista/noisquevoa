@@ -3,7 +3,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use \src\Handlers\LoginHandler;
+use \src\handlers\LoginHandler;
 
 class LoginController extends Controller
 {
@@ -44,6 +44,17 @@ class LoginController extends Controller
                     ];
                 } else {
                     $_SESSION['logado'] = $login;
+
+                    if($_SESSION['logado']['presidencia'] == 1) {
+                        $_SESSION['logado']['cargo'] = 'Presidência';
+                    } else if($_SESSION['logado']['diretoria'] == 1) {
+                        $_SESSION['logado']['cargo'] = 'Diretoria';
+                    } else if($_SESSION['logado']['comissao_tecnica'] == 1) {
+                        $_SESSION['logado']['cargo'] = 'Comissão Técnica';
+                    } else if($_SESSION['logado']['jogador'] == 1) {
+                        $_SESSION['logado']['cargo'] = 'Jogador';
+                    } 
+                    
                     $return = [
                         'code' => 0,
                         'msg' => 'Acesso liberado'

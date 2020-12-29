@@ -93,11 +93,12 @@
     <!-- Jquery Form -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
 
+    <!-- Admin -->
+    <script src="<?= $base ?>/assets/js/admin/index.js"></script>
 
 </head>
 
-<body data-id="<?= $_SESSION['logado']['id_usuario'] ?>">
-    <script src="<?= $base ?>/assets/js/admin/index.js"></script>
+<body data-id="<?= $_SESSION['logado']['id_usuario'] ?>" presidencia="<?= $_SESSION['logado']['presidencia'] ?>" diretoria="<?= $_SESSION['logado']['diretoria'] ?>" jogador="<?= $_SESSION['logado']['jogador'] ?>">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -107,7 +108,7 @@
                             <img alt="image" class="rounded-circle" src="<?= $base . $_SESSION['logado']['foto'] ?>" />
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold"><?= $_SESSION['logado']['nome'] ?></span>
-                                <span class="text-muted text-xs block"></span>
+                                <span class="text-muted text-xs block"><?= $_SESSION['logado']['cargo'] ?><b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
