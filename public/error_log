@@ -1,0 +1,2 @@
+[30-Dec-2020 18:19:07 America/Fortaleza] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home3/devbat78/sites/noisquevoa.com.br/core/Controller.php on line 45
+[30-Dec-2020 18:29:11 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
