@@ -1,9 +1,27 @@
 $(document).ready(function() {
     $('input[name=cpf]').mask('000.000.000-00');
 
-    getAprovarCadastro();
+    permissao();
     carregarDiretoria();
 });
+
+function permissao() {
+    let presidencia = $('body').attr('presidencia');
+    let diretoria = $('body').attr('diretoria');
+    if (presidencia == 1 || diretoria == 1) {
+        $('div.buttons').removeClass('d-none');
+        getAprovarCadastro();
+    } else {
+        $('div.buttons').remove();
+        $('.modal').remove();
+
+        setTimeout(() => {
+            $('.wrapper-content .ibox-content').hover(function() {
+                $(this).css('cursor', 'auto');
+            });
+        }, 50);
+    }
+}
 
 function carregarDiretoria() {
     $.ajax({

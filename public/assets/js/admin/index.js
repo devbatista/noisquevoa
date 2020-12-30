@@ -1,5 +1,6 @@
 $(document).ready(function() {
     itensMenuAtivar();
+    permissaoItensMenu();
 
     // setTimeout(function() {
     //     toastr.options = {
@@ -11,7 +12,6 @@ $(document).ready(function() {
     //     toastr.success('Área administrativa', 'NOIS QUE VOA SC');
 
     // }, 1300);
-
 
     var data1 = [
         [0, 4],
@@ -146,4 +146,14 @@ function itensMenuAtivar() {
             $(this).parent().removeClass('active');
         }
     });
+}
+
+function permissaoItensMenu() {
+    let presidencia = $('body').attr('presidencia');
+    let diretoria = $('body').attr('diretoria');
+    if (presidencia == 1 || diretoria == 1) {
+        $('li.dropright').removeClass('d-none');
+    } else {
+        $('li.dropright').remove();
+    }
 }

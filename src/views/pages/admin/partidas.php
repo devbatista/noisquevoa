@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-12 col-sm-12">
                     <div class="ibox ">
-                        <div class="buttons">
-                            <div class="float-left">
+                        <div class="buttons d-none">
+                            <div class="pull-left">
                                 <button type="button" class="btn btn-danger disabled">Estatística em aguardo (0)</button>
                             </div>
-                            <div class="float-right">
+                            <div class="pull-right">
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".modal-cadastro-elenco">Cadastrar partidas</button>
                             </div>
                         </div>

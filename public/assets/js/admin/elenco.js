@@ -2,10 +2,9 @@ $(document).ready(function() {
     $('input[name=cpf]').mask('000.000.000-00');
     $('input[name=whatsapp]').mask('(00) 00000-0000');
 
-    carregarElenco();
-
     permissao();
-    getAprovarCadastro();
+
+    carregarElenco();
 });
 
 function permissao() {
@@ -14,6 +13,7 @@ function permissao() {
     if (presidencia == 1 || diretoria == 1) {
         $('div.buttons').removeClass('d-none');
         carregarPosicao();
+        getAprovarCadastro();
     } else {
         $('div.buttons').remove();
         $('.modal').remove();
