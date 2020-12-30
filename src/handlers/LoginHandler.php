@@ -9,7 +9,7 @@ class LoginHandler
     public static function checkLogin()
     {
         $user = new Usuario();
-        if (!empty($_SESSION['logado'])) {
+        if (isset($_SESSION['logado'])) {
             $token = $_SESSION['logado']['token'];
             $activeOrApproved = $user->getLoginAprovar($_SESSION['logado']['id_usuario']);
             $user = $user->getByToken($token);

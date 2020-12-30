@@ -13,6 +13,7 @@ $router->get('/alterar-minha-senha', 'AlterarSenhaController@index');
 $router->post('/alteracao-senha', 'AlterarSenhaController@alteracaoSenha');
 
 $router->get('/admin', 'admin\AdminController@index');
+$router->get('/admin/perfil', 'admin\PerfilController@index');
 $router->get('/admin/partidas', 'admin\PartidasController@index');
 $router->get('/admin/estatisticas', 'admin\EstatisticasController@index');
 $router->get('/admin/elenco', 'admin\ElencoController@index');
