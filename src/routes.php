@@ -9,6 +9,9 @@ $router->get('/login', 'LoginController@index');
 $router->get('/logout', 'LoginController@logout');
 $router->post('/login/autentica', 'LoginController@autentica');
 
+$router->get('/alterar-minha-senha', 'AlterarSenhaController@index');
+$router->post('/alteracao-senha', 'AlterarSenhaController@alteracaoSenha');
+
 $router->get('/admin', 'admin\AdminController@index');
 $router->get('/admin/partidas', 'admin\PartidasController@index');
 $router->get('/admin/estatisticas', 'admin\EstatisticasController@index');

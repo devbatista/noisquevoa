@@ -3,7 +3,6 @@
 namespace src\controllers;
 
 use \core\Controller;
-use \src\Config;
 use \src\models\Posicao;
 use \src\models\Usuario;
 use \src\handlers\ValidadorHandler;

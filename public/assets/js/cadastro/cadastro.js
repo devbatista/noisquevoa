@@ -3,6 +3,14 @@ $(document).ready(function() {
 
     $('input[name=cpf]').mask('000.000.000-00');
     $('input[name=whatsapp]').mask('(00) 00000-0000');
+
+    $('.eye').on('mousedown', function() {
+        $(this).parent().find('input').attr('type', 'text');
+    });
+
+    $('.eye').on('mouseup', function() {
+        $(this).parent().find('input').attr('type', 'password');
+    });
 });
 
 function carregarPosicao() {
@@ -26,7 +34,7 @@ function tamanhoSenha() {
 
     if (senha.length < 8) {
         if ($('#erroTamanhoSenha').length == 0) {
-            $('input[name=senha]').after('<div id="erroTamanhoSenha">Mínimo de 8 caracteres</div>');
+            $('input[name=senha]').parent().after('<div id="erroTamanhoSenha">Mínimo de 8 caracteres</div>');
         }
         if (senha.length == 0) {
             $('#erroTamanhoSenha').remove();
@@ -47,7 +55,7 @@ function validarSenhas() {
         return true;
     } else {
         if ($('#erroConfirmaSenha').length == 0) {
-            $('input[name=confirmarSenha]').after('<div id="erroConfirmaSenha">Senhas não conferem</div>')
+            $('input[name=confirmarSenha]').parent().after('<div id="erroConfirmaSenha">Senhas não conferem</div>')
         }
         return false;
     }
@@ -181,6 +189,19 @@ $('input[name=jogador]').on('click', function() {
     }
 })
 
+$('input[name=diretoria]').on('click', function() {
+    let diretoria = $('input[name=diretoria]');
+    let jogador = $('input[name=jogador]');
+    let posicao = $('select[name=posicao]');
+    if (diretoria.is(':checked') == true) {
+        jogador.removeAttr('required');
+        posicao.removeAttr('required');
+    } else {
+        jogador.attr('required', true);
+        posicao.attr('required', true);
+    }
+});
+
 $('input[name=comissao_tecnica]').on('click', function() {
     let jogador = $('input[name=jogador]');
     let posicao = $('select[name=posicao]');
@@ -195,4 +216,4 @@ $('input[name=comissao_tecnica]').on('click', function() {
         posicao.attr('disabled', true);
         posicao.removeAttr('required');
     }
-})
+});

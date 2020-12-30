@@ -21,6 +21,23 @@ class Usuario extends Model
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function verifyByEmailAndToken($email, $token)
+    {
+        $sql = $this->db->query("SELECT * FROM $this->tableName WHERE email = '$email' AND token = '$token'");
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function updatePassword($data)
+    {
+        if($data) {
+            $sql = $this->db->prepare("UPDATE $this->tableName SET senha = :senha, token = '' WHERE email = :email");
+            $sql->bindValue(':senha', $data['senha']);
+            $sql->bindValue(':email', $data['email']);
+            $sql->execute();
+        }
+    }
+
     public function getByToken($token)
     {
         $sql = "SELECT * FROM $this->tableName WHERE token = :token";

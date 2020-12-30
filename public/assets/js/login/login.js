@@ -14,6 +14,9 @@ $('form[login]').on('submit', function(e) {
         url: window.origin + '/login/autentica',
         dataType: 'json',
         type: 'post',
+        beforeSubmit: () => {
+            $('input[value="Entrar"]').attr('disabled', true).val('Autenticando...');
+        },
         success: (dados) => {
             if (dados.code === 0) {
                 window.location.href = window.origin + '/admin';
@@ -38,6 +41,8 @@ $('form[login]').on('submit', function(e) {
                     cancelButtonText: 'Voltar'
                 });
             }
+
+            $('input[value="Autenticando..."]').removeAttr('disabled').val('Entrar');
         }
     });
 });
@@ -60,7 +65,6 @@ $('form[esqueciSenha]').on('submit', function(e) {
         },
         success: (dados) => {
             $('input[value="Carregando..."]').removeAttr('disabled').val('Enviar');
-            console.log(dados);
             if (dados.code == 0) {
                 swal.fire({
                     title: dados.msg,

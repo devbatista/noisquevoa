@@ -40,14 +40,24 @@
                     <input type="email" class="form-control" id="email" placeholder="email@dominio.com" name="email" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group ">
                     <label for="senha">Senha: *</label>
-                    <input type="password" class="form-control" id="senha" placeholder="**********" name="senha" required>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="senha" placeholder="**********" name="senha" required>
+                        <div class="input-group-prepend eye">
+                            <div class="input-group-text"><i class="fa fa-eye"></i></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="confirmarSenha">Confirmar senha: *</label>
-                    <input type="password" class="form-control" id="confirmarSenha" placeholder="**********" name="confirmarSenha" required>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="confirmarSenha" placeholder="**********" name="confirmarSenha" required>
+                        <div class="input-group-prepend eye">
+                            <div class="input-group-text"><i class="fa fa-eye"></i></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -82,7 +92,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="nascimento">Posição: *</label>
+                    <label for="nascimento">Posição:</label>
                     <select disabled class="form-control" id="posicao" name="posicao" required>
                     </select>
                 </div>
