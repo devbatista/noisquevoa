@@ -29,6 +29,10 @@ $router->get('/admin/home/dados', 'admin\AdminController@getData');
 $router->get('/admin/perfil/getData/{id}', 'admin\PerfilController@getData');
 $router->post('/admin/perfil/alterar-dados', 'admin\PerfilController@updateData');
 
+$router->get('/admin/partidas/carregar-locais', 'admin\PartidasController@carregarLocais');
+$router->get('/admin/partidas/carregar-ligas', 'admin\PartidasController@carregarLigas');
+$router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadastrarLocal');
+
 $router->get('/admin/elenco/carregar_elenco', 'admin\ElencoController@getElenco');
 $router->get('/admin/elenco/carregar_por_id/{id}', 'admin\ElencoController@getElencoById');
 $router->get('/admin/elenco/aprovacao_cadastros', 'admin\ElencoController@getAprovarCadastros');
