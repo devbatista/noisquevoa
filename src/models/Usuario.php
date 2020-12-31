@@ -125,6 +125,63 @@ class Usuario extends Model
         return false;
     }
 
+    public function getUserById($id)
+    {
+        $sql = $this->db->query("SELECT * FROM $this->tableName WHERE id_usuario = $id");
+        
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function updatePasswordProfile($senha, $id)
+    {
+        if($senha && $id) {
+            $sql = $this->db->prepare("UPDATE $this->tableName SET senha = :senha, WHERE id_usuario = :id");
+            $sql->bindValue(':senha', $senha);
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+        }
+    }
+
+    public function updateNomeUser($nome, $id)
+    {
+        $sql = $this->db->query("UPDATE $this->tableName SET nome = '$nome' WHERE id_usuario = $id");
+    }
+
+    public function updateApelidoUser($apelido, $id)
+    {
+        $sql = $this->db->query("UPDATE $this->tableName SET apelido = '$apelido' WHERE id_usuario = $id");
+    }
+
+    public function updateEmailUser($email, $id)
+    {
+        $sql = $this->db->prepare("UPDATE $this->tableName SET email = :email WHERE id_usuario = :id");
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        return $sql->errorInfo();
+    }
+
+    public function updateCPFUser($cpf, $id)
+    {
+        $sql = $this->db->prepare("UPDATE $this->tableName SET cpf = :cpf WHERE id_usuario = :id");
+        $sql->bindValue(':cpf', $cpf);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        return $sql->errorInfo();
+    }
+
+    public function updateCelularUser($celular, $id)
+    {
+        $sql = $this->db->query("UPDATE $this->tableName SET celular = '$celular' WHERE id_usuario = $id");
+    }
+
+    public function updateNascimentoUser($nascimento, $id)
+    {
+        $sql = $this->db->query("UPDATE $this->tableName SET dt_nascimento = $nascimento WHERE id_usuario = $id");
+    }
+
     public function insertUserByDiretoria($data)
     {
         $code = [];
