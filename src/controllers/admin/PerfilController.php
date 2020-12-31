@@ -35,11 +35,11 @@ class PerfilController extends Controller
         $dados = $_POST;
         $retorno = [];
 
-        if(!empty($dados['senha']) && !empty($dados['confirmarSenha'])) {
+        if (!empty($dados['senha']) && !empty($dados['confirmarSenha'])) {
             $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
-            $confere = ValidadorHandler::validarSenha($senha, $dados['confirmaSenha']);
+            $confere = ValidadorHandler::validarSenha($senha, $dados['confirmarSenha']);
 
-            if(!$confere) {
+            if ($confere == 0) {
                 $retorno = [
                     'code' => 1,
                     'msg' => 'Senhas não conferem',
@@ -47,18 +47,17 @@ class PerfilController extends Controller
 
                 echo json_encode($retorno);
                 return false;
+            } else {
+                $this->usuario->updatePasswordProfile($senha, $dados['id']);
             }
-
-            unset($dados['confirmaSenha']);
-            $this->usuario->updatePasswordProfile($senha, $dados['id']);
         }
 
         $user = $this->usuario->getUserById($dados['id']);
 
-        if($dados['email'] != $user['email']) {
+        if ($dados['email'] != $user['email']) {
             $email = $this->usuario->updateEmailUser($dados['email'], $dados['id']);
 
-            if($email[1] == 1062) {
+            if ($email[1] == 1062) {
                 $retorno = [
                     'code' => 1062,
                     'msg' => 'Conta de email já existe em nosso sistema, dados não atualizados',
@@ -69,10 +68,10 @@ class PerfilController extends Controller
             }
         }
 
-        if($dados['cpf'] != $user['cpf']) {
+        if ($dados['cpf'] != $user['cpf']) {
             $cpf = $this->usuario->updateCPFUser($dados['cpf'], $dados['id']);
 
-            if($cpf[1] == 1062) {
+            if ($cpf[1] == 1062) {
                 $retorno = [
                     'code' => 1062,
                     'msg' => 'CPF já existe em nosso sistema, dados não atualizados',
@@ -83,28 +82,28 @@ class PerfilController extends Controller
             }
         }
 
-        if($dados['nome'] != $user['nome']) {
+        if ($dados['nome'] != $user['nome']) {
             $this->usuario->updateNomeUser($dados['nome'], $dados['id']);
         }
 
-        if($dados['apelido'] != $user['apelido']) {
+        if ($dados['apelido'] != $user['apelido']) {
             $this->usuario->updateApelidoUser($dados['apelido'], $dados['id']);
         }
 
-        if($dados['whatsapp'] != $user['celular']) {
+        if ($dados['whatsapp'] != $user['celular']) {
             $this->usuario->updateCelularUser($dados['whatsapp'], $dados['id']);
         }
 
-        if($dados['nascimento'] != $user['dt_nascimento']) {
+        if ($dados['nascimento'] != $user['dt_nascimento']) {
             $this->usuario->updateNascimentoUser($dados['nascimento'], $dados['id']);
         }
 
         $validarImagem = false;
 
-        if(isset($_FILES['foto']) && !empty($_FILES['foto'])) {
+        if (isset($_FILES['foto']) && !empty($_FILES['foto'])) {
             $validarImagem = $this->validarImagem($_FILES['foto']);
 
-            if(!$validarImagem) {
+            if (!$validarImagem) {
                 $errorImg = [
                     'code' => 2,
                     'msg' => 'Erro no upload da imagem',
@@ -117,9 +116,9 @@ class PerfilController extends Controller
             }
         }
 
-        if($validarImagem) {
+        if ($validarImagem) {
             $foto = $this->salvarImagem($_FILES['foto'], $dados['id']);
-            $foto = '/'.$foto;
+            $foto = '/' . $foto;
 
             $updateFoto = new Usuario();
             $updateFoto->updatePhotoUser($foto, $dados['id']);

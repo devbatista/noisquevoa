@@ -135,7 +135,7 @@ class Usuario extends Model
     public function updatePasswordProfile($senha, $id)
     {
         if($senha && $id) {
-            $sql = $this->db->prepare("UPDATE $this->tableName SET senha = :senha, WHERE id_usuario = :id");
+            $sql = $this->db->prepare("UPDATE $this->tableName SET senha = :senha WHERE id_usuario = :id");
             $sql->bindValue(':senha', $senha);
             $sql->bindValue(':id', $id);
             $sql->execute();
