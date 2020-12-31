@@ -90,6 +90,9 @@
     <!-- Summernote -->
     <script src="<?= $base ?>/assets/plugins/summernote/summernote.min.js"></script>
 
+    <!-- Validator -->
+    <script type="text/javascript" src="<?= $base ?>/assets/plugins/validator/validator.min.js"></script>
+
     <!-- Jquery Form -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
 
