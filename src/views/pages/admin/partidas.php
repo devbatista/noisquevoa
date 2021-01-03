@@ -94,10 +94,17 @@
             <div class="modal-body">
                 <div class="cadastro">
                     <h1 class="text-center">Inserir Partida</h1>
-                    <form cadastrar action="" data-toggle="validator" method="POST">
+                    <form cadastrarPartidas action="" data-toggle="validator" method="POST">
                         <div class="form-group">
                             <label for="adversario">Adversario: </label>
-                            <input type="text" class="form-control" id="adversario" placeholder="Digite o adversario" name="adversario" required>
+                            <input type="text" class="form-control" list="adversario" placeholder="Digite o adversario" name="adversario" required>
+                            <datalist id="adversario">
+                            </datalist>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="abreviacao">Abreviação: </label>
+                            <input type="text" class="form-control" id="abreviacao" placeholder="ADV" name="abreviacao" required maxlength="3">
                         </div>
 
                         <div class="form-group">
@@ -160,17 +167,29 @@
 
                         <div class="form-group">
                             <label for="">Tipo: </label><br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="mandante" value="1" name="tipo_mv">
+                            <div class="form-check form-check-inline radio radio-danger">
+                                <input class="form-check-input" type="radio" id="mandante" value="1" name="tipo_mv" checked>
                                 <label class="form-check-label" for="mandante">Mandante</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline radio radio-danger">
                                 <input class="form-check-input" type="radio" id="visitante" value="2" name="tipo_mv">
                                 <label class="form-check-label" for="visitante">Visitante</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline radio radio-danger">
                                 <input class="form-check-input" type="radio" id="neutro" value="3" name="tipo_mv">
                                 <label class="form-check-label" for="neutro">Neutro</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Quadros</label><br>
+                            <div class="form-check form-check-inline radio radio-danger">
+                                <input class="form-check-input" type="radio" id="1quadro" value="1" name="quadros">
+                                <label class="form-check-label" for="1quadro">1 Quadro</label>
+                            </div>
+                            <div class="form-check form-check-inline radio radio-danger">
+                                <input class="form-check-input" type="radio" id="2quadros" value="2" name="quadros" checked>
+                                <label class="form-check-label" for="2quadros">2 Quadros</label>
                             </div>
                         </div>
 

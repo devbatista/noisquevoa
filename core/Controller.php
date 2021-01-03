@@ -67,7 +67,8 @@ class Controller
         }
     }
 
-    protected function pegarUrl() {
+    protected function pegarUrl()
+    {
         return $this->getBaseUrl();
     }
 
@@ -90,7 +91,7 @@ class Controller
         return false;
     }
 
-    protected function salvarImagem($foto, $id)
+    protected function salvarImagem($foto, $id, $pasta)
     {
         $width = 500;
         $heigth = 500;
@@ -101,7 +102,7 @@ class Controller
 
         $tipo = $this->tipoImg($foto['type']);
 
-        $arquivo = 'assets/img/perfil/' . $id . $tipo;
+        $arquivo = 'assets/img/' . $pasta . '/' . $id . $tipo;
         move_uploaded_file($foto['tmp_name'], $arquivo);
 
         list($larguraOriginal, $alturaOriginal) = getimagesize($arquivo);

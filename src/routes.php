@@ -31,7 +31,9 @@ $router->post('/admin/perfil/alterar-dados', 'admin\PerfilController@updateData'
 
 $router->get('/admin/partidas/carregar-locais', 'admin\PartidasController@carregarLocais');
 $router->get('/admin/partidas/carregar-ligas', 'admin\PartidasController@carregarLigas');
+$router->get('/admin/partidas/carregar-equipes', 'admin\PartidasController@carregarEquipes');
 $router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadastrarLocal');
+$router->post('/admin/partidas/cadastrar-partida', 'admin\PartidasController@inserirPartida');
 
 $router->get('/admin/elenco/carregar_elenco', 'admin\ElencoController@getElenco');
 $router->get('/admin/elenco/carregar_por_id/{id}', 'admin\ElencoController@getElencoById');
@@ -58,9 +60,3 @@ $router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');
 $router->get('/cadastro', 'CadastroController@index');
 $router->get('/cadastro/getPosicoes', 'CadastroController@getPosicoes');
 $router->post('/cadastro/enviar', 'CadastroController@cadastrar');
-
-
-
-
-
-$router->get('/cadastro/testar_img', 'CadastroController@testar_img');
