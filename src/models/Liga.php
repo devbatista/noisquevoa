@@ -10,4 +10,11 @@ class Liga extends Model
     {
         parent::__construct();
     }
+
+    public function getData()
+    {
+        $sql = $this->db->query("SELECT * FROM $this->tableName");
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

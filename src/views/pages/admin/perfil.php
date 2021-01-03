@@ -2,7 +2,7 @@
 
 <div class="area rounded">
     <div class="cadastro">
-        <h1 class="text-center">Cadastro - Nois Que Voa Sport Club</h1>
+        <h1 class="text-center">Alterar dados pessoais</h1>
         <form perfil action="" method="POST" enctype="multipart/form-data" data-id="<?= $_SESSION['logado']['id_usuario'] ?>">
             <input type="hidden" name="id">
 

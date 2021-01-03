@@ -148,7 +148,7 @@ $('form[cadastrar]').on('submit', function(e) {
                     showCancelButton: true,
                     cancelButtonColor: '#999',
                     cancelButtonText: 'Voltar'
-                })
+                });
             } else if (dados.code == 2) {
                 swal.fire({
                     icon: 'error',

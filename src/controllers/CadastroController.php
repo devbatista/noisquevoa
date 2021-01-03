@@ -94,7 +94,7 @@ class CadastroController extends Controller
             }
 
             if($retorno['code'] == 0 && $validarImagem) {
-                $foto = $this->salvarImagem($_FILES['foto'], $retorno['id']);
+                $foto = $this->salvarImagem($_FILES['foto'], $retorno['id'], 'perfil');
                 $foto = '/'.$foto;
 
                 $updateFoto = new Usuario();
@@ -105,10 +105,5 @@ class CadastroController extends Controller
         } else {
             return false;
         }
-    }
-
-    public function testar_img()
-    {
-        print_r($_FILES);
     }
 }
