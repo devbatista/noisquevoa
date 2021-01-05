@@ -24,7 +24,6 @@ $(document).ready(function() {
 
 window.onload = function() {
     carregarPartidas(0);
-    carregarEstatisticasEmAguardo();
 }
 
 $('input[name=mostrar]').on('change', function() {
@@ -79,26 +78,10 @@ function carregarPartidas(val) {
     });
 }
 
-function carregarEstatisticasEmAguardo() {
-    let estatisticasEmAguardo = 0;
-
-    $.each(partidas, function(i, v) {
-        if (v.concluido == "1" && v.estatisticas == "0") {
-            estatisticasEmAguardo++;
-        }
-    });
-
-    if (estatisticasEmAguardo > 0) {
-        $('.pull-left button').text('Estatísticas em aguardo (' + estatisticasEmAguardo + ')').removeClass('disabled');
-    } else {
-        $('.pull-left button').text('Estatísticas em aguardo (0)').addClass('disabled');
-    }
-}
-
 $('.pull-left button').click(function(e) {
     e.preventDefault();
     if ($(this).hasClass('disabled') == false) {
-        window.location = window.origin + '/admin/partidas/cadastrar-estatisticas';
+        window.location = window.origin + '/admin/partidas';
     }
 });
 

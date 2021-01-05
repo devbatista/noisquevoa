@@ -8,7 +8,7 @@
                     <div class="ibox">
                         <div class="buttons d-none">
                             <div class="pull-left">
-                                <button type="button" class="btn btn-danger disabled" data-target=".modal-estatisticas-aguardo">Estatística em aguardo (0)</button>
+                                <button type="button" class="btn btn-danger disabled">Estatística em aguardo (0)</button>
                             </div>
                             <div class="pull-right">
                                 <button type="button" class="btn btn-danger cadastrarPartidas" data-toggle="modal" data-target=".modal-cadastro-partida">Cadastrar partidas</button>
@@ -178,28 +178,6 @@
                         </div>
 
                     </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-danger">Cadastrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade modal-estatisticas-aguardo" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalCentralizado">Cadastro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="cadastro">
-                    <h1 class="text-center">Inserir Partida</h1>
                 </div>
             </div>
             <div class="modal-footer">
