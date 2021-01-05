@@ -6,7 +6,7 @@
                 <h5>Jogos</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins"><b>0</b></h1>
+                <h1 class="no-margins"></h1>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
                 <h5>Vitórias</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins"><b>0</b></h1>
+                <h1 class="no-margins"></h1>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                 <h5>Derrotas</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins"><b>0</b></h1>
+                <h1 class="no-margins"></h1>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                 <h5>Empates</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins"><b>0</b></h1>
+                <h1 class="no-margins"></h1>
             </div>
         </div>
     </div>

@@ -5,6 +5,9 @@ $(document).ready(function() {
         url: window.origin + '/admin/home/dados',
         type: 'get',
         dataType: 'json',
+        beforeSend: () => {
+
+        },
         success: (e) => {
             dados = e;
 
@@ -16,19 +19,19 @@ $(document).ready(function() {
 function carregarDados() {
     $.each($('h5'), function(i, v) {
         if ($(v).text() == 'Jogos') {
-            $(this).parent().parent().find('h1.no-margins').text(dados.qtdJogos);
+            $(this).parent().parent().find('h1.no-margins').html('<b>' + dados.qtdJogos + '</b>');
         }
 
         if ($(v).text() == 'Vitórias') {
-            $(this).parent().parent().find('h1.no-margins').text(dados.vitorias);
+            $(this).parent().parent().find('h1.no-margins').html('<b>' + dados.vitorias + '</b>');
         }
 
         if ($(v).text() == 'Derrotas') {
-            $(this).parent().parent().find('h1.no-margins').text(dados.derrotas);
+            $(this).parent().parent().find('h1.no-margins').html('<b>' + dados.derrotas + '</b>');
         }
 
         if ($(v).text() == 'Empates') {
-            $(this).parent().parent().find('h1.no-margins').text(dados.empates);
+            $(this).parent().parent().find('h1.no-margins').html('<b>' + dados.empates) + '</b>';
         }
 
         if ($(v).text() == 'Próximas partidas') {

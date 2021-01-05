@@ -133,9 +133,8 @@ class AdminController extends Controller
     private function getProxPartidas()
     {
         $proxPartidas = [];
-
         foreach ($this->partidas as $key => $value) {
-            if ($value['data_hora_partida'] > date('Y-m-d H:i:s') && count($proxPartidas) <= 2 && $value['concluido'] == 0) {
+            if (($value['data_hora_partida'] > date('Y-m-d H:i:s')) && (count($proxPartidas) < 2) && ($value['concluido'] == 0)) {
                 $proxPartidas[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
@@ -147,6 +146,7 @@ class AdminController extends Controller
                     'concluido' => $value['concluido'],
                 ];
             }
+            
         }
 
         return $proxPartidas;
@@ -156,8 +156,13 @@ class AdminController extends Controller
     {
         $partidasAnteriores = [];
 
-        foreach ($this->partidas as $key => $value) {
-            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) <= 3 && $value['concluido'] == 1) {
+        $partidas = $this->partidas;
+        krsort($partidas);
+        
+        $key = 0;
+
+        foreach ($partidas as $value) {
+            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) < 4 && $value['concluido'] == 1) {
                 $partidasAnteriores[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
@@ -169,6 +174,7 @@ class AdminController extends Controller
                     'tipo_mv' => $value['mandante_visitante'],
                     'adversario' => $value['logo_adversario'],
                 ];
+                $key++;
             }
         }
 
