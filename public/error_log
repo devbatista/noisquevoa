@@ -1,2 +1,185 @@
 [30-Dec-2020 18:19:07 America/Fortaleza] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home3/devbat78/sites/noisquevoa.com.br/core/Controller.php on line 45
 [30-Dec-2020 18:29:11 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
+[31-Dec-2020 11:24:07 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 11:24:10 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 11:24:12 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 11:24:15 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 11:24:21 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 11:24:28 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 17:27:43 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 17:27:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 17:27:49 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[31-Dec-2020 17:37:54 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:27:48 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:27:57 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:28:32 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:28:40 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:28:47 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:29:12 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[01-Jan-2021 20:37:33 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 10:30:25 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 10:31:02 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 13:17:00 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 21:01:32 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 21:05:31 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 21:05:38 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 21:05:39 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 21:05:39 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[02-Jan-2021 21:05:48 America/Fortaleza] PHP Fatal error:  Uncaught Error: Call to a member function fetchAll() on bool in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php:22
+Stack trace:
+#0 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(17): src\models\Partida->getJogos()
+#1 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
+#2 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core\RouterBase->run(Array)
+#3 {main}
+  thrown in /home3/devbat78/sites/noisquevoa.com.br/src/models/Partida.php on line 22
+[04-Jan-2021 21:33:25 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
