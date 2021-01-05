@@ -21,6 +21,7 @@ $router->get('/admin/elenco', 'admin\ElencoController@index');
 $router->get('/admin/diretoria', 'admin\DiretoriaController@index');
 $router->get('/admin/posts', 'admin\PostsController@index');
 $router->get('/admin/ligas', 'admin\LigasController@index');
+$router->get('/admin/financas', 'admin\FinancasController@index');
 
 // API
 $router->get('/admin/getPermissao/{id}', 'admin\AdminController@getPermissao');
