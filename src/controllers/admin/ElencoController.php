@@ -103,6 +103,8 @@ class ElencoController extends Controller
             'email' => $dadosEmail['email'],
         ];
 
+        $enviarEmail = new EmailController();
+
         $enviarEmail->enviarConfirmacaoAprovado($dados);
     }
 
