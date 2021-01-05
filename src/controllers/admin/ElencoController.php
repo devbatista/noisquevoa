@@ -3,6 +3,7 @@
 namespace src\controllers\admin;
 
 use \core\Controller;
+use src\controllers\EmailController;
 use \src\models\Usuario;
 use \src\handlers\ValidadorHandler;
 
@@ -92,6 +93,17 @@ class ElencoController extends Controller
     public function aprovarCadastro($id)
     {
         $this->jogadores->approveRegistration($id['id']);
+        $dadosEmail = $this->jogadores->getUserById($id['id']);
+        $enviarEmail = new EmailController();
+        
+        $dados = [
+            'id' => $dadosEmail['id_usuario'],
+            'nome' => $dadosEmail['nome'],
+            'apelido' => $dadosEmail['apelido'],
+            'email' => $dadosEmail['email'],
+        ];
+
+        $enviarEmail->enviarConfirmacaoAprovado($dados);
     }
 
     public function inserirUsuario()

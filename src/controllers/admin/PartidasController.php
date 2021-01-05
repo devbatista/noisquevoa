@@ -131,7 +131,7 @@ class PartidasController extends Controller
             $updateLogo = new Equipe();
             $updateLogo->updatePhotoTeam($logo, $dados['id_adversario']);
         }
-        
+
         for ($i = 1; $i <= $dados['quadros']; $i++) {
             $this->partidas->createPartida($dados);
             if ($dados['quadros'] == 2) {
@@ -146,5 +146,33 @@ class PartidasController extends Controller
 
         echo json_encode($code);
         return true;
+    }
+
+    public function carregarPartidas()
+    {
+        $partidas = [];
+        $dados = $this->partidas->getJogos();
+
+        foreach ($dados as $key => $value) {
+            $partidas[$key] = [
+                'id_partida' => $value['id_partida'],
+                'liga' => $value['liga'],
+                'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
+                'local' => $value['local'],
+                'horario' => date('H:i', strtotime($value['data_hora_partida'])),
+                'nqv' => 'Nois Que Voa',
+                'logo_nqv' => '/assets/img/times/noisquevoa.png',
+                'gols_pro' => $value['gols_pro'],
+                'gols_contra' => $value['gols_contra'],
+                'tipo_mv' => $value['mandante_visitante'],
+                'adversario' => $value['adversario'],
+                'abreviacao' => $value['abreviacao'],
+                'logo_adversario' => $value['logo_adversario'],
+                'concluido' => $value['concluido'],
+                'estatisticas' => $value['estatisticas'],
+            ];
+        }
+
+        echo json_encode($partidas);
     }
 }

@@ -32,6 +32,7 @@ $router->post('/admin/perfil/alterar-dados', 'admin\PerfilController@updateData'
 $router->get('/admin/partidas/carregar-locais', 'admin\PartidasController@carregarLocais');
 $router->get('/admin/partidas/carregar-ligas', 'admin\PartidasController@carregarLigas');
 $router->get('/admin/partidas/carregar-equipes', 'admin\PartidasController@carregarEquipes');
+$router->get('/admin/partidas/carregar-partidas', 'admin\PartidasController@carregarPartidas');
 $router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadastrarLocal');
 $router->post('/admin/partidas/cadastrar-partida', 'admin\PartidasController@inserirPartida');
 

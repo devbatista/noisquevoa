@@ -155,4 +155,114 @@ class EmailController extends Controller
 
         return $msg;
     }
+
+    protected function enviarConfirmacaoAprovado($dados)
+    {
+        $msg = $this->emailBodyConfirmacaoAprovado($dados);
+
+        try {
+            $this->mailer->isSMTP();
+
+            $this->mailer->SMTPAuth = true;
+
+            $this->mailer->CharSet = 'UTF-8';
+
+            $this->mailer->SMTPDebug = 0;
+            // Ativar o Debug em 3 para verificar possíveis erros
+            // $this->mailer->SMTPDebug = 3; 
+
+            $this->mailer->Username = 'diretoria@noisquevoa.com.br';
+            $this->mailer->Password = '@No1sQueVo4#2021';
+
+            $this->mailer->SMTPSecure = 'ssl';
+
+            $this->mailer->Host = 'mail.noisquevoa.com.br';
+            $this->mailer->Port = 465;
+
+            $this->mailer->setFrom('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addReplyTo('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addAddress($dados['email'], $dados['nome']);
+
+            $this->mailer->isHTML(true);
+
+            // $this->mailer->AddStringEmbeddedImage('https://www.noisquevoa.com.br/assets/img/noisquevoa.png', 'logo_nqv', 'noisquevoa.png');
+
+            $this->mailer->Subject = 'Aprovação de cadastro - Nois Que Voa SC';
+            $this->mailer->Body = $msg;
+            $this->mailer->AltBody = $msg;
+
+            if (!$this->mailer->send()) {
+                $return = [
+                    'code' => 1,
+                    'msg' => "Mensagem não enviada, tente novamente",
+                    'error' => $this->mailer->ErrorInfo,
+                ];
+                echo json_encode($return);
+                return false;
+            } else {
+                $return = [
+                    'code' => 0,
+                    'msg' => "Mensagem enviada com sucesso!"
+                ];
+                echo json_encode($return);
+                return true;
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    private function emailBodyConfirmacaoAprovado($dados)
+    {
+        $msg = '<!DOCTYPE html>
+        <html lang="pt-br">
+        
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title>Aprovação do cadastro - Nois Que Voa Sport Clube</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </head>
+        
+        <body style="margin:0; padding: 0;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;">
+                <tr>
+                    <td align="center" bgcolor="#ee4c50" style="padding: 40px 0 30px 0;">
+                        <img src="' . $this->pegarUrl() . '/assets/img/noisquevoa.png" alt="Nois Que Voa SC" width="300" height="230" style="display: block;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px; padding: 20px 0 30px 0;">
+                                    <b>Aprovação do cadastro</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                    Olá, ' . $dados['apelido'] . '! <br><br> Informamos que seu cadastro foi aprovado pela diretoria. <br><br> Seu acesso ao sistema está liberado. <br><br> Email: '.$dados['email'].'<br> Senha: ************ <br><br> Agradecemos por fechar com "Nois" nessa retomada, e pretendemos fazer com que nosso time se transforme em uma família, você é chave importante nessa ideia. <br><br> Atenciosamente, diretoria Nois Que Voa SC
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;">
+                                    Copyright&reg; Todos os direitos reservados ' . date("Y") . '<br/> Criado e licenciado por <a href="https://www.devbatista.com" style="color:#fff">DevBatista</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        
+        </body>
+        
+        </html>';
+
+        return $msg;
+    }
 }

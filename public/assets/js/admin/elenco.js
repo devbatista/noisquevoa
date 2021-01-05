@@ -296,6 +296,8 @@ function aprovarCadastro() {
                 });
                 getAprovarCadastro();
                 carregarElenco();
+
+                $('.modal-aprovar-cadastro').modal('hide');
             }
         });
     });
@@ -323,6 +325,8 @@ function desaprovarCadastro() {
                 });
                 getAprovarCadastro();
                 carregarDiretoria();
+
+                $('.modal-aprovar-cadastro').modal('hide');
             }
         });
     });

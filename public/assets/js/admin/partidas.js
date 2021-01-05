@@ -1,4 +1,5 @@
 let equipes = [];
+let partidas = [];
 
 $(document).ready(function() {
     $('table').DataTable({
@@ -7,25 +8,109 @@ $(document).ready(function() {
         }
     });
 
+    $.ajax({
+        url: window.origin + '/admin/partidas/carregar-partidas',
+        dataType: 'json',
+        type: 'get',
+        success: (dados) => {
+            partidas = dados;
+        }
+    });
+
     $('input[name=cepLocal]').mask('00000-000');
 
     permissao();
 });
+
+window.onload = function() {
+    carregarPartidas(0);
+    carregarEstatisticasEmAguardo();
+}
+
+$('input[name=mostrar]').on('change', function() {
+    let valor = $('input[name=mostrar]:checked').val()
+    carregarPartidas(valor);
+})
+
+function carregarPartidas(val) {
+    let html = '';
+    let mandante;
+    let visitante;
+    let logo_mandante;
+    let logo_visitante;
+    let gols_mandante;
+    let gols_visitante;
+
+    $('tbody[partidas]').html(function() {
+        $.each(partidas, function(index, value) {
+            if (value.tipo_mv != 'Visitante') {
+                mandante = '<b>' + value.nqv + '</b>';
+                logo_mandante = window.origin + value.logo_nqv;
+                gols_mandante = (value.gols_pro) ? '<b>' + value.gols_pro + '</b>' : '';
+                visitante = value.adversario;
+                logo_visitante = window.origin + value.logo_adversario;
+                gols_visitante = (value.gols_contra) ? value.gols_contra : '';
+            } else {
+                visitante = '<b>' + value.nqv + '</b>';
+                logo_visitante = window.origin + value.logo_nqv;
+                gols_visitante = (value.gols_pro) ? '<b>' + value.gols_pro + '</b>' : '';
+                mandante = value.adversario;
+                logo_mandante = window.origin + value.logo_adversario;
+                gols_mandante = (value.gols_contra) ? value.gols_contra : '';
+            }
+
+            if (value.concluido == val || val == 2) {
+                html += '<tr data-id="' + value.id_partida + '">' +
+                    '<td>' + value.data + ' - ' + value.horario + '</td>' +
+                    '<td><img src="' + logo_mandante + '" alt=""></td>' +
+                    '<td>' + mandante + '</td>' +
+                    '<td>' + gols_mandante + '</td>' +
+                    '<td>X</td>' +
+                    '<td>' + gols_visitante + '</td>' +
+                    '<td>' + visitante + '</td>' +
+                    '<td><img src="' + logo_visitante + '" alt=""></td>' +
+                    '<td>' + value.local + '</td>' +
+                    '<td>' + value.liga + '</td>' +
+                    '</tr>';
+            };
+        });
+
+        return html;
+    });
+}
+
+function carregarEstatisticasEmAguardo() {
+    let estatisticasEmAguardo = 0;
+
+    $.each(partidas, function(i, v) {
+        if (v.concluido == "1" && v.estatisticas == "0") {
+            estatisticasEmAguardo++;
+        }
+    });
+
+    if (estatisticasEmAguardo > 0) {
+        $('.pull-left button').text('Estatísticas em aguardo (' + estatisticasEmAguardo + ')').removeClass('disabled').attr('data-toggle', 'modal');
+    } else {
+        $('.pull-left button').text('Estatísticas em aguardo (0)').addClass('disabled').attr('data-toggle', 'modal');
+    }
+}
 
 function permissao() {
     let presidencia = $('body').attr('presidencia');
     let diretoria = $('body').attr('diretoria');
     if (presidencia == 1 || diretoria == 1) {
         $('div.buttons').removeClass('d-none');
-
-        carregarEquipes();
-        carregarLocais();
-        carregarLigas();
     } else {
         $('div.buttons').remove();
         $('div.inserir-local').remove();
     }
 }
+
+$('button.cadastrarPartidas').click(function() {
+    carregarEquipes();
+    carregarLocais();
+    carregarLigas();
+});
 
 function carregarEquipes() {
     $.ajax({
@@ -48,12 +133,13 @@ function carregarEquipes() {
 }
 
 function carregarAbreviacao() {
-    let adversario = $('input[name=adversario]').val()
+    let adversario = $('input[name=adversario]').val();
 
     if (adversario.length > 0) {
         $.each(equipes, function(i, v) {
-            if (this.nome == adversario) {
-                $('#abreviacao').val(this.abreviacao);
+            if (adversario == v.nome) {
+                console.log(v.abreviacao);
+                $('#abreviacao').val(v.abreviacao);
                 $('#logo').prev().text('Alterar logo do adversário:');
             } else {
                 $('#abreviacao').val('');
