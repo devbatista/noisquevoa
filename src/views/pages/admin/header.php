@@ -38,6 +38,9 @@
     <!-- Awesome Bootstrap -->
     <link href="<?= $base ?>/assets/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
+    <!-- Switchery -->
+    <link href="<?= $base ?>/assets/plugins/switchery/switchery.css" rel="stylesheet">
+
     <!-- scripts -->
     <script src="<?= $base ?>/assets/plugins/jquery/jquery.min.js"></script>
     <script src="<?= $base ?>/assets/js/admin/popper.min.js"></script>
@@ -95,6 +98,9 @@
 
     <!-- Jquery Form -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
+    
+    <!-- Switchery -->
+    <script src="<?= $base ?>/assets/plugins/switchery/switchery.js"></script>
 
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>
@@ -165,6 +171,10 @@
 
                     <li>
                         <a href="<?= $base ?>/admin/posts"><i class="fa fa-sticky-note"></i> <span class="nav-label">Posts</span></a>
+                    </li>
+
+                    <li class="financas d-none">
+                        <a href="<?= $base ?>/admin/financas"><i class="fa fa-money"></i> <span class="nav-label">Finanças</span></a>
                     </li>
                 </ul>
             </div>

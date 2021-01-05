@@ -153,7 +153,9 @@ function permissaoItensMenu() {
     let diretoria = $('body').attr('diretoria');
     if (presidencia == 1 || diretoria == 1) {
         $('li.dropright').removeClass('d-none');
+        $('ul.metismenu li.financas').removeClass('d-none');
     } else {
         $('li.dropright').remove();
+        $('ul.metismenu li.financas').remove();
     }
 }
