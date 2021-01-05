@@ -156,7 +156,7 @@ class EmailController extends Controller
         return $msg;
     }
 
-    protected function enviarConfirmacaoAprovado($dados)
+    public function enviarConfirmacaoAprovado($dados)
     {
         $msg = $this->emailBodyConfirmacaoAprovado($dados);
 
