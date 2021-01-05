@@ -29,6 +29,13 @@ class PartidasController extends Controller
         $this->loadView('admin/footer');
     }
 
+    public function cadastrarEstatisticas()
+    {
+        $this->loadView('admin/header');
+        $this->loadView('admin/cadastrarEstatisticas');
+        $this->loadView('admin/footer');
+    }
+
     public function carregarLocais()
     {
         $this->local = new Local();

@@ -101,6 +101,9 @@ class CadastroController extends Controller
                 $updateFoto->updatePhotoUser($foto, $retorno['id']);
             }
 
+            $enviaEmailDiretoria = new EmailController();
+            $enviaEmailDiretoria->enviarNovoCadastro($dados);
+
             echo json_encode($retorno);
         } else {
             return false;
