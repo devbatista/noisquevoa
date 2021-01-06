@@ -5,7 +5,7 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row mb-10">
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
                     <div class="col-4">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
                     <div class="col-4">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
                     <div class="col-4">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
                     <div class="col-4">
@@ -64,7 +64,7 @@
 
 
     <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -196,7 +196,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -218,7 +218,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -240,7 +240,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -262,7 +262,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -284,7 +284,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
             <div class="contact-box">
                 <div class="row">
                     <div class="col-4">
@@ -307,7 +307,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <script type="text/javascript" src="<?= $base ?>/assets/js/admin/financas.js"></script>
