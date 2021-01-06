@@ -117,7 +117,7 @@ class PerfilController extends Controller
         }
 
         if ($validarImagem) {
-            $foto = $this->salvarImagem($_FILES['foto'], $dados['id']);
+            $foto = $this->salvarImagem($_FILES['foto'], $dados['id'], 'perfil');
             $foto = '/' . $foto;
 
             $updateFoto = new Usuario();
