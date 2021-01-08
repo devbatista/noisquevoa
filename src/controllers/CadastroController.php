@@ -8,7 +8,7 @@ use \src\models\Usuario;
 use \src\handlers\ValidadorHandler;
 
 class CadastroController extends Controller
-{   
+{
     public $usuario;
 
     public function index()
@@ -51,10 +51,10 @@ class CadastroController extends Controller
                 'posicao' => ($posicao) ? $posicao : null
             ];
 
-            if(isset($_FILES['foto'])) {
+            if (isset($_FILES['foto'])) {
                 $validarImagem = $this->validarImagem($_FILES['foto']);
 
-                if(!$validarImagem) {
+                if (!$validarImagem) {
                     $errorImg = [
                         'code' => 2,
                         'msg' => 'Erro no upload da imagem',
@@ -93,16 +93,18 @@ class CadastroController extends Controller
                 $retorno = $inserUser->insertUser($dados);
             }
 
-            if($retorno['code'] == 0 && $validarImagem) {
+            if ($retorno['code'] == 0 && $validarImagem) {
                 $foto = $this->salvarImagem($_FILES['foto'], $retorno['id'], 'perfil');
-                $foto = '/'.$foto;
+                $foto = '/' . $foto;
 
                 $updateFoto = new Usuario();
                 $updateFoto->updatePhotoUser($foto, $retorno['id']);
             }
 
-            $enviaEmailDiretoria = new EmailController();
-            $enviaEmailDiretoria->enviarNovoCadastro($dados);
+            if ($retorno['code'] == 0) {
+                $enviaEmailDiretoria = new EmailController();
+                $enviaEmailDiretoria->enviarNovoCadastro($dados);
+            }
 
             echo json_encode($retorno);
         } else {
