@@ -304,19 +304,8 @@ class EmailController extends Controller
             $this->mailer->AltBody = $msg;
 
             if (!$this->mailer->send()) {
-                $return = [
-                    'code' => 1,
-                    'msg' => "Mensagem não enviada, tente novamente",
-                    'error' => $this->mailer->ErrorInfo,
-                ];
-                echo json_encode($return);
                 return false;
             } else {
-                $return = [
-                    'code' => 0,
-                    'msg' => "Mensagem enviada com sucesso!"
-                ];
-                echo json_encode($return);
                 return true;
             }
         } catch (\Throwable $th) {
