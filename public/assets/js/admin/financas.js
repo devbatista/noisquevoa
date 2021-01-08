@@ -15,3 +15,9 @@ $("#selecionarMes").ionRangeSlider({
         "Outubro", "Novembro", "Dezembro"
     ]
 });
+
+$('.switchery').click(function(e) {
+    if ($(this).prev().prop('checked') == true) {
+        $('#tipoDePagamento').modal('show')
+    }
+});
