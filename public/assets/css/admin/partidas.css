@@ -6,6 +6,10 @@
     padding-bottom: 50px;
 }
 
+.form-group {
+    margin-bottom: 2rem;
+}
+
 .form-control:focus {
     border-color: #f10404;
     box-shadow: 0 0 0 0.2rem rgb(255 2 1 / 18%);

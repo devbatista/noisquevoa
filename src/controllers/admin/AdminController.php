@@ -162,7 +162,7 @@ class AdminController extends Controller
         $key = 0;
 
         foreach ($partidas as $value) {
-            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) < 4 && $value['concluido'] == 1) {
+            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) < 4 && $value['concluido'] == 1 && $value['estatisticas'] == 1) {
                 $partidasAnteriores[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),

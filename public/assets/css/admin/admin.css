@@ -14,6 +14,31 @@
     src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg') format('svg');
 }
 
+#preloader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    opacity: .95;
+    position: fixed;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+}
+
+#loader {
+    width: 60px;
+    height: 60px;
+    border: 8px solid rgba(0, 0, 0, .1);
+    border-radius: 50%;
+    border-left-color: #bd2a38;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 img.rounded-circle {
     width: 100px;
     height: 100px;
@@ -2245,7 +2270,7 @@ fieldset[disabled] .btn-default.active {
 .btn-link:active,
 .btn-link.active,
 .open .dropdown-toggle.btn-link {
-    color: #1ab394;
+    color: #000;
     text-decoration: none;
 }
 

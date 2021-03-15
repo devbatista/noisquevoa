@@ -5,3 +5,8 @@
 .radio label {
     padding-bottom: 10px;
 }
+
+img.rounded-circle.m-t-xs.img-fluid {
+    width: 75px;
+    height: 75px;
+}

@@ -8,10 +8,10 @@
         <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
-                    <div class="col-4">
-                        <i class="fa fa-money fa-5x"></i>
+                    <div class="col-2">
+                        <i class="fa fa-money fa-2x"></i>
                     </div>
-                    <div class="col-8 text-right">
+                    <div class="col-10 text-right">
                         <span> Valor em caixa </span>
                         <h2 class="font-bold"><span>R$</span> 160,00</h2>
                     </div>
@@ -21,12 +21,12 @@
         <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
-                    <div class="col-4">
-                        <i class="fa fa-table fa-5x"></i>
+                    <div class="col-2">
+                        <i class="fa fa-table fa-2x"></i>
                     </div>
-                    <div class="col-8 text-right">
+                    <div class="col-10 text-right">
                         <span> Confirmar pagamento </span>
-                        <h2 class="font-bold">Futliga</h2>
+                        <h2 class="font-bold">Liga</h2>
                     </div>
                 </div>
             </div>
@@ -34,10 +34,10 @@
         <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
-                    <div class="col-4">
-                        <i class="fa fa-soccer-ball-o fa-5x"></i>
+                    <div class="col-2">
+                        <i class="fa fa-soccer-ball-o fa-2x"></i>
                     </div>
-                    <div class="col-8 text-right">
+                    <div class="col-10 text-right">
                         <span> Confirmar pagamento </span>
                         <h2 class="font-bold">Quadra</h2>
                     </div>
@@ -47,10 +47,10 @@
         <div class="col-xl-3 col-lg-6">
             <div class="widget style1 red-bg">
                 <div class="row">
-                    <div class="col-4">
-                        <i class="fa fa-bank fa-5x"></i>
+                    <div class="col-2">
+                        <i class="fa fa-bank fa-2x"></i>
                     </div>
-                    <div class="col-8 text-right">
+                    <div class="col-10 text-right">
                         <span> Ver/Adicionar </span>
                         <h2 class="font-bold">Transições</h2>
                     </div>
@@ -70,7 +70,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -92,7 +92,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -114,7 +114,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -136,7 +136,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -158,7 +158,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -180,7 +180,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -202,7 +202,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -224,7 +224,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -246,7 +246,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -268,7 +268,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">
@@ -290,7 +290,7 @@
                     <div class="col-4">
                         <div class="text-center">
                             <img alt="image" class="rounded-circle m-t-xs img-fluid" src="<?= $base ?>/assets/img/perfil/1.jpeg">
-                            <div class="m-t-xs font-bold">Presidente</div>
+                            <div cla10s="m-t-xs font-bold">Presidente</div>
                         </div>
                     </div>
                     <div class="col-8">

@@ -26,6 +26,9 @@
     <!-- Gritter -->
     <link href="<?= $base ?>/assets/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
+    <!-- Jasny -->
+    <link href="<?= $base ?>/assets/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
     <link href="<?= $base ?>/assets/css/admin/animate.css" rel="stylesheet">
     <link href="<?= $base ?>/assets/css/admin/admin.css" rel="stylesheet">
 
@@ -93,12 +96,15 @@
     <!-- Summernote -->
     <script src="<?= $base ?>/assets/plugins/summernote/summernote.min.js"></script>
 
+    <!-- Jasny -->
+    <script src="<?= $base ?>/assets/plugins/jasny/jasny-bootstrap.min.js"></script>
+
     <!-- Validator -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/validator/validator.min.js"></script>
 
     <!-- Jquery Form -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
-    
+
     <!-- Switchery -->
     <script src="<?= $base ?>/assets/plugins/switchery/switchery.js"></script>
 
@@ -169,7 +175,7 @@
                         </div>
                     </li>
 
-                    <li>
+                    <li class="d-none">
                         <a href="<?= $base ?>/admin/posts"><i class="fa fa-sticky-note"></i> <span class="nav-label">Posts</span></a>
                     </li>
 
@@ -194,4 +200,8 @@
                     </ul>
 
                 </nav>
+            </div>
+
+            <div id="preloader">
+                <div id="loader"></div>
             </div>

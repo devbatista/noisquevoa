@@ -2,11 +2,6 @@ let equipes = [];
 let partidas = [];
 
 $(document).ready(function() {
-    $('table').DataTable({
-        "language": {
-            "url": window.origin + "/assets/plugins/datatables/Portuguese-Brasil.json"
-        }
-    });
 
     $.ajax({
         url: window.origin + '/admin/partidas/carregar-partidas',
@@ -27,12 +22,19 @@ window.onload = function() {
     carregarEstatisticasEmAguardo();
 }
 
+$('button[refresh]').click(function(){
+    carregarPartidas(0);
+    carregarEstatisticasEmAguardo();
+});
+
 $('input[name=mostrar]').on('change', function() {
     let valor = $('input[name=mostrar]:checked').val()
     carregarPartidas(valor);
 })
 
 function carregarPartidas(val) {
+    $('table').DataTable().destroy();
+
     let html = '';
     let mandante;
     let visitante;
@@ -60,7 +62,7 @@ function carregarPartidas(val) {
             }
 
             if (value.concluido == val || val == 2) {
-                html += '<tr data-id="' + value.id_partida + '">' +
+                html += '<tr data-id="' + value.id_partida + ' verEstatistica">' +
                     '<td>' + value.data + ' - ' + value.horario + '</td>' +
                     '<td><img src="' + logo_mandante + '" alt=""></td>' +
                     '<td>' + mandante + '</td>' +
@@ -76,6 +78,12 @@ function carregarPartidas(val) {
         });
 
         return html;
+    });
+    
+    $('table').DataTable({
+        "language": {
+            "url": window.origin + "/assets/plugins/datatables/Portuguese-Brasil.json"
+        }
     });
 }
 
@@ -252,7 +260,7 @@ $('input[name=cepLocal]').on('keyup', function(e) {
     }
 });
 
-$('a.btn').click(function() {
+$('a.btn btn-secondary').click(function() {
     let data = {
         nome: $('#nomeLocal').val(),
         cep: $('#cepLocal').val(),
@@ -314,7 +322,7 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
                     confirmButtonText: 'OK'
                 });
 
-                $('modal-cadastro-partida').modal('hide');
+                $('.modal-cadastro-partida').modal('hide');
                 // carregarPartidas();
             } else {
                 swal.fire({

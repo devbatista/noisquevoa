@@ -18,4 +18,9 @@ class EstatisticasController extends Controller
         $this->loadView('admin/estatisticas');
         $this->loadView('admin/footer');
     }
+
+    public function getPartidas()
+    {
+
+    }
 }

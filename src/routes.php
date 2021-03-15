@@ -38,6 +38,9 @@ $router->get('/admin/partidas/carregar-partidas', 'admin\PartidasController@carr
 $router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadastrarLocal');
 $router->post('/admin/partidas/cadastrar-partida', 'admin\PartidasController@inserirPartida');
 
+$router->get('/admin/partidas/cadastrar-estatisticas/carregar-dados', 'admin\PartidasController@getDataEstatisticas');
+$router->post('/admin/partidas/cadastrar-estatisticas/enviar-dados', 'admin\PartidasController@enviarDataEstatisticas');
+
 $router->get('/admin/elenco/carregar_elenco', 'admin\ElencoController@getElenco');
 $router->get('/admin/elenco/carregar_por_id/{id}', 'admin\ElencoController@getElencoById');
 $router->get('/admin/elenco/aprovacao_cadastros', 'admin\ElencoController@getAprovarCadastros');

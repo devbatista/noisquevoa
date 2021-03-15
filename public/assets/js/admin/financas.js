@@ -18,6 +18,6 @@ $("#selecionarMes").ionRangeSlider({
 
 $('.switchery').click(function(e) {
     if ($(this).prev().prop('checked') == true) {
-        $('#tipoDePagamento').modal('show')
+        $('#tipoDePagamento').modal('show');
     }
 });
