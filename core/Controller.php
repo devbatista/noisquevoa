@@ -198,4 +198,19 @@ class Controller
 
         return $arquivo;
     }
+
+    protected function diaDaSemana($dia)
+    {
+        $semana = array(
+            'Sun' => 'Domingo',
+            'Mon' => 'Segunda-Feira',
+            'Tue' => 'Terca-Feira',
+            'Wed' => 'Quarta-Feira',
+            'Thu' => 'Quinta-Feira',
+            'Fri' => 'Sexta-Feira',
+            'Sat' => 'Sábado'
+        );
+
+        return $semana[$dia];
+    }
 }

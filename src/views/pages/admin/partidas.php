@@ -35,7 +35,7 @@
                             </div>
                             <div class="row" style="margin-top: 10px">
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table partidas class="table table-hover">
                                         <thead class="thead-danger">
                                             <tr>
                                                 <th scope="col">Data/hora</th>
@@ -186,6 +186,32 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-danger">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-estatisticas-unica" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Estatísticas do jogo X</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="row justify-content-center" data-horario>
+                    <div class="col-12">
+                        Sabado, 31/12/2020 - 17h45
+                    </div>
+                </div>
+                <div class="row justify-content-center" style="font-size: 30px; margin-top: 20px" placar-partida>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>

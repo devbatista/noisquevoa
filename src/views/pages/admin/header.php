@@ -108,6 +108,12 @@
     <!-- Switchery -->
     <script src="<?= $base ?>/assets/plugins/switchery/switchery.js"></script>
 
+    <!-- Moment -->
+    <script src="<?= $base ?>/assets/plugins/moment/moment.min.js"></script>
+
+    <!-- Sorting -->
+    <script src="<?= $base ?>/assets/plugins/sorting/datetime-moment.js"></script>
+
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>
 

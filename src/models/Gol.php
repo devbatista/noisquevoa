@@ -25,4 +25,16 @@ class Gol extends Model
 
         return $this->db->lastInsertId();
     }
+
+    public function getGoalsByPartidaId($id)
+    {
+        $sql = $this->db->prepare("SELECT a.id_gol, a.id_partida, a.id_usuario, b.nome as quem_fez, b.apelido, a.tempo, a.periodo, a.assistencia FROM $this->tableName AS a
+            INNER JOIN usuarios AS b ON b.id_usuario = a.id_usuario
+                WHERE id_partida = :id_partida");
+
+        $sql->bindValue('id_partida', $id);
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

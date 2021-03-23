@@ -50,17 +50,22 @@ class AdminController extends Controller
 
     private function getQtdJogos()
     {
-        $qtdJogos = count($this->getPartidasAnteriores());
+        $jogos = 0;
+        foreach ($this->partidas as $key => $value) {
+            if($value['concluido'] == 1 && $value['estatisticas'] == 1) {
+                $jogos++;
+            }
+        }
 
-        return $qtdJogos;
+        return $jogos;
     }
 
     private function getVitorias()
     {
         $vitorias = 0;
 
-        foreach ($this->getPartidasAnteriores() as $value) {
-            if ($value['gols_pro'] > $value['gols_contra']) {
+        foreach ($this->partidas as $value) {
+            if ($value['gols_pro'] > $value['gols_contra'] && $value['gols_pro'] != null) {
                 $vitorias++;
             }
         }
@@ -72,8 +77,8 @@ class AdminController extends Controller
     {
         $empates = 0;
 
-        foreach ($this->getPartidasAnteriores() as $value) {
-            if ($value['gols_pro'] == $value['gols_contra']) {
+        foreach ($this->partidas as $value) {
+            if ($value['gols_pro'] == $value['gols_contra'] && $value['gols_pro'] != null) {
                 $empates++;
             }
         }
@@ -85,8 +90,8 @@ class AdminController extends Controller
     {
         $derrotas = 0;
 
-        foreach ($this->getPartidasAnteriores() as $value) {
-            if ($value['gols_pro'] < $value['gols_contra']) {
+        foreach ($this->partidas as $value) {
+            if ($value['gols_pro'] < $value['gols_contra'] && $value['gols_pro'] != null) {
                 $derrotas++;
             }
         }

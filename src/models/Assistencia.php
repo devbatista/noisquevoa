@@ -21,4 +21,16 @@ class Assistencia extends Model
 
         $sql->execute();
     }
+
+    public function getAssistsByPartidaId($id)
+    {
+         $sql = $this->db->prepare("SELECT a.id_assistencia, a.id_partida, a.id_usuario, b.nome AS quem_fez, b.apelido, a.id_gol FROM $this->tableName AS a
+             INNER JOIN usuarios AS b ON b.id_usuario = a.id_usuario
+                 WHERE id_partida = :id_partida");
+                 
+        $sql->bindValue('id_partida', $id);
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

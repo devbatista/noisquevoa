@@ -62,4 +62,24 @@ class Partida extends Model
 
         $sql->execute();
     }
+
+    public function getPartidaById($id)
+    {
+        $sql = $this->db->prepare("SELECT a.id_partida, 'Nois Que Voa' AS nqv, a.gols_pro, a.gols_contra, b.nome AS adversario, b.abreviacao, b.logo_equipe, c.nome AS liga, d.nome AS tipo_mv, e.nome AS local_partida, a.data_hora_partida, a.concluido, a.estatisticas, a.sumula, a.quem_jogou FROM $this->tableName AS a
+            INNER JOIN equipes AS b ON b.id_equipe = a.id_adversario
+            INNER JOIN ligas AS c ON c.id_liga = a.id_liga
+            INNER JOIN tipo_mv AS d ON d.id_mv = a.tipo_mv
+            INNER JOIN locais AS e ON e.id_local = a.id_local
+                WHERE id_partida = :id_partida");
+        
+        $sql->bindvalue('id_partida', $id);
+        $sql->execute();
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function updatePartidasConcluidas()
+    {
+        $sql = $this->db->query("UPDATE $this->tableName SET concluido = 1 WHERE data_hora_partida < CURRENT_TIMESTAMP() + INTERVAL 1 HOUR");
+    }
 }

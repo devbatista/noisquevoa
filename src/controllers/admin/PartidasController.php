@@ -18,7 +18,10 @@ class PartidasController extends Controller
     public $partidas;
     public $local;
     public $equipes;
-    public $jogadores;
+    public $usuario;
+    public $gols;
+    public $assistencias;
+    public $faltas;
 
     public function __construct()
     {
@@ -27,6 +30,9 @@ class PartidasController extends Controller
         $this->local = new Local();
         $this->equipes = new Equipe();
         $this->usuario = new Usuario();
+        $this->gols = new Gol();
+        $this->assistencias = new Assistencia();
+        $this->faltas = new Falta();
     }
 
     public function index()
@@ -174,7 +180,7 @@ class PartidasController extends Controller
                 $id_gol = $gols->insertGoals($gol);
                 $this->usuario->updateGoalsUser($gol['gol']);
 
-                if ($gol['assistencia'] =! null) {
+                if ($gol['assistencia'] = !null) {
                     $assistencia = $dados['assistencias'][$cont];
                     $assistencia['id_gol'] = $id_gol;
                     $assistencia['id_partida'] = $dados['id_partida'];
@@ -197,7 +203,7 @@ class PartidasController extends Controller
 
         $cartoes = new Cartao();
         if (isset($dados['cartoes'])) {
-            foreach($dados['cartoes'] as $cor => $cartao ) {
+            foreach ($dados['cartoes'] as $cor => $cartao) {
                 $cartao = [
                     'id_usuario' => $cartao[1],
                     'id_partida' => $dados['id_partida'],
@@ -371,5 +377,56 @@ class PartidasController extends Controller
         }
 
         echo json_encode($partidas);
+    }
+
+    public function getEstatisticasById($get)
+    {
+        $id = $get['id'];
+        $partida = $this->partidas;
+        $usuario = $this->usuario;
+        $gols = $this->gols;
+        $assistencias = $this->assistencias;
+        $faltas = $this->faltas;
+        $cartoes = new Cartao();
+
+        $partida = $partida->getPartidaById($id);
+        $gols = $gols->getGoalsByPartidaId($id);
+        $assistencias = $assistencias->getAssistsByPartidaId($id);
+        $faltas = $faltas->getFoulsByPartidaId($id);
+        $cartoesAmarelos = $cartoes->getCartoesByPartidaId($id, 'cartoes_amarelos', 'id_cartao_amarelo');
+        $cartoesVermelhos = $cartoes->getCartoesByPartidaId($id, 'cartoes_vermelhos', 'id_cartao_vermelho');
+
+        $quem_jogou = explode(', ', $partida['quem_jogou']);
+        foreach ($quem_jogou as $value) {
+            $user = $usuario->getUserById($value);
+            $jogadores[$value] = [
+                'id_usuario' => $user['id_usuario'],
+                'nome' => $user['nome'],
+                'apelido' => $user['apelido'],
+            ];
+        }
+
+        $dados = [
+            'partida' => $partida,
+            'jogadores' => $jogadores,
+            'gols' => $gols,
+            'assistencias' => $assistencias,
+            'faltas' => $faltas,
+            'cartoesAmarelos' => $cartoesAmarelos,
+            'cartoesVermelhos' => $cartoesVermelhos,
+        ];
+
+        $dia = date('D', strtotime($dados['partida']['data_hora_partida']));
+        $data_hora_partida = $this->diaDaSemana($dia). ', '.date('d/m/Y - H:i', strtotime($dados['partida']['data_hora_partida']));
+        $dados['partida']['data_hora_partida'] = $data_hora_partida;
+        $dados['partida']['sumula'] = ($dados['partida']['sumula']) ? $dados['partida']['sumula'] : false;
+
+        echo json_encode($dados);
+        return true;
+    }
+
+    public function checkPartidasConcluidas()
+    {
+        $this->partidas->updatePartidasConcluidas();
     }
 }

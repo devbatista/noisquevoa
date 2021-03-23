@@ -21,4 +21,16 @@ class Falta extends Model
 
         $sql->execute();
     }
+
+    public function getFoulsByPartidaId($id)
+    {
+        $sql = $this->db->prepare("SELECT a.id_falta, a.id_partida, a.id_usuario, b.nome AS quem_fez, b.apelido, a.periodo FROM faltas AS a
+            INNER JOIN usuarios AS b ON b.id_usuario = a.id_usuario
+                WHERE id_partida = 15");
+
+        $sql->bindValue('id_partida', $id);
+        $sql->execute();
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

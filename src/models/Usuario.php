@@ -443,7 +443,7 @@ class Usuario extends Model
         $sql = $this->db->query("UPDATE $this->tableName AS a SET a.cartoes_amarelos = (a.cartoes_amarelos + 1) WHERE id_usuario = $id");
     }
 
-    public function updateRedCards($id)
+    public function updateRedCard($id)
     {
         $sql = $this->db->query("UPDATE $this->tableName AS a SET a.cartoes_vermelhos = (a.cartoes_vermelhos + 1) WHERE id_usuario = $id");
     }
