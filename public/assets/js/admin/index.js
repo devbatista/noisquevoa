@@ -103,12 +103,12 @@ $(document).ready(function() {
     };
 
 
-    var ctx4 = document.getElementById("doughnutChart").getContext("2d");
-    new Chart(ctx4, {
-        type: 'doughnut',
-        data: doughnutData,
-        options: doughnutOptions
-    });
+    // var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+    // new Chart(ctx4, {
+    //     type: 'doughnut',
+    //     data: doughnutData,
+    //     options: doughnutOptions
+    // });
 
     var doughnutData = {
         labels: ["App", "Software", "Laptop"],
@@ -127,12 +127,12 @@ $(document).ready(function() {
     };
 
 
-    var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
-    new Chart(ctx4, {
-        type: 'doughnut',
-        data: doughnutData,
-        options: doughnutOptions
-    });
+    // var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+    // new Chart(ctx4, {
+    //     type: 'doughnut',
+    //     data: doughnutData,
+    //     options: doughnutOptions
+    // });
 
 });
 

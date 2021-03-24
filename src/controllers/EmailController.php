@@ -4,6 +4,7 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\models\Usuario;
+use \src\Config;
 use \PHPMailer\PHPMailer\PHPMailer;
 
 class EmailController extends Controller
@@ -61,16 +62,16 @@ class EmailController extends Controller
             // Ativar o Debug em 3 para verificar possíveis erros
             // $this->mailer->SMTPDebug = 3; 
 
-            $this->mailer->Username = 'diretoria@noisquevoa.com.br';
-            $this->mailer->Password = '@No1sQueVo4#2021';
+            $this->mailer->Username = Config::EMAIL_SENDER;
+            $this->mailer->Password = Config::EMAIL_PASS;
 
             $this->mailer->SMTPSecure = 'ssl';
 
             $this->mailer->Host = 'mail.noisquevoa.com.br';
             $this->mailer->Port = 465;
 
-            $this->mailer->setFrom('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
-            $this->mailer->addReplyTo('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - Nois Que Voa Sport Clube');
             $this->mailer->addAddress($para, $nome);
 
             $this->mailer->isHTML(true);
@@ -171,16 +172,16 @@ class EmailController extends Controller
             // Ativar o Debug em 3 para verificar possíveis erros
             // $this->mailer->SMTPDebug = 3; 
 
-            $this->mailer->Username = 'diretoria@noisquevoa.com.br';
-            $this->mailer->Password = '@No1sQueVo4#2021';
+            $this->mailer->Username = Config::EMAIL_SENDER;
+            $this->mailer->Password = Config::EMAIL_PASS;
 
             $this->mailer->SMTPSecure = 'ssl';
 
             $this->mailer->Host = 'mail.noisquevoa.com.br';
             $this->mailer->Port = 465;
 
-            $this->mailer->setFrom('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
-            $this->mailer->addReplyTo('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - Nois Que Voa Sport Clube');
             $this->mailer->addAddress($dados['email'], $dados['nome']);
 
             $this->mailer->isHTML(true);
@@ -281,16 +282,16 @@ class EmailController extends Controller
             // Ativar o Debug em 3 para verificar possíveis erros
             // $this->mailer->SMTPDebug = 3; 
 
-            $this->mailer->Username = 'diretoria@noisquevoa.com.br';
-            $this->mailer->Password = '@No1sQueVo4#2021';
+            $this->mailer->Username = Config::EMAIL_SENDER;
+            $this->mailer->Password = Config::EMAIL_PASS;
 
             $this->mailer->SMTPSecure = 'ssl';
 
             $this->mailer->Host = 'mail.noisquevoa.com.br';
             $this->mailer->Port = 465;
 
-            $this->mailer->setFrom('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
-            $this->mailer->addReplyTo('diretoria@noisquevoa.com.br', 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - Nois Que Voa Sport Clube');
+            $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - Nois Que Voa Sport Clube');
             $this->mailer->addAddress($dados['email'], $dados['nome']);
             $this->mailer->addCC('batist11@gmail.com', 'Rafael Batista');
             $this->mailer->addCC('alvescassio20@gmail.com', 'Cassio Lima');

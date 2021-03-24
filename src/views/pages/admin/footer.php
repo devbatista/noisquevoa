@@ -458,6 +458,13 @@
 </div>
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#loader').fadeOut('slow');
+        $('#preloader').delay(250).fadeOut('slow');
+    });
+</script>
+
 </body>
 
 </html>

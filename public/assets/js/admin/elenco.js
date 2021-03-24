@@ -151,10 +151,10 @@ function abrirModalEditarElenco() {
                         element.find('input[name=whatsapp]').val(this.celular);
                         if (this.jogador == 1) {
                             element.find('input[name=jogador]').prop('checked', true);
-                            element.find('input[name=comissao_tecnica]').attr('disabled', true);
+                            // element.find('input[name=comissao_tecnica]').attr('disabled', true);
                         } else {
                             element.find('input[name=jogador]').prop('checked', false);
-                            element.find('input[name=comissao_tecnica]').removeAttr('disabled');
+                            // element.find('input[name=comissao_tecnica]').removeAttr('disabled');
                         }
                         if (this.diretoria == 1) {
                             element.find('input[name=diretoria]').prop('checked', true);
@@ -163,10 +163,10 @@ function abrirModalEditarElenco() {
                         }
                         if (this.comissao_tecnica == 1) {
                             element.find('input[name=comissao_tecnica]').prop('checked', true);
-                            element.find('input[name=jogador]').attr('disabled', true);
+                            // element.find('input[name=jogador]').attr('disabled', true);
                         } else {
                             element.find('input[name=comissao_tecnica]').prop('checked', false);
-                            element.find('input[name=jogador]').removeAttr('disabled');
+                            // element.find('input[name=jogador]').removeAttr('disabled');
                         }
                         element.find('input[name=nascimento]').val(this.dt_nascimento).attr('disabled', true);
                         if (this.posicao != null) {
@@ -338,30 +338,30 @@ $('input[name=jogador]').on('click', function() {
     if ($('input[name=jogador]').is(':checked') == true) {
         posicao.removeAttr('disabled');
         posicao.attr('required', true);
-        comissao_tecnica.attr('disabled', true);
+        // comissao_tecnica.attr('disabled', true);
     } else {
         $('select[name=posicao]').val('0');
         posicao.attr('disabled', true);
         posicao.removeAttr('required');
-        comissao_tecnica.removeAttr('disabled');
+        // comissao_tecnica.removeAttr('disabled');
     }
 });
 
-$('input[name=comissao_tecnica]').on('click', function() {
-    let jogador = $('input[name=jogador]');
-    let posicao = $('select[name=posicao]');
-    if ($('input[name=comissao_tecnica]').is(':checked') != true) {
-        jogador.removeAttr('disabled');
-        jogador.attr('required', true);
-    } else {
-        $('input[name=jogador]').prop('checked', false)
-        $('select[name=jogador]').val('0');
-        jogador.attr('disabled', true);
-        jogador.removeAttr('required');
-        posicao.attr('disabled', true);
-        posicao.removeAttr('required');
-    }
-});
+// $('input[name=comissao_tecnica]').on('click', function() {
+//     let jogador = $('input[name=jogador]');
+//     let posicao = $('select[name=posicao]');
+//     if ($('input[name=comissao_tecnica]').is(':checked') != true) {
+//         jogador.removeAttr('disabled');
+//         jogador.attr('required', true);
+//     } else {
+//         $('input[name=jogador]').prop('checked', false)
+//         $('select[name=jogador]').val('0');
+//         jogador.attr('disabled', true);
+//         jogador.removeAttr('required');
+//         posicao.attr('disabled', true);
+//         posicao.removeAttr('required');
+//     }
+// });
 
 // Editar usuário 
 $('.modal-editar-elenco').find('button.btn-danger').click(function(e) {

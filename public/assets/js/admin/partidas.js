@@ -2,11 +2,6 @@ let equipes = [];
 let partidas = [];
 
 $(document).ready(function() {
-    $('table').DataTable({
-        "language": {
-            "url": window.origin + "/assets/plugins/datatables/Portuguese-Brasil.json"
-        }
-    });
 
     $.ajax({
         url: window.origin + '/admin/partidas/carregar-partidas',
@@ -27,12 +22,19 @@ window.onload = function() {
     carregarEstatisticasEmAguardo();
 }
 
+$('button[refresh]').click(function() {
+    carregarPartidas(0);
+    carregarEstatisticasEmAguardo();
+});
+
 $('input[name=mostrar]').on('change', function() {
     let valor = $('input[name=mostrar]:checked').val()
     carregarPartidas(valor);
 })
 
 function carregarPartidas(val) {
+    $('table[partidas]').DataTable().destroy();
+
     let html = '';
     let mandante;
     let visitante;
@@ -59,8 +61,11 @@ function carregarPartidas(val) {
                 gols_mandante = (value.gols_contra) ? value.gols_contra : '';
             }
 
+            let concluido = (value.concluido == 1) ? 'verEstatistica' : '';
+            let modal = (value.concluido == 1) ? 'data-toggle="modal" data-target=".modal-estatisticas-unica"' : '';
+
             if (value.concluido == val || val == 2) {
-                html += '<tr data-id="' + value.id_partida + '">' +
+                html += '<tr data-id="' + value.id_partida + '" ' + concluido + ' ' + modal + '>' +
                     '<td>' + value.data + ' - ' + value.horario + '</td>' +
                     '<td><img src="' + logo_mandante + '" alt=""></td>' +
                     '<td>' + mandante + '</td>' +
@@ -77,6 +82,256 @@ function carregarPartidas(val) {
 
         return html;
     });
+
+    let order = (val == 1) ? '"desc"' : '"asc"';
+
+    jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+        "date-br-pre": function(a) {
+            if (a == null || a == "") {
+                return 0;
+            }
+            var brDatea = a.split('/');
+            return (brDatea[2] + brDatea[1] + brDatea[0]) * 1;
+        },
+
+        "date-br-asc": function(a, b) {
+            return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+        },
+
+        "date-br-desc": function(a, b) {
+            return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+        }
+    });
+
+    $('table[partidas]').DataTable({
+        "language": {
+            "url": window.origin + "/assets/plugins/datatables/Portuguese-Brasil.json"
+        },
+        "columnDefs": [
+            { type: 'date-br', targets: 0 }
+        ],
+        "ordering": false,
+    });
+
+    $('tr[verEstatistica]').on('click', function() {
+        let id = $(this).data('id');
+        modalEstatisticaUnica(id);
+    });
+
+    if ($(window).width() <= 640) {
+        setTimeout(() => {
+            let head = $('thead tr th');
+            $.each(head, function(chave, valor) {
+                if (chave == 0 || chave == 2 || chave == 6 || chave == 9) {
+                    this.remove();
+                }
+            });
+
+            let row = $('tbody tr');
+            $.each(row, function(index, value) {
+                $.each($(this).find('td'), function(i, v) {
+                    if (i == 0 || i == 2 || i == 6 || i == 9) {
+                        $(v).remove();
+                    }
+                });
+            });
+        }, 75);
+    }
+}
+
+function modalEstatisticaUnica(id) {
+    $.ajax({
+        url: window.origin + '/admin/partidas/carregar-estatisticas-jogo/' + id,
+        dataType: 'json',
+        type: 'get',
+        beforeSend: () => {
+
+        },
+        success: (dados) => {
+            console.log(dados);
+
+            $('[data-horario]').html(function() {
+                return '<div class="col-12">' +
+                    dados.partida.data_hora_partida +
+                    '</div>';
+            });
+
+            let sumula = '';
+            if (dados.partida.sumula) {
+                sumula = '<div sumula class="col-12 descritive-content">' +
+                    'Mostrar súmula' +
+                    '</div>' +
+                    '<div class="col-12 content">' +
+                    '<embed src="' + window.origin + dados.partida.sumula + '" width="100%" height="1115px" />' +
+                    '</div>';
+            } else {
+                sumula = '<div class="col-12 descritive-content">' +
+                    'Sem súmula' +
+                    '</div>';
+            }
+
+            $('[placar-partida]').html(function() {
+                return '<div class="col-2">' +
+                    'NQV' +
+                    '</div>' +
+                    '<div class="col-2">' +
+                    '<img src="' + window.origin + '/assets/img/times/noisquevoa.png" alt="">' +
+                    '</div>' +
+                    '<div class="col-1">' +
+                    dados.partida.gols_pro +
+                    '</div>' +
+                    '<div class="col-2">' +
+                    'X' +
+                    '</div>' +
+                    '<div class="col-1">' +
+                    dados.partida.gols_contra +
+                    '</div>' +
+                    '<div class="col-2">' +
+                    '<img src="' + window.origin + dados.partida.logo_equipe + '" alt="">' +
+                    '</div>' +
+                    '<div class="col-2">' +
+                    dados.partida.abreviacao +
+                    '</div>' +
+                    '<div class="col-12 descritive-content">' +
+                    'Jogadores' +
+                    '</div>' +
+                    '<table jogadores class="table table-hover text-left">' +
+                    '<tbody>' +
+                    '</tbody>' +
+                    '</table>' +
+                    '<div class="col-12 d-flex align-items-center" style="padding: 10px; border-top: 1px solid #fef">' +
+                    '<img src="' + window.origin + '/assets/img/bola.png" alt=""><span>Gol</span>' +
+                    '<img src="' + window.origin + '/assets/img/chuteira.png" alt=""><span>Assistência</span>' +
+                    '<img src="' + window.origin + '/assets/img/apito.png" alt=""><span>Falta</span>' +
+                    '<img src="' + window.origin + '/assets/img/cartao-amarelo.png" alt=""><span>Cartão Amarelo</span>' +
+                    '<img src="' + window.origin + '/assets/img/cartao-vermelho.png" alt=""><span>Cartão Vermelho</span>' +
+                    '</div>' +
+                    '<div class="col-12 descritive-content">' +
+                    'Local' +
+                    '</div>' +
+                    '<div class="col-12 content">' +
+                    dados.partida.local_partida +
+                    '</div>' +
+                    sumula;
+            });
+
+            let html = '';
+            let goals = '';
+            let assists = '';
+            let fouls = '';
+            let yellowCards = '';
+            let redCards = '';
+            let quant = 0;
+            $('table[jogadores] tbody').html(function() {
+                $.each(dados.jogadores, function(a, j) {
+
+                    let contGoals = 0;
+                    $.each(dados.gols, function(i, g) {
+                        if (j.id_usuario == g.id_usuario) {
+                            contGoals++;
+                        }
+                    });
+                    if (contGoals > 0) {
+                        quant = (contGoals > 1) ? '(' + contGoals + ')' : '';
+                        goals = '<td>' +
+                            '<img src="' + window.origin + '/assets/img/bola.png" alt=""> ' + quant +
+                            '</td>';
+                    } else {
+                        goals = '<td></td>';
+                    }
+
+                    let contAssists = 0;
+                    $.each(dados.assistencias, function(i, a) {
+                        if (j.id_usuario == a.id_usuario) {
+                            contAssists++;
+                        }
+                    });
+                    if (contAssists > 0) {
+                        quant = (contAssists > 1) ? '(' + contAssists + ')' : '';
+                        assists = '<td>' +
+                            '<img src="' + window.origin + '/assets/img/chuteira.png" alt=""> ' + quant +
+                            '</td>';
+                    } else {
+                        assists = '<td></td>';
+                    }
+
+                    let contFouls = 0;
+                    $.each(dados.faltas, function(i, f) {
+                        if (j.id_usuario == f.id_usuario) {
+                            contFouls++;
+                        }
+                    });
+                    if (contFouls > 0) {
+                        quant = (contFouls > 1) ? '(' + contFouls + ')' : '';
+                        fouls = '<td>' +
+                            '<img src="' + window.origin + '/assets/img/apito.png" alt=""> ' + quant +
+                            '</td>';
+                    } else {
+                        fouls = '<td></td>';
+                    }
+
+                    let contYellowCards = 0;
+                    $.each(dados.cartoesAmarelos, function(i, y) {
+                        if (j.id_usuario == y.id_usuario) {
+                            contYellowCards++;
+                        }
+                    });
+                    if (contYellowCards > 0) {
+                        quant = (contYellowCards > 1) ? '(' + contYellowCards + ')' : '';
+                        yellowCards = '<td>' +
+                            '<img src="' + window.origin + '/assets/img/cartao-amarelo.png" alt=""> ' + quant +
+                            '</td>';
+                    } else {
+                        yellowCards = '<td></td>';
+                    }
+
+                    let contRedCards = 0;
+                    $.each(dados.cartoesVermelhos, function(i, r) {
+                        if (j.id_usuario == r.id_usuario) {
+                            contRedCards++;
+                        }
+                    });
+                    if (contRedCards > 0) {
+                        quant = (contRedCards > 1) ? '(' + contRedCards + ')' : '';
+                        redCards = '<td>' +
+                            '<img src="' + window.origin + '/assets/img/cartao-vermelho.png" alt=""> ' + quant +
+                            '</td>';
+                    } else {
+                        redCards = '<td></td>';
+                    }
+
+                    html += '<tr data-id="' + this.id_usuario + '">' +
+                        '<th>' + this.apelido + '</th>' +
+                        goals +
+                        assists +
+                        fouls +
+                        yellowCards +
+                        redCards +
+                        '</tr>';
+                });
+                return html;
+            });
+
+            $('embed').hide();
+            $('[sumula]').text('Mostrar súmula');
+        }
+    }).done(function() {
+        $('[sumula]').click(function() {
+            $('embed').slideToggle(function() {
+                if ($(this).is(':visible')) {
+                    $('[sumula]').text('Esconder súmula');
+                } else {
+                    $('[sumula]').text('Mostrar súmula');
+                }
+            });
+        });
+    });
+}
+
+
+
+function preencherEstatistica(dados) {
+
 }
 
 function carregarEstatisticasEmAguardo() {
@@ -145,7 +400,6 @@ function carregarAbreviacao() {
     if (adversario.length > 0) {
         $.each(equipes, function(i, v) {
             if (adversario == v.nome) {
-                console.log(v.abreviacao);
                 $('#abreviacao').val(v.abreviacao);
                 $('#logo').prev().text('Alterar logo do adversário:');
             } else {
@@ -252,7 +506,7 @@ $('input[name=cepLocal]').on('keyup', function(e) {
     }
 });
 
-$('a.btn').click(function() {
+$('a.btn btn-secondary').click(function() {
     let data = {
         nome: $('#nomeLocal').val(),
         cep: $('#cepLocal').val(),
@@ -314,7 +568,7 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
                     confirmButtonText: 'OK'
                 });
 
-                $('modal-cadastro-partida').modal('hide');
+                $('.modal-cadastro-partida').modal('hide');
                 // carregarPartidas();
             } else {
                 swal.fire({

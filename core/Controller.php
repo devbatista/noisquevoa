@@ -100,7 +100,7 @@ class Controller
         $tipo = '';
 
 
-        $tipo = $this->tipoImg($foto['type']);
+        $tipo = $this->tipo($foto['type']);
 
         $arquivo = 'assets/img/' . $pasta . '/' . $id . $tipo;
         move_uploaded_file($foto['tmp_name'], $arquivo);
@@ -134,6 +134,15 @@ class Controller
         if ($tipo == '.jpeg' || $tipo == '.jpg') {
             $originalImg = imagecreatefromjpeg($arquivo);;
         } else {
+            imagealphablending($imagem, false);
+            $transparency = imagecolorallocatealpha($imagem, 0, 0, 0, 127);
+            imagefill($imagem, 0, 0, $transparency);
+            imagesavealpha($imagem, true);
+
+            // Drawing over
+            $black = imagecolorallocate($imagem, 0, 0, 0);
+            imagefilledrectangle($imagem, 25, 25, 75, 75, $black);
+
             $originalImg = imagecreatefrompng($arquivo);
         }
 
@@ -148,7 +157,7 @@ class Controller
         return $arquivo;
     }
 
-    private function tipoImg($tipo)
+    private function tipo($tipo)
     {
         $type = '';
 
@@ -158,10 +167,50 @@ class Controller
             $type = '.jpg';
         } else if ($tipo == 'image/png') {
             $type = '.png';
+        } else if ($tipo == 'application/pdf'){
+            $type = '.pdf';
         } else {
             return false;
         }
 
         return $type;
+    }
+
+    protected function validarArquivo($arquivo)
+    {
+        $permitidos = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+
+        if ((in_array($arquivo['type'], $permitidos)) && ($arquivo['size'] <= 4194304) && ($arquivo['error'] == 0)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function salvarArquivo($arquivo, $id)
+    {
+        $tipo = $this->tipo($arquivo['type']);
+        
+        $tmp = $arquivo['tmp_name'];
+
+        $arquivo = 'assets/files/sumula/' . $id . $tipo;
+        move_uploaded_file($tmp, $arquivo);
+
+        return $arquivo;
+    }
+
+    protected function diaDaSemana($dia)
+    {
+        $semana = array(
+            'Sun' => 'Domingo',
+            'Mon' => 'Segunda-Feira',
+            'Tue' => 'Terca-Feira',
+            'Wed' => 'Quarta-Feira',
+            'Thu' => 'Quinta-Feira',
+            'Fri' => 'Sexta-Feira',
+            'Sat' => 'Sábado'
+        );
+
+        return $semana[$dia];
     }
 }

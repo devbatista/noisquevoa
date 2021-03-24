@@ -180,12 +180,12 @@ $('input[name=jogador]').on('click', function() {
     if ($('input[name=jogador]').is(':checked') == true) {
         posicao.removeAttr('disabled');
         posicao.attr('required', true);
-        comissao_tecnica.attr('disabled', true);
+        // comissao_tecnica.attr('disabled', true);
     } else {
         $('select[name=posicao]').val('0');
         posicao.attr('disabled', true);
         posicao.removeAttr('required');
-        comissao_tecnica.removeAttr('disabled');
+        // comissao_tecnica.removeAttr('disabled');
     }
 })
 
@@ -202,18 +202,18 @@ $('input[name=diretoria]').on('click', function() {
     }
 });
 
-$('input[name=comissao_tecnica]').on('click', function() {
-    let jogador = $('input[name=jogador]');
-    let posicao = $('select[name=posicao]');
-    if ($('input[name=comissao_tecnica]').is(':checked') != true) {
-        jogador.removeAttr('disabled');
-        jogador.attr('required', true);
-    } else {
-        $('input[name=jogador]').prop('checked', false)
-        $('select[name=jogador]').val('0');
-        jogador.attr('disabled', true);
-        jogador.removeAttr('required');
-        posicao.attr('disabled', true);
-        posicao.removeAttr('required');
-    }
-});
+// $('input[name=comissao_tecnica]').on('click', function() {
+//     let jogador = $('input[name=jogador]');
+//     let posicao = $('select[name=posicao]');
+//     if ($('input[name=comissao_tecnica]').is(':checked') != true) {
+//         jogador.removeAttr('disabled');
+//         jogador.attr('required', true);
+//     } else {
+//         $('input[name=jogador]').prop('checked', false)
+//         $('select[name=jogador]').val('0');
+//         jogador.attr('disabled', true);
+//         jogador.removeAttr('required');
+//         posicao.attr('disabled', true);
+//         posicao.removeAttr('required');
+//     }
+// });

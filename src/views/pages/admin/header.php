@@ -26,6 +26,9 @@
     <!-- Gritter -->
     <link href="<?= $base ?>/assets/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
+    <!-- Jasny -->
+    <link href="<?= $base ?>/assets/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
     <link href="<?= $base ?>/assets/css/admin/animate.css" rel="stylesheet">
     <link href="<?= $base ?>/assets/css/admin/admin.css" rel="stylesheet">
 
@@ -93,14 +96,23 @@
     <!-- Summernote -->
     <script src="<?= $base ?>/assets/plugins/summernote/summernote.min.js"></script>
 
+    <!-- Jasny -->
+    <script src="<?= $base ?>/assets/plugins/jasny/jasny-bootstrap.min.js"></script>
+
     <!-- Validator -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/validator/validator.min.js"></script>
 
     <!-- Jquery Form -->
     <script type="text/javascript" src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
-    
+
     <!-- Switchery -->
     <script src="<?= $base ?>/assets/plugins/switchery/switchery.js"></script>
+
+    <!-- Moment -->
+    <script src="<?= $base ?>/assets/plugins/moment/moment.min.js"></script>
+
+    <!-- Sorting -->
+    <script src="<?= $base ?>/assets/plugins/sorting/datetime-moment.js"></script>
 
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>
@@ -135,8 +147,8 @@
                     <li>
                         <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
                     </li>
-                    <li>
-                        <a href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
+                    <li class="inactive">
+                        <a class="inactive" href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/elenco"><i class="fa fa-users"></i> <span class="nav-label">Elenco</span></a>
@@ -169,12 +181,12 @@
                         </div>
                     </li>
 
-                    <li>
+                    <li class="d-none">
                         <a href="<?= $base ?>/admin/posts"><i class="fa fa-sticky-note"></i> <span class="nav-label">Posts</span></a>
                     </li>
 
-                    <li class="financas d-none">
-                        <a href="<?= $base ?>/admin/financas"><i class="fa fa-money"></i> <span class="nav-label">Finanças</span></a>
+                    <li class="financas d-none inactive">
+                        <a class="inactive" href="<?= $base ?>/admin/financas"><i class="fa fa-money"></i> <span class="nav-label">Finanças</span></a>
                     </li>
                 </ul>
             </div>
@@ -194,4 +206,8 @@
                     </ul>
 
                 </nav>
+            </div>
+
+            <div id="preloader">
+                <div id="loader"></div>
             </div>

@@ -6,6 +6,10 @@
     padding-bottom: 50px;
 }
 
+.form-group {
+    margin-bottom: 2rem;
+}
+
 .form-control:focus {
     border-color: #f10404;
     box-shadow: 0 0 0 0.2rem rgb(255 2 1 / 18%);
@@ -91,4 +95,67 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
     appearance: textfield;
+}
+
+.modal h2 {
+    font-weight: 500;
+}
+
+.justify-content-center img {
+    width: 50px;
+    height: 50px;
+}
+
+.descritive-content {
+    margin-top: 25px;
+    background-color: #888;
+    color: #fff;
+    width: 10px;
+    font-size: 20px;
+}
+
+table[jogadores] {
+    color: #888;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+table[jogadores] img {
+    width: 20px;
+    height: 20px;
+}
+
+table[jogadores] th {
+    width: 40%;
+    font-weight: 400;
+    border: none!important;
+}
+
+table[jogadores] td {
+    border: none!important;
+    width: 12%;
+}
+
+.col-12.content {
+    font-size: 20px;
+    text-align: left;
+    margin-top: 10px;
+    color: #888;
+    padding: 0;
+}
+
+[sumula]:hover {
+    cursor: pointer;
+}
+
+.d-flex img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.d-flex span {
+    font-size: 12px;
+    margin-right: 20px;
+    color: #aaa;
 }

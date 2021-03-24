@@ -37,6 +37,10 @@ $router->get('/admin/partidas/carregar-equipes', 'admin\PartidasController@carre
 $router->get('/admin/partidas/carregar-partidas', 'admin\PartidasController@carregarPartidas');
 $router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadastrarLocal');
 $router->post('/admin/partidas/cadastrar-partida', 'admin\PartidasController@inserirPartida');
+$router->get('/admin/partidas/carregar-estatisticas-jogo/{id}', 'admin\PartidasController@getEstatisticasById');
+
+$router->get('/admin/partidas/cadastrar-estatisticas/carregar-dados', 'admin\PartidasController@getDataEstatisticas');
+$router->post('/admin/partidas/cadastrar-estatisticas/enviar-dados', 'admin\PartidasController@enviarDataEstatisticas');
 
 $router->get('/admin/elenco/carregar_elenco', 'admin\ElencoController@getElenco');
 $router->get('/admin/elenco/carregar_por_id/{id}', 'admin\ElencoController@getElencoById');
@@ -53,7 +57,16 @@ $router->post('/admin/diretoria/cadastrar_diretoria', 'admin\DiretoriaController
 $router->get('/admin/diretoria/carregar_por_id/{id}', 'admin\DiretoriaController@getDiretoriaById');
 $router->post('/admin/diretoria/alterar_diretoria/{id}', 'admin\DiretoriaController@alterarUsuario');
 $router->put('/admin/diretoria/desativar_usuario/{id}', 'admin\DiretoriaController@desativarUsuario');
+
+$router->get('/admin/ligas/carregar_ligas', 'admin\LigasController@getLigas');
+$router->post('/admin/ligas/cadastrar_liga', 'admin\LigasController@addLiga');
+$router->post('/admin/ligas/update_liga', 'admin\LigasController@updateLiga');
+$router->put('/admin/ligas/desativar_liga/{id}', 'admin\LigasController@disableLiga');
 // END API
+
+// CRON
+$router->get('/admin/partidas/checar-partidas-concluidas', 'admin\PartidasController@checkPartidasConcluidas');
+// END CRON
 
 // Emails
 $router->post('/email/esqueci_minha_senha', 'EmailController@esqueciMinhaSenha');

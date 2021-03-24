@@ -1,3 +1,3 @@
-<link href="<?= $base ?>/assets/css/admin/diretoria.css" rel="stylesheet">
+<link href="<?= $base ?>/assets/css/admin/estatisticas.css" rel="stylesheet">
 
-<script type="text/javascript" src="<?= $base ?>/assets/js/admin/diretoria.js"></script>
+<script type="text/javascript" src="<?= $base ?>/assets/js/admin/estatisticas.js"></script>

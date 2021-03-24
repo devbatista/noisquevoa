@@ -40,3 +40,7 @@ input[type=file] {
     background-color: #fff;
     border: 1px solid #bbb;
 }
+
+button[type="submit"] {
+    margin-bottom: 60px;
+}

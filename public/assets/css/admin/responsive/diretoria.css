@@ -1,0 +1,43 @@
+@media screen and (max-width: 440px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .buttons * {
+        width: 100%;
+    }
+    .buttons button {
+        margin-bottom: 15px;
+        width: 100%!important;
+    }
+    .imgDiretoria,
+    .dadosDiretoria,
+    .imgAprovacao,
+    .dadosAprovar {
+        max-width: 100%;
+    }
+    .dadosDiretoria {
+        margin-top: 10px;
+    }
+    .form-check-inline {
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .dadosDiretoria,
+    .dadosAprovar {
+        font-size: 16px!important;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    .modal-footer-editar * {
+        width: 100%;
+        margin-bottom: 5px;
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
+}

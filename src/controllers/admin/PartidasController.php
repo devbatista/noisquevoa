@@ -7,12 +7,21 @@ use \src\models\Partida;
 use \src\models\Local;
 use \src\models\Liga;
 use \src\models\Equipe;
+use \src\models\Usuario;
+use \src\models\Gol;
+use \src\models\Assistencia;
+use \src\models\Falta;
+use \src\models\Cartao;
 
 class PartidasController extends Controller
 {
     public $partidas;
     public $local;
     public $equipes;
+    public $usuario;
+    public $gols;
+    public $assistencias;
+    public $faltas;
 
     public function __construct()
     {
@@ -20,6 +29,10 @@ class PartidasController extends Controller
         $this->partidas = new Partida();
         $this->local = new Local();
         $this->equipes = new Equipe();
+        $this->usuario = new Usuario();
+        $this->gols = new Gol();
+        $this->assistencias = new Assistencia();
+        $this->faltas = new Falta();
     }
 
     public function index()
@@ -36,9 +49,192 @@ class PartidasController extends Controller
         $this->loadView('admin/footer');
     }
 
+    public function getDataEstatisticas()
+    {
+        $this->usuarios = new Usuario();
+        $this->usuarios = $this->usuarios->getJogadores();
+
+        $this->partidas = $this->partidas->getPartidasConcluidas();
+
+        $jogadores = [];
+        $jogos = [];
+
+        foreach ($this->usuarios as $key => $value) {
+            $jogadores[$key] = [
+                'id_usuario' => $value['id_usuario'],
+                'nome' => $value['nome'],
+                'apelido' => $value['apelido'],
+            ];
+        }
+
+        foreach ($this->partidas as $key => $value) {
+            $jogos[$key] = [
+                'id_partida' => $value['id_partida'],
+                'liga' => $value['liga'],
+                'NQV' => 'NQV',
+                'nois_que_voa' => 'Nois Que Voa',
+                'adversario' => $value['adversario'],
+                'abreviacao' => $value['abreviacao'],
+                'quadra' => $value['quadra'],
+                'data_hora_partida' => date("d/m/Y H:i", strtotime($value['data_hora_partida'])),
+                'tipo_mv' => $value['tipo_mv'],
+            ];
+        }
+
+        $dados = [
+            'jogadores' => $jogadores,
+            'jogos' => $jogos,
+        ];
+
+        echo json_encode($dados);
+    }
+
+    public function enviarDataEstatisticas()
+    {
+        $sumula = null;
+        $dados = [
+            'id_partida' => $_POST['id_partida'],
+            'placar_nqv' => $_POST['placar-nqv'],
+            'placar_vis' => $_POST['placar-vis'],
+            'jogadores_participantes' => implode(", ", $_POST['jogadores']),
+        ];
+
+        if ($_FILES) {
+            $validar = $this->validarArquivo($_FILES['sumula']);
+
+            if (!$validar) {
+                $errorFile = [
+                    'code' => 2,
+                    'msg' => 'Erro no upload do arquivo',
+                    'tipos_permitidos' => 'jpg/jpeg/png/pdf',
+                    'tamanho_permitido' => 'até 4MB',
+                ];
+
+                echo json_encode($errorFile);
+                return false;
+            } else {
+                $sumula = $this->salvarArquivo($_FILES['sumula'], $dados['id_partida']);
+            }
+        }
+        for ($g = 1; $g <= count($_POST); $g++) {
+            if (array_key_exists("gol_{$g}", $_POST)) {
+                $dados['gols'][] = [
+                    'gol' => $_POST["gol_{$g}"],
+                    'tempo' => $_POST["tempoGol_{$g}"],
+                    'periodo' => $_POST["periodoGol_{$g}"],
+                ];
+            }
+        }
+
+        for ($a = 1; $a <= count($_POST); $a++) {
+            if (array_key_exists("assistencia_{$a}", $_POST)) {
+                $dados['assistencias'][] = [
+                    'assistencia' => $_POST["assistencia_{$a}"],
+                ];
+            }
+        }
+
+        for ($f = 1; $f <= 2; $f++) {
+            if ($_POST["qtdFaltas{$f}"] > 0) {
+                for ($q = 1; $q <= count($_POST); $q++) {
+                    if (array_key_exists("falta{$f}_{$q}", $_POST)) {
+                        $dados['faltas'][] = [
+                            'falta' => $_POST["falta{$f}_{$q}"],
+                            'periodo' => $f,
+                        ];
+                    }
+                }
+            }
+        }
+
+        $cartoes = ['Amarelo', 'Vermelho'];
+        foreach ($cartoes as $Cor) {
+            if ($_POST["qtdCartoes{$Cor}"] > 0) {
+                for ($c = 1; $c <= count($_POST); $c++) {
+                    if (array_key_exists("cartao{$Cor}_{$c}", $_POST)) {
+                        $cor = strtolower($Cor);
+                        $dados["cartoes"][$cor][$c] = $_POST["cartao{$Cor}_{$c}"];
+                    }
+                }
+            }
+        }
+
+        $partida = [
+            'id_partida' => $dados['id_partida'],
+            'placar_nqv' => $dados['placar_nqv'],
+            'placar_vis' => $dados['placar_vis'],
+            'jogadores' => $dados['jogadores_participantes'],
+            'sumula' => $sumula,
+            'estatisticas' => 1,
+        ];
+        $this->partidas->enviarEstatisticasPartida($partida);
+
+        $gols = new Gol();
+        $assistencias = new Assistencia();
+        $cont = 0;
+        if (isset($dados['gols'])) {
+            foreach ($dados['gols'] as $gol) {
+                $gol['gol'] = ($dados['gols'][$cont]['gol'] == "Gol contra") ? 0 : $dados['gols'][$cont]['gol'];
+                $gol['id_partida'] = $dados['id_partida'];
+                $gol['assistencia'] = ($dados['assistencias'][$cont]['assistencia'] == "Sem assistência") ? null : $dados['assistencias'][$cont]['assistencia'];
+                $id_gol = $gols->insertGoals($gol);
+                $this->usuario->updateGoalsUser($gol['gol']);
+
+                if ($gol['assistencia'] = !null) {
+                    $assistencia = $dados['assistencias'][$cont];
+                    $assistencia['id_gol'] = $id_gol;
+                    $assistencia['id_partida'] = $dados['id_partida'];
+                    $assistencias->insertAssists($assistencia);
+                    $this->usuario->updateAssistsUser($assistencia['assistencia']);
+                }
+
+                $cont++;
+            }
+        }
+
+        $faltas = new Falta();
+        if (isset($dados['faltas'])) {
+            foreach ($dados['faltas'] as $falta) {
+                $falta['id_partida'] = $dados['id_partida'];
+                $faltas->insertFouls($falta);
+                $this->usuario->updateFoulsUser($falta['falta']);
+            }
+        }
+
+        $cartoes = new Cartao();
+        if (isset($dados['cartoes'])) {
+            foreach ($dados['cartoes'] as $cor => $cartao) {
+                $cartao = [
+                    'id_usuario' => $cartao[1],
+                    'id_partida' => $dados['id_partida'],
+                ];
+                switch ($cor) {
+                    case 'amarelo':
+                        $cartoes->insertCartoesAmarelos($cartao);
+                        $this->usuario->updateYellowCard($cartao['id_usuario']);
+                        break;
+
+                    case 'vermelho':
+                        $cartoes->insertCartoesVermelhos($cartao);
+                        $this->usuario->updateRedCard($cartao['id_usuario']);
+                        break;
+                }
+            }
+        }
+
+        $this->usuario->updateJogosUser($_POST['jogadores']);
+
+        $retorno = [
+            'code' => 0,
+            'msg' => 'Estatísticas salvas com sucesso',
+        ];
+
+        echo json_encode($retorno);
+        return true;
+    }
+
     public function carregarLocais()
     {
-        $this->local = new Local();
         $this->local = $this->local->getData();
 
         echo json_encode($this->local);
@@ -181,5 +377,56 @@ class PartidasController extends Controller
         }
 
         echo json_encode($partidas);
+    }
+
+    public function getEstatisticasById($get)
+    {
+        $id = $get['id'];
+        $partida = $this->partidas;
+        $usuario = $this->usuario;
+        $gols = $this->gols;
+        $assistencias = $this->assistencias;
+        $faltas = $this->faltas;
+        $cartoes = new Cartao();
+
+        $partida = $partida->getPartidaById($id);
+        $gols = $gols->getGoalsByPartidaId($id);
+        $assistencias = $assistencias->getAssistsByPartidaId($id);
+        $faltas = $faltas->getFoulsByPartidaId($id);
+        $cartoesAmarelos = $cartoes->getCartoesByPartidaId($id, 'cartoes_amarelos', 'id_cartao_amarelo');
+        $cartoesVermelhos = $cartoes->getCartoesByPartidaId($id, 'cartoes_vermelhos', 'id_cartao_vermelho');
+
+        $quem_jogou = explode(', ', $partida['quem_jogou']);
+        foreach ($quem_jogou as $value) {
+            $user = $usuario->getUserById($value);
+            $jogadores[$value] = [
+                'id_usuario' => $user['id_usuario'],
+                'nome' => $user['nome'],
+                'apelido' => $user['apelido'],
+            ];
+        }
+
+        $dados = [
+            'partida' => $partida,
+            'jogadores' => $jogadores,
+            'gols' => $gols,
+            'assistencias' => $assistencias,
+            'faltas' => $faltas,
+            'cartoesAmarelos' => $cartoesAmarelos,
+            'cartoesVermelhos' => $cartoesVermelhos,
+        ];
+
+        $dia = date('D', strtotime($dados['partida']['data_hora_partida']));
+        $data_hora_partida = $this->diaDaSemana($dia). ', '.date('d/m/Y - H:i', strtotime($dados['partida']['data_hora_partida']));
+        $dados['partida']['data_hora_partida'] = $data_hora_partida;
+        $dados['partida']['sumula'] = ($dados['partida']['sumula']) ? $dados['partida']['sumula'] : false;
+
+        echo json_encode($dados);
+        return true;
+    }
+
+    public function checkPartidasConcluidas()
+    {
+        $this->partidas->updatePartidasConcluidas();
     }
 }
