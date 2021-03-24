@@ -36,7 +36,9 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 img.rounded-circle {
@@ -1204,6 +1206,17 @@ h5 {
 
 .nav>li>a i {
     margin-right: 6px;
+}
+
+.nav .inactive {
+    color: #888!important;
+    background-color: #bd2a38;
+}
+
+.nav .inactive:hover {
+    color: #888!important;
+    background-color: #bd2a38!important;
+    cursor: auto;
 }
 
 .navbar {

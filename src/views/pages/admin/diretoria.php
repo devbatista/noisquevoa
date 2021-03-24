@@ -1,4 +1,5 @@
 <link href="<?= $base ?>/assets/css/admin/diretoria.css" rel="stylesheet">
+<link href="<?= $base ?>/assets/css/admin/responsive/diretoria.css" rel="stylesheet">
 
 <div class="wrapper wrapper-content">
     <div class="row">

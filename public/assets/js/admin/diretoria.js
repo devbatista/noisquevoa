@@ -54,9 +54,6 @@ function carregarDiretoria() {
                             '<b>Celular:</b>&nbsp; ' + this.celular +
                             '</div>' +
                             '<div class="row">' +
-                            '<b>Email:</b>&nbsp; ' + this.email +
-                            '</div>' +
-                            '<div class="row">' +
                             '<b>Data de nascimento:</b>&nbsp; ' + this.dt_nascimento +
                             '</div>' +
                             '</div>' +
@@ -87,7 +84,6 @@ function abrirModalEditarDiretoria() {
             dataType: 'json',
             type: 'get',
             success: (dados) => {
-                console.log(dados);
                 let countData = Object.keys(dados).length;
                 let element = $('form[editar]');
 
@@ -101,10 +97,10 @@ function abrirModalEditarDiretoria() {
                         element.find('input[name=whatsapp]').val(this.celular);
                         if (this.jogador == 1) {
                             element.find('input[name=jogador]').prop('checked', true);
-                            element.find('input[name=comissao_tecnica]').attr('disabled', true);
+                            // element.find('input[name=comissao_tecnica]').attr('disabled', true);
                         } else {
                             element.find('input[name=jogador]').prop('checked', false);
-                            element.find('input[name=comissao_tecnica]').removeAttr('disabled');
+                            // element.find('input[name=comissao_tecnica]').removeAttr('disabled');
                         }
                         if (this.diretoria == 1) {
                             element.find('input[name=diretoria]').prop('checked', true);
@@ -113,10 +109,10 @@ function abrirModalEditarDiretoria() {
                         }
                         if (this.comissao_tecnica == 1) {
                             element.find('input[name=comissao_tecnica]').prop('checked', true);
-                            element.find('input[name=jogador]').attr('disabled', true);
+                            // element.find('input[name=jogador]').attr('disabled', true);
                         } else {
                             element.find('input[name=comissao_tecnica]').prop('checked', false);
-                            element.find('input[name=jogador]').removeAttr('disabled');
+                            // element.find('input[name=jogador]').removeAttr('disabled');
                         }
                         element.find('input[name=nascimento]').val(this.dt_nascimento).attr('disabled', true);
                         if (this.posicao != null) {
@@ -162,9 +158,6 @@ function getAprovarCadastro() {
                             '</div>' +
                             '<div class="row">' +
                             '<b>Celular:</b>&nbsp; ' + this.celular +
-                            '</div>' +
-                            '<div class="row">' +
-                            '<b>Email:</b>&nbsp; ' + this.email +
                             '</div>' +
                             '<div class="row">' +
                             '<b>Aprovar:</b>&nbsp; <button aprovar type="button" class="btn btn-sm btn-danger" data-id="' + this.id + '"><i class="fa fa-check"></i></button><button desaprovar type="button" class="btn btn-sm btn-dark" data-id="' + this.id + '"><i class="fa fa-times"></i></button>' +

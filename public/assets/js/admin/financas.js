@@ -4,6 +4,19 @@ elems.forEach(function(html) {
     var switchery = new Switchery(html, { color: 'rgb(220, 53, 69)' });
 });
 
+$(document).ready(function(){
+    swal.fire({
+        icon: 'error',
+        title: 'Em Breve',
+        showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonColor: '#999',
+        cancelButtonText: 'Voltar'
+    }).then(() => {
+        window.location.href = window.origin+'/admin';
+    });
+});
+
 $("#selecionarMes").ionRangeSlider({
     grid: true,
     skin: 'big',

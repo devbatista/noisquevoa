@@ -147,8 +147,8 @@
                     <li>
                         <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
                     </li>
-                    <li>
-                        <a href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
+                    <li class="inactive">
+                        <a class="inactive" href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/elenco"><i class="fa fa-users"></i> <span class="nav-label">Elenco</span></a>
@@ -185,8 +185,8 @@
                         <a href="<?= $base ?>/admin/posts"><i class="fa fa-sticky-note"></i> <span class="nav-label">Posts</span></a>
                     </li>
 
-                    <li class="financas d-none">
-                        <a href="<?= $base ?>/admin/financas"><i class="fa fa-money"></i> <span class="nav-label">Finanças</span></a>
+                    <li class="financas d-none inactive">
+                        <a class="inactive" href="<?= $base ?>/admin/financas"><i class="fa fa-money"></i> <span class="nav-label">Finanças</span></a>
                     </li>
                 </ul>
             </div>

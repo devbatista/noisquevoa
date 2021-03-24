@@ -117,6 +117,26 @@ function carregarPartidas(val) {
         let id = $(this).data('id');
         modalEstatisticaUnica(id);
     });
+
+    if ($(window).width() <= 640) {
+        setTimeout(() => {
+            let head = $('thead tr th');
+            $.each(head, function(chave, valor) {
+                if (chave == 0 || chave == 2 || chave == 6 || chave == 9) {
+                    this.remove();
+                }
+            });
+
+            let row = $('tbody tr');
+            $.each(row, function(index, value) {
+                $.each($(this).find('td'), function(i, v) {
+                    if (i == 0 || i == 2 || i == 6 || i == 9) {
+                        $(v).remove();
+                    }
+                });
+            });
+        }, 75);
+    }
 }
 
 function modalEstatisticaUnica(id) {

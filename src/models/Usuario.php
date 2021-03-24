@@ -65,13 +65,13 @@ class Usuario extends Model
 
     public function getArtilheiros()
     {
-        $sql = $this->db->query("SELECT id_usuario, apelido, gols, jogos FROM $this->tableName WHERE jogador = 1 AND aprovado = 1 ORDER BY gols DESC, jogos ASC LIMIT 7");
+        $sql = $this->db->query("SELECT id_usuario, apelido, gols, jogos FROM $this->tableName WHERE jogador = 1 AND aprovado = 1 ORDER BY gols DESC, jogos ASC");
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getAssistencias()
     {
-        $sql = $this->db->query("SELECT id_usuario, apelido, assistencias, jogos FROM $this->tableName WHERE jogador = 1 AND aprovado = 1 ORDER BY assistencias DESC, jogos ASC LIMIT 5");
+        $sql = $this->db->query("SELECT id_usuario, apelido, assistencias, jogos FROM $this->tableName WHERE jogador = 1 AND aprovado = 1 ORDER BY assistencias DESC, jogos ASC");
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 

@@ -1,3 +1,5 @@
+<link href="<?= $base ?>/assets/css/admin/responsive/admin.css" rel="stylesheet">
+
 <div class="row">
     <div class="col-lg-3 col-6">
         <div class="ibox">
@@ -61,7 +63,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="ibox">
+                    <div class="ibox d-none">
                         <div class="ibox-title">
                             <h5>Classificação Futliga</h5>
                         </div>

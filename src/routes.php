@@ -57,6 +57,11 @@ $router->post('/admin/diretoria/cadastrar_diretoria', 'admin\DiretoriaController
 $router->get('/admin/diretoria/carregar_por_id/{id}', 'admin\DiretoriaController@getDiretoriaById');
 $router->post('/admin/diretoria/alterar_diretoria/{id}', 'admin\DiretoriaController@alterarUsuario');
 $router->put('/admin/diretoria/desativar_usuario/{id}', 'admin\DiretoriaController@desativarUsuario');
+
+$router->get('/admin/ligas/carregar_ligas', 'admin\LigasController@getLigas');
+$router->post('/admin/ligas/cadastrar_liga', 'admin\LigasController@addLiga');
+$router->post('/admin/ligas/update_liga', 'admin\LigasController@updateLiga');
+$router->put('/admin/ligas/desativar_liga/{id}', 'admin\LigasController@disableLiga');
 // END API
 
 // CRON

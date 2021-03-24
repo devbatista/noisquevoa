@@ -16,6 +16,12 @@ $(document).ready(function() {
     });
 });
 
+// Estatísticas inativas para desenvolvimento
+$('.inactive').click(function(e){
+    e.preventDefault();
+    $(this).css('background-color', '#bd2a38');
+})
+
 function carregarDados() {
     $.each($('h5'), function(i, v) {
         if ($(v).text() == 'Jogos') {
@@ -162,7 +168,7 @@ function assistencias() {
                     '</tr>';
             });
         } else {
-
+            html += '<div class="ibox-content"> Sem assistências na temporada </div>'
         }
 
         return html;
@@ -189,7 +195,7 @@ function artilharia() {
                     '</tr>';
             });
         } else {
-
+            html += '<div class="ibox-content"> Sem gols na temporada </div>'
         }
 
         return html;

@@ -1,4 +1,5 @@
 <link href="<?= $base ?>/assets/css/admin/elenco.css" rel="stylesheet">
+<link href="<?= $base ?>/assets/css/admin/responsive/elenco.css" rel="stylesheet">
 
 <div class="wrapper wrapper-content">
     <div class="row">
@@ -10,7 +11,7 @@
                             <button type="button" class="btn btn-danger disabled pull-left" data-target=".modal-aprovar-cadastro">Aprovar Cadastro</button>
                         </div>
                         <div class="pull-right col-lg-6 col-12 p-0">
-                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".modal-cadastro-elenco">Cadastrar Jogador/Comissão Técnica</button>
+                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".modal-cadastro-elenco">Cadastrar Usuário</button>
                         </div>
                     </div>
                     <div class="mostrarElenco">

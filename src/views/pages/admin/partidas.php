@@ -1,4 +1,5 @@
 <link href="<?= $base ?>/assets/css/admin/partidas.css" rel="stylesheet">
+<link href="<?= $base ?>/assets/css/admin/responsive/partidas.css" rel="stylesheet">
 
 <div class="wrapper wrapper-content">
     <div class="row">
@@ -19,15 +20,11 @@
                                 <label for="">Mostrar</label><br>
                                 <div class="form-check form-check-inline radio radio-danger">
                                     <input class="form-check-input" type="radio" id="proximas" value="0" name="mostrar" checked>
-                                    <label class="form-check-label" for="proximas">Próximas partidas</label>
+                                    <label class="form-check-label" for="proximas">Próximas</label>
                                 </div>
                                 <div class="form-check form-check-inline radio radio-danger">
                                     <input class="form-check-input" type="radio" id="anteriories" value="1" name="mostrar">
-                                    <label class="form-check-label" for="anteriories">Partidas anteriores</label>
-                                </div>
-                                <div class="form-check form-check-inline radio radio-danger">
-                                    <input class="form-check-input" type="radio" id="todas" value="2" name="mostrar">
-                                    <label class="form-check-label" for="todas">Todas</label>
+                                    <label class="form-check-label" for="anteriories">Anteriores</label>
                                 </div>
                                 <div class="pull-right">
                                     <button class="btn btn-danger" refresh>Recarregar <i class="fa fa-refresh"></i></button>
@@ -38,16 +35,16 @@
                                     <table partidas class="table table-hover">
                                         <thead class="thead-danger">
                                             <tr>
-                                                <th scope="col">Data/hora</th>
-                                                <th scope="col"></th>
-                                                <th scope="col">Mandante</th>
-                                                <th scope="col">#</th>
-                                                <th scope="col">X</th>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Visitante</th>
-                                                <th scope="col"></th>
-                                                <th scope="col">Local</th>
-                                                <th scope="col">Liga</th>
+                                                <th>Data/hora</th>
+                                                <th></th>
+                                                <th>Mandante</th>
+                                                <th>#</th>
+                                                <th>X</th>
+                                                <th>#</th>
+                                                <th>Visitante</th>
+                                                <th></th>
+                                                <th>Local</th>
+                                                <th>Liga</th>
                                             </tr>
                                         </thead>
                                         <tbody partidas>
