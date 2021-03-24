@@ -213,3 +213,7 @@ Stack trace:
 #5 /home3/devbat78/sites/noisquevoa.com.br/src/controllers/admin/AdminController.php(15): core\Controller->detectarLogin()
 #6 /home3/devbat78/sites/noisquevoa.com.br/core/RouterBase.php(52): src\controllers\admin\AdminController->__construct()
 #7 /home3/devbat78/sites/noisquevoa.com.br/public/index.php(6): core in /home3/devbat78/sites/noisquevoa.com.br/core/Database.php on line 10
+[08-Jan-2021 13:29:12 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
+[08-Jan-2021 13:29:24 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
+[08-Jan-2021 13:29:31 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
+[08-Jan-2021 13:30:18 America/Fortaleza] PHP Warning:  Illegal string offset 'code' in /home3/devbat78/sites/noisquevoa.com.br/src/controllers/CadastroController.php on line 96
