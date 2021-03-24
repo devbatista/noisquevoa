@@ -1,6 +1,5 @@
 composer.phar
-/vendor/
+vendor/
 .DS_Store
-/src/Config.php
-/src/controllers/EmailController.php
-/src/Config.php
+src/controllers/EmailController.php
+src/Config.php
