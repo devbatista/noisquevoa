@@ -1,0 +1,37 @@
+@media screen and (max-width: 500px) {
+    .row {
+        display: block!important;
+    }
+    .form-group label {
+        margin-bottom: 10px;
+    }
+    .form-group .pull-right,
+    .form-group .btn-danger {
+        width: 100%;
+    }
+    .form-group .btn-danger {
+        margin-bottom: 15px;
+    }
+    .dadosLiga {
+        max-width: 100%;
+        margin-top: 15px;
+    }
+    .ibox-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .buttons .pull-left,
+    .buttons .pull-right,
+    .buttons button {
+        width: 100%;
+    }
+    .buttons .pull-left,
+    .buttons .pull-right {
+        margin-bottom: 15px;
+    }
+}

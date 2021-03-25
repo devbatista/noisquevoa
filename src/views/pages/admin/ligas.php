@@ -1,4 +1,5 @@
 <link href="<?= $base ?>/assets/css/admin/ligas.css" rel="stylesheet">
+<link href="<?= $base ?>/assets/css/admin/responsive/ligas.css" rel="stylesheet">
 
 <div class="wrapper wrapper-content">
     <div class="row">
