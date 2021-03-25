@@ -132,8 +132,6 @@
                                 <span class="text-muted text-xs block"><?= $_SESSION['logado']['cargo'] ?><b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="<?= $base ?>/admin/perfil">Perfil</a></li>
-                                <li class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="<?= $base ?>/logout">Logout</a></li>
                             </ul>
                         </div>
@@ -143,6 +141,9 @@
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin"><i class="fa fa-home"></i> <span class="nav-label">Home</span></a>
+                    </li>
+                    <li>
+                        <a href="<?= $base ?>/admin/perfil"><i class="fa fa-user"></i> <span class="nav-label">Perfil</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
