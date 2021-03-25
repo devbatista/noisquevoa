@@ -1,6 +1,9 @@
 composer.phar
-/vendor/
+vendor/
 .DS_Store
-/src/Config.php
-/src/controllers/EmailController.php
-/src/Config.php
+public/.htaccess
+public/error_log
+public/.user.ini
+public/php.ini
+src/controllers/EmailController.php
+src/Config.php
