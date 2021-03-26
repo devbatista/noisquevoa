@@ -42,7 +42,7 @@ class Controller
     {
         if (file_exists('../src/views/' . $folder . '/' . $viewName . '.php')) {
             extract($viewData);
-            $view = fn ($vN, $vD = []) => $this->renderPartial($vN, $vD);
+            // $view = fn ($vN, $vD = []) => $this->renderPartial($vN, $vD);
             $base = $this->getBaseUrl();
             require '../src/views/' . $folder . '/' . $viewName . '.php';
         }

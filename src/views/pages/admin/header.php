@@ -163,7 +163,7 @@
                     <li class="dropright d-none">
                         <a href="#" role="button" id="dropdownMenuLink" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope"></i> <span class="nav-label">Convite</span></a>
                         <div class="dropdown-menu">
-                            <form class="p-4" enviarConvite>
+                            <form class="p-4" enviarConvite method="POST">
                                 <div class="form-group">
                                     <h4>Enviar cadastro</h4>
                                 </div>
