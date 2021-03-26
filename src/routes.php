@@ -71,8 +71,8 @@ $router->get('/admin/partidas/checar-partidas-concluidas', 'admin\PartidasContro
 // Emails
 $router->post('/email/esqueci_minha_senha', 'EmailController@esqueciMinhaSenha');
 
-$router->post('/email/phpmailer', 'EmailController@enviarPHPMailer');
-
 $router->get('/cadastro', 'CadastroController@index');
 $router->get('/cadastro/getPosicoes', 'CadastroController@getPosicoes');
 $router->post('/cadastro/enviar', 'CadastroController@cadastrar');
+
+$router->post('/email/enviar-convite', 'EmailController@enviarConvite');

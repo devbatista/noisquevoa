@@ -80,7 +80,8 @@
         <div class="input-group input-group-sm">
             <input type="text" class="form-control">
             <span class="input-group-btn"> <button class="btn btn-primary" type="button">Send
-                </button> </span></div>
+                </button> </span>
+        </div>
     </div>
 
 </div>
@@ -459,9 +460,24 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#loader').fadeOut('slow');
         $('#preloader').delay(250).fadeOut('slow');
+    });
+
+    $('form[enviarConvite] button').on('click', function(e) {
+        e.preventDefault();
+        $('form[enviarConvite]').ajaxSubmit({
+            url: window.origin + '/email/enviar-convite',
+            dataType: 'json',
+            type: 'post',
+            beforeSubmit: () => {
+
+            },
+            success: (retorno) => {
+
+            }
+        });
     });
 </script>
 
