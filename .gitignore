@@ -5,5 +5,5 @@ public/.htaccess
 public/error_log
 public/.user.ini
 public/php.ini
-public/assets/img
+public/assets/img/
 src/Config.php
