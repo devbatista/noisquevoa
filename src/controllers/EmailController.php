@@ -65,18 +65,16 @@ class EmailController extends Controller
             $this->mailer->Username = Config::EMAIL_SENDER;
             $this->mailer->Password = Config::EMAIL_PASS;
 
-            $this->mailer->SMTPSecure = 'ssl';
+            $this->mailer->SMTPSecure = Config::EMAIL_SMTP_SECURE;
 
-            $this->mailer->Host = 'mail.noisquevoa.com.br';
-            $this->mailer->Port = 465;
+            $this->mailer->Host = Config::EMAIL_SMTP_HOST;
+            $this->mailer->Port = Config::EMAIL_SMTP_PORT;
 
             $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addAddress($para, $nome);
 
             $this->mailer->isHTML(true);
-
-            // $this->mailer->AddStringEmbeddedImage('https://www.noisquevoa.com.br/assets/img/noisquevoa.png', 'logo_nqv', 'noisquevoa.png');
 
             $this->mailer->Subject = 'Recuperação de senha - ' . Config::NOME_DO_TIME;
             $this->mailer->Body = $msg;
@@ -118,7 +116,7 @@ class EmailController extends Controller
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;">
                 <tr>
                     <td align="center" bgcolor="' . Config::EMAIL_BG_COLOR . '" style="padding: 40px 0 30px 0;">
-                        <img src="' . $this->pegarUrl() . '/assets/img/noisquevoa.png" alt="' . Config::NOME_DO_TIME . '" width="300" height="230" style="display: block;" />
+                        <img src="' . $this->pegarUrl() . Config::LOGO_TIME . '" alt="' . Config::NOME_DO_TIME . '" width="300" height="230" style="display: block;" />
                     </td>
                 </tr>
                 <tr>
@@ -175,18 +173,16 @@ class EmailController extends Controller
             $this->mailer->Username = Config::EMAIL_SENDER;
             $this->mailer->Password = Config::EMAIL_PASS;
 
-            $this->mailer->SMTPSecure = 'ssl';
+            $this->mailer->SMTPSecure = Config::EMAIL_SMTP_SECURE;
 
-            $this->mailer->Host = 'mail.noisquevoa.com.br';
-            $this->mailer->Port = 465;
+            $this->mailer->Host = Config::EMAIL_SMTP_HOST;
+            $this->mailer->Port = Config::EMAIL_SMTP_PORT;
 
             $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addAddress($dados['email'], $dados['nome']);
 
             $this->mailer->isHTML(true);
-
-            // $this->mailer->AddStringEmbeddedImage('https://www.noisquevoa.com.br/assets/img/noisquevoa.png', 'logo_nqv', 'noisquevoa.png');
 
             $this->mailer->Subject = 'Aprovação de cadastro - ' . Config::NOME_DO_TIME;
             $this->mailer->Body = $msg;
@@ -228,7 +224,7 @@ class EmailController extends Controller
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;">
                 <tr>
                     <td align="center" bgcolor="' . Config::EMAIL_BG_COLOR . '" style="padding: 40px 0 30px 0;">
-                        <img src="' . $this->pegarUrl() . '/assets/img/noisquevoa.png" alt="' . Config::NOME_DO_TIME . '" width="300" height="230" style="display: block;" />
+                        <img src="' . $this->pegarUrl() . Config::LOGO_TIME . '" alt="' . Config::NOME_DO_TIME . '" width="300" height="230" style="display: block;" />
                     </td>
                 </tr>
                 <tr>
@@ -285,20 +281,18 @@ class EmailController extends Controller
             $this->mailer->Username = Config::EMAIL_SENDER;
             $this->mailer->Password = Config::EMAIL_PASS;
 
-            $this->mailer->SMTPSecure = 'ssl';
+            $this->mailer->SMTPSecure = Config::EMAIL_SMTP_SECURE;
 
-            $this->mailer->Host = 'mail.noisquevoa.com.br';
-            $this->mailer->Port = 465;
+            $this->mailer->Host = Config::EMAIL_SMTP_HOST;
+            $this->mailer->Port = Config::EMAIL_SMTP_PORT;
 
             $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addAddress(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
-            $this->mailer->addCC('batist11@gmail.com', 'Rafael Batista');
-            $this->mailer->addCC('alvescassio20@gmail.com', 'Cassio Lima');
+            // $this->mailer->addCC('batist11@gmail.com', 'Rafael Batista');
+            // $this->mailer->addCC('alvescassio20@gmail.com', 'Cassio Lima');
 
             $this->mailer->isHTML(true);
-
-            // $this->mailer->AddStringEmbeddedImage('https://www.noisquevoa.com.br/assets/img/noisquevoa.png', 'logo_nqv', 'noisquevoa.png');
 
             $this->mailer->Subject = 'Usuário cadastrado - ' . Config::NOME_DO_TIME;
             $this->mailer->Body = $msg;
@@ -329,7 +323,7 @@ class EmailController extends Controller
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;">
                 <tr>
                     <td align="center" bgcolor="' . Config::EMAIL_BG_COLOR . '" style="padding: 40px 0 30px 0;">
-                        <img src="' . $this->pegarUrl() . '/assets/img/noisquevoa.png" alt="' . Config::NOME_DO_TIME . '" width="300" height="230" style="display: block;" />
+                        <img src="' . $this->pegarUrl() . Config::LOGO_TIME . '" alt="' . Config::NOME_DO_TIME . '" width="300" height="230" style="display: block;" />
                     </td>
                 </tr>
                 <tr>
@@ -410,10 +404,10 @@ class EmailController extends Controller
             $this->mailer->Username = Config::EMAIL_SENDER;
             $this->mailer->Password = Config::EMAIL_PASS;
 
-            $this->mailer->SMTPSecure = 'ssl';
+            $this->mailer->SMTPSecure = Config::EMAIL_SMTP_SECURE;
 
-            $this->mailer->Host = 'mail.noisquevoa.com.br';
-            $this->mailer->Port = 465;
+            $this->mailer->Host = Config::EMAIL_SMTP_HOST;
+            $this->mailer->Port = Config::EMAIL_SMTP_PORT;
 
             $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
@@ -461,7 +455,7 @@ class EmailController extends Controller
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;">
                 <tr>
                     <td align="center" bgcolor="' . Config::EMAIL_BG_COLOR . '" style="padding: 40px 0 30px 0;">
-                        <img src="' . $this->pegarUrl() . '/assets/img/noisquevoa.png" alt="' . Config::NOME_DO_TIME_COMPLETO . '" width="300" height="230" style="display: block;" />
+                        <img src="' . $this->pegarUrl() . Config::LOGO_TIME . '" alt="' . Config::NOME_DO_TIME_COMPLETO . '" width="300" height="230" style="display: block;" />
                     </td>
                 </tr>
                 <tr>
