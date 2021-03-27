@@ -50,6 +50,7 @@ $router->post('/admin/elenco/cadastrar_usuario', 'admin\ElencoController@inserir
 $router->post('/admin/elenco/alterar_usuario/{id}', 'admin\ElencoController@alterarUsuario');
 $router->put('/admin/elenco/aprovar_cadastro/{id}', 'admin\ElencoController@aprovarCadastro');
 $router->put('/admin/elenco/desativar_usuario/{id}', 'admin\ElencoController@desativarUsuario');
+$router->post('/admin/elenco/cadastrar_avulso', 'admin\ElencoController@inserirAvulso');
 
 $router->get('/admin/diretoria/carregar_diretoria', 'admin\DiretoriaController@getDiretoria');
 $router->get('/admin/diretoria/aprovacao_cadastros', 'admin\DiretoriaController@getAprovarCadastros');

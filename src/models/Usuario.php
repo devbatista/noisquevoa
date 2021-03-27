@@ -28,6 +28,17 @@ class Usuario extends Model
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function verifyAvulsoExists($data)
+    {
+        $sql = $this->db->prepare("SELECT * FROM $this->tableName WHERE nome = :nome OR apelido = :apelido");
+
+        $sql->bindValue('nome', $data['nome']);
+        $sql->bindValue('apelido', $data['apelido']);
+        $sql->execute();
+
+        return $sql->rowCount();
+    }
+
     public function updatePassword($data)
     {
         if ($data) {
@@ -292,7 +303,7 @@ class Usuario extends Model
 
     public function getAllElenco()
     {
-        $sql = $this->db->query("SELECT a.id_usuario, a.nome, a.apelido, b.nome AS posicao, a.dt_nascimento, a.foto FROM $this->tableName AS a LEFT JOIN posicoes AS b ON a.posicao = b.id_posicao WHERE a.aprovado = 1 AND (a.jogador = 1  OR a.comissao_tecnica = 1) AND ativo = 1 ORDER BY a.jogador DESC, a.posicao ASC;");
+        $sql = $this->db->query("SELECT a.id_usuario, a.nome, a.apelido, b.nome AS posicao, a.dt_nascimento, a.foto, a.mensalista FROM $this->tableName AS a LEFT JOIN posicoes AS b ON a.posicao = b.id_posicao WHERE a.aprovado = 1 AND (a.jogador = 1  OR a.comissao_tecnica = 1) AND ativo = 1 ORDER BY a.jogador DESC, a.posicao ASC;");
 
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -304,6 +315,19 @@ class Usuario extends Model
 
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
+    }
+
+    public function insertAvulso($data)
+    {
+        $sql = $this->db->prepare("INSERT INTO $this->tableName SET nome = :nome, apelido = :apelido, posicao = :posicao, aprovado = 1, jogador = 1, mensalista = 0");
+
+        $sql->bindValue(':nome', $data['nome']);
+        $sql->bindValue(':apelido', $data['apelido']);
+        $sql->bindValue(':posicao', $data['posicao']);
+
+        $sql->execute();
+
+        return $this->db->lastInsertId();
     }
 
     public function insertDiretoriaByPresidente($data)

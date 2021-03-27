@@ -12,6 +12,7 @@
                         </div>
                         <div class="pull-right col-lg-6 col-12 p-0">
                             <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".modal-cadastro-elenco">Cadastrar Usuário</button>
+                            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target=".modal-cadastro-avulso">Cadastrar Avulso</button>
                         </div>
                     </div>
                     <div class="mostrarElenco">
@@ -85,6 +86,46 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-danger">Adicionar</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-cadastro-avulso" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <form cadastrarAvulso action="" data-toggle="validator" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloModalCentralizado">Cadastro de jogador avulso</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cadastro">
+                        <h1 class="text-center">Novo Membro Avulso</h1>
+
+                        <div class="form-group">
+                            <label for="nome">Nome: </label>
+                            <input type="text" class="form-control" id="nome_avulso" placeholder="Digite seu nome" name="nome_avulso" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apelido">Apelido: </label>
+                            <input type="text" class="form-control" id="apelido_avulso" placeholder="Digite seu apelido" name="apelido_avulso" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nascimento">Posição</label>
+                            <select class="form-control" id="posicao_avulso" name="posicao_avulso" required>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger">Adicionar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

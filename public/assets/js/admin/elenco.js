@@ -40,6 +40,14 @@ function carregarPosicao() {
                 return html;
             });
 
+            let htmlAvulso = '<option disabled selected value="0" style="color:#808080">Posição</option>';
+            $('select#posicao_avulso').html(function() {
+                $.each(dados, function(i, v) {
+                    htmlAvulso += '<option value="' + this.id_posicao + '">' + this.nome + '</option>';
+                });
+                return htmlAvulso;
+            });
+
             let htmlEdit = '<option disabled selected value="0" style="color:#808080">Sem posição</option>';
             $('select#editPosicao').html(function() {
                 $.each(dados, function(i, v) {
@@ -436,6 +444,45 @@ $('.modal-editar-elenco').find('button.btn-dark').click(function(e) {
             getAprovarCadastro();
             carregarElenco();
             $('.modal-editar-elenco').modal('hide');
+        }
+    });
+});
+
+$('.modal-cadastro-avulso .btn-danger').on('click', function(e){
+    $('form[cadastrarAvulso]').submit();
+})
+
+$('form[cadastrarAvulso]').on('submit', function(e){
+    e.preventDefault();
+    $(this).ajaxSubmit({
+        url: window.origin + '/admin/elenco/cadastrar_avulso',
+        dataType: 'json',
+        type: 'post',
+        beforeSubmit: () => {
+
+        },
+        success: (retorno) => {
+            if(retorno.code === 0) {
+                Swal.fire({
+                    title: retorno.msg,
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#d33',
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                Swal.fire({
+                    title: retorno.msg,
+                    icon: 'error',
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonColor: '#999',
+                    cancelButtonText: 'voltar',
+                }).then(()=>{
+                    $('.modal-cadastro-avulso').modal('hide');
+                });
+            }
         }
     });
 });

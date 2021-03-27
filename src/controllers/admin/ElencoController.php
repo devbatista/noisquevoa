@@ -31,14 +31,16 @@ class ElencoController extends Controller
         $elenco = $this->jogadores->getAllElenco();
 
         foreach ($elenco as $key => $value) {
-            $dados[$key] = [
-                'id' => $value['id_usuario'],
-                'nome' => $value['nome'],
-                'apelido' => $value['apelido'],
-                'posicao' => $value['posicao'],
-                'dt_nascimento' => date('d/m/Y', strtotime($value['dt_nascimento'])),
-                'foto' => $value['foto'],
-            ];
+            if ($value['mensalista'] == 1) {
+                $dados[$key] = [
+                    'id' => $value['id_usuario'],
+                    'nome' => $value['nome'],
+                    'apelido' => $value['apelido'],
+                    'posicao' => $value['posicao'],
+                    'dt_nascimento' => date('d/m/Y', strtotime($value['dt_nascimento'])),
+                    'foto' => $value['foto'],
+                ];
+            }
         }
 
         echo json_encode($dados);
@@ -95,7 +97,7 @@ class ElencoController extends Controller
         $this->jogadores->approveRegistration($id['id']);
         $dadosEmail = $this->jogadores->getUserById($id['id']);
         $enviarEmail = new EmailController();
-        
+
         $dados = [
             'id' => $dadosEmail['id_usuario'],
             'nome' => $dadosEmail['nome'],
@@ -152,6 +154,65 @@ class ElencoController extends Controller
 
             echo json_encode($retorno);
         } else {
+            return false;
+        }
+    }
+
+    public function inserirAvulso()
+    {
+        $retorno = [];
+
+        if ($_POST) {
+            $dados = [
+                'nome' => $this->retirarAcentos(filter_input(INPUT_POST, 'nome_avulso', FILTER_SANITIZE_STRING)),
+                'apelido' => $this->retirarAcentos(filter_input(INPUT_POST, 'apelido_avulso')),
+                'posicao' => filter_input(INPUT_POST, 'posicao_avulso', FILTER_VALIDATE_INT),
+            ];
+
+            if (in_array('', $dados)) {
+                $retorno = [
+                    'code' => 2,
+                    'msg' => 'Preencha todos os dados',
+                ];
+
+                echo json_encode($retorno);
+                return false;
+            }
+
+            $validador = $this->jogadores->verifyAvulsoExists($dados);
+            if ($validador) {
+                $retorno = [
+                    'code' => 1,
+                    'msg' => 'Nome ou apelido já cadastrado no sistema',
+                ];
+
+                echo json_encode($retorno);
+                return false;
+            }
+
+            $id = $this->jogadores->insertAvulso($dados);
+
+            if ($id != 0) {
+                $retorno = [
+                    'code' => 0,
+                    'msg' => 'Jogador cadastrado com sucesso',
+                ];
+            } else {
+                $retorno = [
+                    'code' => 3,
+                    'msg' => 'Erro ao cadastrar, tente novamente',
+                ];
+            }
+
+            echo json_encode($retorno);
+            return true;
+        } else {
+            $retorno = [
+                'code' => 4,
+                'msg' => 'Erro fatal, atualize a tela e tente novamente',
+            ];
+
+            echo json_encode($retorno);
             return false;
         }
     }
