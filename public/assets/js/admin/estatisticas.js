@@ -1,12 +1,386 @@
-$(document).ready(function(){
-    swal.fire({
-        icon: 'error',
-        title: 'Em Breve',
-        showConfirmButton: false,
-        showCancelButton: true,
-        cancelButtonColor: '#999',
-        cancelButtonText: 'Voltar'
-    }).then(() => {
-        window.location.href = window.origin+'/admin';
+let base = {};
+let dados = {};
+
+window.onload = function() {
+    let startDate = moment().startOf('year');
+    let endDate = moment();
+
+    let periodo = { startDate, endDate };
+
+    function cb(startDate, endDate) {
+        $('#reportrange span').html(startDate.format('DD/MM/YYYY') + ' - ' + endDate.format('DD/MM/YYYY'));
+    }
+
+    moment.locale('pt-br');
+
+    $('#reportrange').daterangepicker({
+        dateFormat: 'dd/mm/yyyy',
+        startDate: startDate,
+        endDate: endDate,
+        applyButtonClasses: 'btn-danger',
+        ranges: {
+            'Últimos 7 dias': [moment().subtract(6, 'days'), moment()],
+            'Últimos 30 dias': [moment().subtract(29, 'days'), moment()],
+            'Mês Atual': [moment().startOf('month'), moment().endOf('month')],
+            'Mês Anterior': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+            'Ano Atual': [moment().startOf('year'), moment().endOf('year')],
+            'Ano Anterior': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+        },
+        opens: 'left',
+        locale: {
+            'format': 'DD/MM/YYYY',
+            'separator': ' - ',
+            'applyLabel': 'Aplicar',
+            'cancelLabel': 'Cancelar',
+            'customRangeLabel': 'Personalizado',
+            'daysOfWeek': [
+                'Dom',
+                'Seg',
+                'Ter',
+                'Qua',
+                'Qui',
+                'Sex',
+                'Sab'
+            ],
+            'monthNames': [
+                'Jan',
+                'Fev',
+                'Mar',
+                'Abr',
+                'Mai',
+                'Jun',
+                'Jul',
+                'Ago',
+                'Set',
+                'Out',
+                'Nov',
+                'Dez'
+            ],
+            'firstDay': 0
+        }
+    }, cb).on('apply.daterangepicker', function(ev, pic) {
+        let data = {
+            startDate: pic.startDate.format('MM/DD/YYYY') + ' 00:00:00',
+            endDate: pic.endDate.format('MM/DD/YYYY') + ' 23:59:59',
+        };
+        window.vdeChart.destroy();
+        window.partidasChart.destroy();
+        window.myPie.destroy();
+        window.barChart.destroy();
+
+        carregarEstatisticas(data);
     });
-});
+
+    cb(startDate, endDate);
+
+    $.ajax({
+        url: window.origin + '/assets/estatisticas/dados',
+        dataType: 'json',
+        type: 'get',
+        success: (e) => {
+            base = e;
+            carregarEstatisticas(periodo);
+        }
+    });
+}
+
+function carregarEstatisticas(data) {
+    let startDate = new Date(data.startDate);
+    let endDate = new Date(data.endDate);
+
+    let jogadores = getInfo(startDate, endDate, base.jogadores, true);
+
+    let partidas = getInfo(startDate, endDate, base.partidas);
+    let qtdPartidas = partidas.length;
+
+    let gols = getInfo(startDate, endDate, base.gols);
+    let qtdGols = gols.length;
+    let qtdGolsSofridos = 0;
+
+    let assistencias = getInfo(startDate, endDate, base.assistencia);
+
+    let faltas = getInfo(startDate, endDate, base.faltas);
+    let qtdFaltas = faltas.length;
+
+    let cartoesAmarelos = getInfo(startDate, endDate, base.cartoes_amarelos);
+    let qtdCartoesAmarelos = cartoesAmarelos.length;
+
+    let cartoesVermelhos = getInfo(startDate, endDate, base.cartoes_vermelhos);
+    let qtdCartoesVermelhos = cartoesVermelhos.length;
+
+    let qtdVitorias = 0;
+    let qtdEmpates = 0;
+    let qtdDerrotas = 0;
+
+    let qtdGolsPorTempo = {
+        1: 0,
+        2: 0,
+    };
+
+    $.each(partidas, function(i, v) {
+        if (this.gols_pro > this.gols_contra) {
+            qtdVitorias++;
+        } else if (this.gols_pro == this.gols_contra) {
+            qtdEmpates++;
+        } else {
+            qtdDerrotas++;
+        }
+
+        qtdGolsSofridos = qtdGolsSofridos + parseInt(this.gols_contra);
+    });
+
+    $.each(gols, function(i, v) {
+        if (this.periodo == 1) {
+            qtdGolsPorTempo[1]++;
+        } else {
+            qtdGolsPorTempo[2]++;
+        }
+    });
+
+    dados = { jogadores, partidas, qtdPartidas, gols, qtdGols, qtdGolsSofridos, assistencias, faltas, qtdFaltas, cartoesAmarelos, qtdCartoesAmarelos, cartoesVermelhos, qtdCartoesVermelhos, qtdVitorias, qtdEmpates, qtdDerrotas, qtdGolsPorTempo };
+
+    visualizarEstatisticas();
+}
+
+function getInfo(startDate, endDate, base, jogadores = false) {
+    let retorno = [];
+    if (jogadores) {
+        $.each(base, function(i, v) {
+            let dataHoraCriado = new Date(this.dt_hr_criado);
+            let dataHoraDstv;
+            if (this.dt_hr_desativado) { dataHoraDstv = new Date(this.dt_hr_desativado); } else { dataHoraDstv = endDate; }
+            if (dataHoraCriado < startDate || dataHoraDstv >= endDate) {
+                retorno[i] = this;
+            }
+        });
+    } else {
+        $.each(base, function(i, v) {
+            let dataHora = new Date(this.dt_hora);
+            if (dataHora > startDate && dataHora < endDate) {
+                retorno[i] = this;
+            }
+        });
+    }
+    retorno = retorno.filter(function(el) {
+        return el != null;
+    });
+    return retorno;
+}
+
+function visualizarEstatisticas() {
+    $('.jogosNoPeriodo h1').html(dados.qtdPartidas);
+    carregarGraficos();
+
+    $.each(dados, function(i, v) {
+        if (i.indexOf('qtd')) {
+            organizarClassificacoes(i);
+        }
+    });
+}
+
+function organizarClassificacoes(table) {
+    if (table == 'gols') {
+        let jogadores = [];
+        $.each(dados.jogadores, function(i, v) {
+            jogadores[this.id_usuario] = {
+                apelido: this.apelido,
+                id_usuario: this.id_usuario,
+            };
+        });
+        jogadores = jogadores.filter(function(el) {
+            return el != null;
+        });
+
+        let tempGols = {};
+        $.each(jogadores, function(i, v) {
+            tempGols[i] = {
+                jogador: v.apelido,
+                gols: salvarQtdUnit(v.apelido, dados.gols),
+                jogos: salvarQtdJogos(v.id_usuario),
+            }
+        });
+
+        let classGols = [];
+        let gols = dados.qtdGols;
+        $.each(tempGols, function(i, v){
+            let percent = ((this.gols * 100) / gols).toFixed(0) ;
+            let calculoMedia = this.gols / this.jogos
+            let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
+            classGols[i] = {
+                jogador: this.jogador,
+                gols: this.gols,
+                jogos: this.jogos,
+                percent: percent,
+                media: media,
+            }
+        });
+        classGols.sort(function(a, b){
+            if(a.gols < b.gols) return 1;
+            if(a.gols > b.gols) return -1;
+            return 0;
+        })
+        
+        inserirClassificacaoNaTela(classGols, table);
+    }
+}
+
+function salvarQtdUnit(nome, data) {
+    let count = 0;
+    $.each(data, function(i, v) {
+        if (this.jogador == nome) {
+            count++;
+        }
+    })
+    return count;
+}
+
+function salvarQtdJogos(id) {
+    let count = 0;
+    $.each(dados.partidas, function(i, v) {
+        if (this.quem_jogou.indexOf(id) != -1) {
+            count++;
+        }
+    });
+    return count;
+}
+
+function inserirClassificacaoNaTela(data, table) {
+    console.log(data);
+}
+
+function carregarGraficos() {
+    let doughnutData = {
+        labels: ["Vitórias", "Derrotas", "Empates"],
+        datasets: [{
+            data: [dados.qtdVitorias, dados.qtdDerrotas, dados.qtdEmpates],
+            backgroundColor: ["#dc3545", "#fbb1b8", "#dedede"]
+        }]
+    };
+    let doughnutOptions = {
+        responsive: true
+    };
+    let vde = document.getElementById("vdeChart").getContext("2d");
+    window.vdeChart = new Chart(vde, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+
+    // ================================================================================================ //
+
+    let randomScalingFactor = function() {
+        return (Math.random() > 0.5 ? 1.0 : 1.0) * Math.round(Math.random() * 10);
+    };
+
+    let line1 = [];
+    let line2 = [];
+
+    // let Xaxis = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    let Xaxis = [];
+    let hora = [];
+    let partida = [];
+    $.each(dados.partidas, function(i, v) {
+        let arrayDtHora = this.dt_hora.split(' ');
+        let partida = 'NQV ' + this.gols_pro + ' x ' + this.gols_contra + ' ' + this.abreviacao;
+        Xaxis.push(arrayDtHora[0]);
+        line1.push(randomScalingFactor());
+    });
+    let config = {
+        type: 'line',
+        data: {
+            labels: Xaxis,
+            datasets: [{
+                label: "1º quadro",
+                backgroundColor: 'rgb(200, 53, 69)',
+                borderColor: 'rgb(200, 53, 69)',
+                data: line1,
+                fill: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: false,
+                text: 'Chart.js Line Chart'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: false,
+                        labelString: 'Month'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                    },
+                }]
+            }
+        }
+    };
+    let ctx = document.getElementById("partidasChart").getContext("2d");
+    window.partidasChart = new Chart(ctx, config);
+
+    // ================================================================================================ //
+
+    var configPie = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    dados.qtdGolsPorTempo[1],
+                    dados.qtdGolsPorTempo[2],
+                ],
+                backgroundColor: [
+                    'rgb(200, 53, 69)',
+                    'rgb(220, 220, 220)',
+                ],
+            }],
+            labels: [
+                '1º tempo',
+                '2º tempo',
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    var ctx3 = document.getElementById('golsChart').getContext('2d');
+    window.myPie = new Chart(ctx3, configPie);
+
+    // ================================================================================================ //
+
+    var barData = {
+        labels: ["Gols Marcados", "Gols Sofridos", "Faltas", "Cartões Amarelos", "Cartões Vermelhos"],
+        datasets: [{
+            backgroundColor: 'rgba(220,53,69,0.5)',
+            borderColor: "rgba(220,53,69,0.7)",
+            pointBackgroundColor: "rgba(220,53,69,1)",
+            pointBorderColor: "#fff",
+            data: [dados.qtdGols, dados.qtdGolsSofridos, dados.qtdFaltas, dados.qtdCartoesAmarelos, dados.qtdCartoesVermelhos]
+        }]
+    };
+
+    var barOptions = {
+        legend: {
+            display: false,
+        },
+        responsive: true,
+        scales: {
+            yAxes: [{
+                display: true,
+                ticks: {
+                    beginAtZero: true,
+                }
+            }]
+        }
+    };
+
+    var ctx2 = document.getElementById("estatisticasGeraisChart").getContext("2d");
+    window.barChart = new Chart(ctx2, { type: 'bar', data: barData, options: barOptions });
+}

@@ -11,16 +11,48 @@ class Partida extends Model
         parent::__construct();
     }
 
-    public function getJogos()
+    public function getJogos($data = false)
     {
-        $sql = $this->db->query("SELECT a.id_partida, b.nome AS liga, c.nome AS adversario, c.abreviacao , c.logo_equipe as logo_adversario, a.gols_pro, a.gols_contra, d.nome AS local, e.nome AS mandante_visitante, a.data_hora_partida, a.concluido, a.estatisticas FROM $this->tableName AS a 
+        if (!$data) {
+            $sql = $this->db->query("SELECT a.id_partida, b.nome AS liga, c.nome AS adversario, c.abreviacao , c.logo_equipe as logo_adversario, a.gols_pro, a.gols_contra, d.nome AS local, e.nome AS mandante_visitante, a.data_hora_partida, a.concluido, a.estatisticas FROM $this->tableName AS a 
             INNER JOIN ligas AS b ON a.id_liga = b.id_liga 
             INNER JOIN equipes AS c ON a.id_adversario = c.id_equipe 
             INNER JOIN locais AS d ON a.id_local = d.id_local 
             INNER JOIN tipo_mv AS e ON a.tipo_mv = e.id_mv
                 ORDER BY data_hora_partida ASC");
 
-        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+            exit;
+        }
+
+        if ($data == 'concluidos') {
+            $sql = $this->db->query("SELECT a.id_partida, b.nome AS liga, c.nome AS adversario, c.abreviacao , c.logo_equipe as logo_adversario, a.gols_pro, a.gols_contra, d.nome AS local, e.nome AS mandante_visitante, a.data_hora_partida as dt_hora, a.concluido, a.estatisticas, a.quem_jogou FROM $this->tableName AS a 
+            INNER JOIN ligas AS b ON a.id_liga = b.id_liga 
+            INNER JOIN equipes AS c ON a.id_adversario = c.id_equipe 
+            INNER JOIN locais AS d ON a.id_local = d.id_local 
+            INNER JOIN tipo_mv AS e ON a.tipo_mv = e.id_mv
+                WHERE concluido = 1 AND estatisticas = 1
+                    ORDER BY data_hora_partida ASC");
+
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+            exit;
+        } else {
+            $sql = $this->db->prepare("SELECT a.id_partida, b.nome AS liga, c.nome AS adversario, c.abreviacao , c.logo_equipe as logo_adversario, a.gols_pro, a.gols_contra, d.nome AS local, e.nome AS mandante_visitante, a.data_hora_partida, a.concluido, a.estatisticas FROM $this->tableName AS a 
+            INNER JOIN ligas AS b ON a.id_liga = b.id_liga 
+            INNER JOIN equipes AS c ON a.id_adversario = c.id_equipe 
+            INNER JOIN locais AS d ON a.id_local = d.id_local 
+            INNER JOIN tipo_mv AS e ON a.tipo_mv = e.id_mv
+                WHERE data_hora_partida BETWEEN :startDate AND :endDate
+                    ORDER BY data_hora_partida ASC");
+
+            $sql->bindValue(':startDate', $data['startDate']);
+            $sql->bindValue(':endDate', $data['endDate']);
+
+            $sql->execute();
+
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+            exit;
+        }
     }
 
     public function createPartida($data)
@@ -71,7 +103,7 @@ class Partida extends Model
             INNER JOIN tipo_mv AS d ON d.id_mv = a.tipo_mv
             INNER JOIN locais AS e ON e.id_local = a.id_local
                 WHERE id_partida = :id_partida");
-        
+
         $sql->bindvalue('id_partida', $id);
         $sql->execute();
 

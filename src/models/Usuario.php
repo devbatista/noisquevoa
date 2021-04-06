@@ -122,9 +122,13 @@ class Usuario extends Model
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function getJogadores()
+    public function getJogadores($ativo = true)
     {
-        $sql = $this->db->query("SELECT * FROM $this->tableName WHERE jogador = 1 AND aprovado = 1 AND ativo = 1");
+        if ($ativo) {
+            $sql = $this->db->query("SELECT * FROM $this->tableName WHERE jogador = 1 AND aprovado = 1 AND ativo = 1");
+        } else {
+            $sql = $this->db->query("SELECT * FROM $this->tableName WHERE jogador = 1 AND aprovado = 1");
+        }
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }
 

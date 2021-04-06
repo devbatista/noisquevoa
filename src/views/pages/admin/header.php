@@ -44,6 +44,9 @@
     <!-- Switchery -->
     <link href="<?= $base ?>/assets/plugins/switchery/switchery.css" rel="stylesheet">
 
+    <!-- Date Range Picker -->
+    <link href="<?= $base ?>/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
+
     <!-- scripts -->
     <script src="<?= $base ?>/assets/plugins/jquery/jquery.min.js"></script>
     <script src="<?= $base ?>/assets/js/admin/popper.min.js"></script>
@@ -109,10 +112,13 @@
     <script src="<?= $base ?>/assets/plugins/switchery/switchery.js"></script>
 
     <!-- Moment -->
-    <script src="<?= $base ?>/assets/plugins/moment/moment.min.js"></script>
+    <script src="/assets/plugins/moment/moment.min.js"></script>
 
     <!-- Sorting -->
     <script src="<?= $base ?>/assets/plugins/sorting/datetime-moment.js"></script>
+
+    <!-- Date Range Picker -->
+    <script src="<?= $base ?>/assets/plugins/daterangepicker/daterangepicker.js"></script>
 
     <!-- Admin -->
     <script src="<?= $base ?>/assets/js/admin/index.js"></script>
@@ -148,8 +154,8 @@
                     <li>
                         <a href="<?= $base ?>/admin/partidas"><i class="fa fa-list-alt"></i> <span class="nav-label">Partidas</span></a>
                     </li>
-                    <li class="inactive">
-                        <a class="inactive" href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
+                    <li>
+                        <a href="<?= $base ?>/admin/estatisticas"><i class="fa fa-clipboard"></i> <span class="nav-label">Estatísticas</span></a>
                     </li>
                     <li>
                         <a href="<?= $base ?>/admin/elenco"><i class="fa fa-users"></i> <span class="nav-label">Elenco</span></a>

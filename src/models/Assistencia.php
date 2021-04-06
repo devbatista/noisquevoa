@@ -22,6 +22,15 @@ class Assistencia extends Model
         $sql->execute();
     }
 
+    public function getAssistencias()
+    {
+        $sql = $this->db->query("SELECT a.id_gol, a.id_usuario, b.apelido AS jogador, a.dt_hora
+        FROM $this->tableName AS a
+            INNER JOIN usuarios AS b ON a.id_usuario = b.id_usuario");
+
+        return $sql->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function getAssistsByPartidaId($id)
     {
          $sql = $this->db->prepare("SELECT a.id_assistencia, a.id_partida, a.id_usuario, b.nome AS quem_fez, b.apelido, a.id_gol FROM $this->tableName AS a
