@@ -572,7 +572,7 @@ function carregarGraficos() {
     // ================================================================================================ //
 
     var barData = {
-        labels: ["Gols Marcados", "Gols Sofridos", "Faltas", "Cartões Amarelos", "Cartões Vermelhos"],
+        labels: ["Gols Marcados", "Gols Sofridos", "Faltas", "C. Amarelos", "C. Vermelhos"],
         datasets: [{
             backgroundColor: 'rgba(220,53,69,0.5)',
             borderColor: "rgba(220,53,69,0.7)",
@@ -640,7 +640,7 @@ function slidePartidas() {
     });
 
     let qtd = (dados.qtdPartidas >= 3) ? 3 : dados.qtdPartidas;
-    let qtd600 = (dados.qtdPartidas >= 2) ? 2 : 1;
+    let qtd2 = (dados.qtdPartidas >= 2) ? 2 : 1;
     let infinite = (dados.qtdPartidas >= 3) ? true : false;
 
     window.slickPartidas = $('.slidePartidas').slick({
@@ -649,7 +649,7 @@ function slidePartidas() {
         slidesToScroll: 1,
         centerMode: true,
         responsive: [{
-                breakpoint: 1024,
+                breakpoint: 1920,
                 settings: {
                     slidesToShow: qtd,
                     slidesToScroll: 3,
@@ -658,14 +658,14 @@ function slidePartidas() {
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 1490,
                 settings: {
-                    slidesToShow: qtd600,
-                    slidesToScroll: 2
+                    slidesToShow: qtd2,
+                    slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 480,
+                breakpoint: 1024,
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1

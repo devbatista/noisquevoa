@@ -1,4 +1,5 @@
 <link href="<?= $base ?>/assets/css/admin/estatisticas.css" rel="stylesheet">
+<link href="<?= $base ?>/assets/css/admin/responsive/estatisticas.css" rel="stylesheet">
 
 <div class="wrapper wrapper-content">
     <div class="row">
@@ -109,7 +110,7 @@
                                     <div class="ibox-title">
                                         <h5>Estatísticas Gerais</h5>
                                     </div>
-                                    <div class="ibox-content">
+                                    <div class="ibox-content" style="padding-left: 0">
                                         <canvas id="estatisticasGeraisChart"></canvas>
                                     </div>
                                 </div>
@@ -122,7 +123,7 @@
                                         <h5>Artilharia</h5>
                                     </div>
                                     <div class="ibox-content">
-                                        <div>
+                                        <div class="table-responsive-md">
                                             <table class="table text-center p-0">
                                                 <thead>
                                                     <tr>
@@ -148,7 +149,7 @@
                                         <h5>Assistências</h5>
                                     </div>
                                     <div class="ibox-content">
-                                        <div>
+                                        <div class="table-responsive">
                                             <table class="table text-center p-0">
                                                 <thead>
                                                     <tr>
@@ -176,7 +177,7 @@
                                         <h5>Cartões Amarelos</h5>
                                     </div>
                                     <div class="ibox-content">
-                                        <div>
+                                        <div class="table-responsive">
                                             <table class="table text-center p-0">
                                                 <thead>
                                                     <tr>
@@ -202,7 +203,7 @@
                                         <h5>Cartões Vermelhos</h5>
                                     </div>
                                     <div class="ibox-content">
-                                        <div>
+                                        <div class="table-responsive">
                                             <table class="table text-center p-0">
                                                 <thead>
                                                     <tr>
@@ -251,7 +252,7 @@
                                     <h5>Faltas</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <div>
+                                    <div class="table-responsive">
                                         <table class="table text-center p-0">
                                             <thead>
                                                 <tr>

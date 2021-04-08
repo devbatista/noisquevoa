@@ -1,0 +1,73 @@
+@media screen and (min-width: 992px) and (max-width: 1024px) {
+    
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+    .slidePartidas .ibox-content {
+        padding: 20px 4px;
+    }
+    .slidePartidas .col-4 {
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 701px) and (max-width: 768px) {
+    .slidePartidas .col-4 {
+        padding: 7px;
+    }
+}
+
+@media screen and (min-width: 656px) and (max-width: 700px) {
+    .slidePartidas .col-4 {
+        padding-left: 0px;
+    }
+}
+
+@media screen and (min-width: 631px) and (max-width: 655px) {
+    .slidePartidas .col-4 {
+        padding-left: 0px;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 630px) {
+    .slidePartidas .col-4 {
+        padding-left: 0px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .ibox .pull-right {
+        width: 100%;
+        text-align: center;
+    }
+    h1 {
+        text-align: center;
+    }
+    .slidePartidas .col-4 {
+        padding: 3px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .slidePartidas .col-1 {
+        font-size: 30px;
+        padding: 10px;
+    }
+    .slidePartidas img {
+        width: 65px;
+    }
+    #vdeChart, #golsChart {
+        width: 260px!important;
+        height: 260px!important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .slidePartidas .col-1 {
+        font-size: 24px;
+        padding: 7px;
+    }
+    .slidePartidas img {
+        width: 58px;
+    }
+}
