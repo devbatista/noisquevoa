@@ -462,7 +462,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#loader').fadeOut('slow');
-        $('#preloader').delay(250).fadeOut('slow');
+        $('#preloader').delay(500).fadeOut('slow');
     });
 
     $('form[enviarConvite] button').on('click', function(e) {
