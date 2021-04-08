@@ -41,6 +41,10 @@
     <!-- Awesome Bootstrap -->
     <link href="<?= $base ?>/assets/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
+    <!-- Slick Carousel -->
+    <link href="<?= $base ?>/assets/plugins/slick/slick.css" rel="stylesheet">
+    <link href="<?= $base ?>/assets/plugins/slick/slick-theme.css" rel="stylesheet">
+
     <!-- Switchery -->
     <link href="<?= $base ?>/assets/plugins/switchery/switchery.css" rel="stylesheet">
 
@@ -110,6 +114,9 @@
 
     <!-- Switchery -->
     <script src="<?= $base ?>/assets/plugins/switchery/switchery.js"></script>
+
+    <!-- Slick Carousel -->
+    <script src="<?= $base ?>/assets/plugins/slick/slick.min.js"></script>
 
     <!-- Moment -->
     <script src="/assets/plugins/moment/moment.min.js"></script>

@@ -21,3 +21,18 @@ h1 {
     margin-left: 4px;
     margin-right: 10px;
 }
+
+.slidePartidas .ibox-content {
+    height: 150px;
+    border-left: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+}
+
+.slidePartidas img {
+    width: 70px;
+}
+
+.slidePartidas .col-1 {
+    font-size: 30px;
+    font-weight: 200;
+}

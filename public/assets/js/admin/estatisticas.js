@@ -64,9 +64,11 @@ window.onload = function() {
             endDate: pic.endDate.format('MM/DD/YYYY') + ' 23:59:59',
         };
         window.vdeChart.destroy();
-        window.partidasChart.destroy();
+        // window.partidasChart.destroy();
         window.myPie.destroy();
         window.barChart.destroy();
+
+        window.slickPartidas.slick('unslick');
 
         carregarEstatisticas(data);
     });
@@ -169,6 +171,7 @@ function getInfo(startDate, endDate, base, jogadores = false) {
 
 function visualizarEstatisticas() {
     $('.jogosNoPeriodo h1').html(dados.qtdPartidas);
+    slidePartidas();
     carregarGraficos();
 
     $.each(dados, function(i, v) {
@@ -202,25 +205,216 @@ function organizarClassificacoes(table) {
 
         let classGols = [];
         let gols = dados.qtdGols;
-        $.each(tempGols, function(i, v){
-            let percent = ((this.gols * 100) / gols).toFixed(0) ;
-            let calculoMedia = this.gols / this.jogos
-            let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
-            classGols[i] = {
-                jogador: this.jogador,
-                gols: this.gols,
-                jogos: this.jogos,
-                percent: percent,
-                media: media,
+        if (gols > 0) {
+            $.each(tempGols, function(i, v) {
+                let percent = ((this.gols * 100) / gols).toFixed(0);
+                let calculoMedia = this.gols / this.jogos
+                let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
+                classGols[i] = {
+                    jogador: this.jogador,
+                    qtd: this.gols,
+                    jogos: this.jogos,
+                    percent: percent,
+                    media: media,
+                }
+            });
+            classGols.sort(function(a, b) {
+                if (a.qtd < b.qtd) return 1;
+                if (a.qtd > b.qtd) return -1;
+                return 0;
+            });
+        }
+
+        inserirClassificacaoNaTela(classGols, table);
+        return;
+    }
+
+    if (table == 'assistencias') {
+        let jogadores = [];
+        $.each(dados.jogadores, function(i, v) {
+            jogadores[this.id_usuario] = {
+                apelido: this.apelido,
+                id_usuario: this.id_usuario,
+            };
+        });
+        jogadores = jogadores.filter(function(el) {
+            return el != null;
+        });
+
+        let tempAssists = {};
+        $.each(jogadores, function(i, v) {
+            tempAssists[i] = {
+                jogador: v.apelido,
+                assistencias: salvarQtdUnit(v.apelido, dados.assistencias),
+                jogos: salvarQtdJogos(v.id_usuario),
             }
         });
-        classGols.sort(function(a, b){
-            if(a.gols < b.gols) return 1;
-            if(a.gols > b.gols) return -1;
-            return 0;
-        })
-        
-        inserirClassificacaoNaTela(classGols, table);
+
+        let classAssists = [];
+        let assistencias = dados.assistencias.length;
+        if (assistencias > 0) {
+            $.each(tempAssists, function(i, v) {
+                let percent = ((this.assistencias * 100) / assistencias).toFixed(0);
+                let calculoMedia = this.assistencias / this.jogos
+                let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
+                classAssists[i] = {
+                    jogador: this.jogador,
+                    qtd: this.assistencias,
+                    jogos: this.jogos,
+                    percent: percent,
+                    media: media,
+                }
+            });
+            classAssists.sort(function(a, b) {
+                if (a.qtd < b.qtd) return 1;
+                if (a.qtd > b.qtd) return -1;
+                return 0;
+            });
+        }
+
+        inserirClassificacaoNaTela(classAssists, table);
+        return;
+    }
+
+    if (table == 'faltas') {
+        let jogadores = [];
+        $.each(dados.jogadores, function(i, v) {
+            jogadores[this.id_usuario] = {
+                apelido: this.apelido,
+                id_usuario: this.id_usuario,
+            };
+        });
+        jogadores = jogadores.filter(function(el) {
+            return el != null;
+        });
+
+        let tempFouls = {};
+        $.each(jogadores, function(i, v) {
+            tempFouls[i] = {
+                jogador: v.apelido,
+                faltas: salvarQtdUnit(v.apelido, dados.faltas),
+                jogos: salvarQtdJogos(v.id_usuario),
+            }
+        });
+
+        let classFouls = [];
+        let faltas = dados.qtdFaltas;
+        if (faltas > 0) {
+            $.each(tempFouls, function(i, v) {
+                let percent = ((this.faltas * 100) / faltas).toFixed(0);
+                let calculoMedia = this.faltas / this.jogos
+                let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
+                classFouls[i] = {
+                    jogador: this.jogador,
+                    qtd: this.faltas,
+                    jogos: this.jogos,
+                    percent: percent,
+                    media: media,
+                }
+            });
+            classFouls.sort(function(a, b) {
+                if (a.qtd < b.qtd) return 1;
+                if (a.qtd > b.qtd) return -1;
+                return 0;
+            });
+        }
+
+        inserirClassificacaoNaTela(classFouls, table);
+        return;
+    }
+
+    if (table == 'cartoesAmarelos') {
+        let jogadores = [];
+        $.each(dados.jogadores, function(i, v) {
+            jogadores[this.id_usuario] = {
+                apelido: this.apelido,
+                id_usuario: this.id_usuario,
+            };
+        });
+        jogadores = jogadores.filter(function(el) {
+            return el != null;
+        });
+
+        let tempCA = {};
+        $.each(jogadores, function(i, v) {
+            tempCA[i] = {
+                jogador: v.apelido,
+                cartoesAmarelos: salvarQtdUnit(v.apelido, dados.cartoesAmarelos),
+                jogos: salvarQtdJogos(v.id_usuario),
+            }
+        });
+
+        let classCA = [];
+        let cartoesAmarelos = dados.qtdCartoesAmarelos;
+        if (cartoesAmarelos > 0) {
+            $.each(tempCA, function(i, v) {
+                let percent = ((this.cartoesAmarelos * 100) / cartoesAmarelos).toFixed(0);
+                let calculoMedia = this.cartoesAmarelos / this.jogos
+                let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
+                classCA[i] = {
+                    jogador: this.jogador,
+                    qtd: this.cartoesAmarelos,
+                    jogos: this.jogos,
+                    percent: percent,
+                    media: media,
+                }
+            });
+            classCA.sort(function(a, b) {
+                if (a.qtd < b.qtd) return 1;
+                if (a.qtd > b.qtd) return -1;
+                return 0;
+            });
+        }
+
+        inserirClassificacaoNaTela(classCA, table);
+        return;
+    }
+
+    if (table == 'cartoesVermelhos') {
+        let jogadores = [];
+        $.each(dados.jogadores, function(i, v) {
+            jogadores[this.id_usuario] = {
+                apelido: this.apelido,
+                id_usuario: this.id_usuario,
+            };
+        });
+        jogadores = jogadores.filter(function(el) {
+            return el != null;
+        });
+
+        let tempCV = {};
+        $.each(jogadores, function(i, v) {
+            tempCV[i] = {
+                jogador: v.apelido,
+                cartoesVermelhos: salvarQtdUnit(v.apelido, dados.cartoesVermelhos),
+                jogos: salvarQtdJogos(v.id_usuario),
+            }
+        });
+
+        let classCV = [];
+        let cartoesVermelhos = dados.qtdCartoesVemelhos;
+        if (cartoesVermelhos > 0) {
+            $.each(tempCV, function(i, v) {
+                let percent = ((this.cartoesVermelhos * 100) / cartoesVermelhos).toFixed(0);
+                let calculoMedia = this.cartoesVermelhos / this.jogos
+                let media = (calculoMedia) ? calculoMedia.toFixed(2) : 0;
+                classCV[i] = {
+                    jogador: this.jogador,
+                    qtd: this.cartoesVermelhos,
+                    jogos: this.jogos,
+                    percent: percent,
+                    media: media,
+                }
+            });
+            classCV.sort(function(a, b) {
+                if (a.qtd < b.qtd) return 1;
+                if (a.qtd > b.qtd) return -1;
+                return 0;
+            });
+        }
+
+        inserirClassificacaoNaTela(classCV, table);
+        return;
     }
 }
 
@@ -245,7 +439,29 @@ function salvarQtdJogos(id) {
 }
 
 function inserirClassificacaoNaTela(data, table) {
-    console.log(data);
+    let html = '';
+    $('tbody[' + table + ']').html(function() {
+        if (Object.keys(data).length > 0) {
+            $.each(data, function(i, v) {
+                let pos = i + 1;
+
+                html += '<tr>' +
+                    '<th scope="row">' + pos + 'º</th>' +
+                    '<td>' + this.jogador + '</td>' +
+                    '<td>' + this.qtd + '</td>' +
+                    '<td>' + this.percent + '%</td>' +
+                    '<td>' + this.media + '</td>' +
+                    '<td>' + this.jogos + '</td>' +
+                    '</tr>';
+            });
+        } else {
+            html += '<th colspan="6">Sem dados no período</th>';
+        }
+
+        return html;
+    });
+
+    $('td, th[scope=row]').css('color', '#888');
 }
 
 function carregarGraficos() {
@@ -322,8 +538,8 @@ function carregarGraficos() {
             }
         }
     };
-    let ctx = document.getElementById("partidasChart").getContext("2d");
-    window.partidasChart = new Chart(ctx, config);
+    // let ctx = document.getElementById("partidasChart").getContext("2d");
+    // window.partidasChart = new Chart(ctx, config);
 
     // ================================================================================================ //
 
@@ -383,4 +599,78 @@ function carregarGraficos() {
 
     var ctx2 = document.getElementById("estatisticasGeraisChart").getContext("2d");
     window.barChart = new Chart(ctx2, { type: 'bar', data: barData, options: barOptions });
+}
+
+function slidePartidas() {
+    $('.slidePartidas').html(function() {
+        let html = '';
+        if (dados.qtdPartidas > 0) {
+            $.each(dados.partidas, function(i, v) {
+                html += '<div>' +
+                    '<div class="ibox-content" data-id="' + this.id_partida + '">' +
+                    '<div class="row text-center">' +
+                    '<div class="col-12">' +
+                    '<h5>' + this.dt_hora + '</h5>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="row d-flex justify-content-center align-items-center">' +
+                    '<div class="col-4">' +
+                    '<img src="' + window.origin + '/assets/img/times/noisquevoa.png" alt="">' +
+                    '</div>' +
+                    '<div class="col-1">' +
+                    this.gols_pro +
+                    '</div>' +
+                    '<div class="col-1">' +
+                    'X' +
+                    '</div>' +
+                    '<div class="col-1">' +
+                    this.gols_contra +
+                    '</div>' +
+                    '<div class="col-4">' +
+                    '<img src="' + window.origin + this.logo_adversario + '" alt="">' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            });
+        } else {
+            html += '<h3>Sem dados no período</h3>'
+        }
+        return html;
+    });
+
+    let qtd = (dados.qtdPartidas >= 3) ? 3 : dados.qtdPartidas;
+    let qtd600 = (dados.qtdPartidas >= 2) ? 2 : 1;
+    let infinite = (dados.qtdPartidas >= 3) ? true : false;
+
+    window.slickPartidas = $('.slidePartidas').slick({
+        infinite: infinite,
+        slidesToShow: qtd,
+        slidesToScroll: 1,
+        centerMode: true,
+        responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: qtd,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: qtd600,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
 }
