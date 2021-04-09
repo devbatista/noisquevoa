@@ -13,13 +13,14 @@ class Gol extends Model
 
     public function insertGoals($data)
     {
-        $sql = $this->db->prepare("INSERT INTO $this->tableName SET id_usuario = :id_usuario, id_partida = :id_partida, tempo = :tempo, periodo = :periodo, assistencia = :assistencia");
+        $sql = $this->db->prepare("INSERT INTO $this->tableName SET id_usuario = :id_usuario, id_partida = :id_partida, tempo = :tempo, periodo = :periodo, assistencia = :assistencia, dt_hora = :dt_hora");
 
         $sql->bindValue('id_usuario', $data['gol']);
         $sql->bindValue('id_partida', $data['id_partida']);
         $sql->bindValue('tempo', $data['tempo']);
         $sql->bindValue('periodo', $data['periodo']);
         $sql->bindValue('assistencia', $data['assistencia']);
+        $sql->bindValue('dt_hora', $data['dt_hora']);
 
         $sql->execute();
 

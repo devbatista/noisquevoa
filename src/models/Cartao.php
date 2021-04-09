@@ -14,20 +14,22 @@ class Cartao extends Model
 
     public function insertCartoesAmarelos($data, $cartao = 'cartoes_amarelos')
     {
-        $sql = $this->db->prepare("INSERT INTO $cartao SET id_usuario = :id_usuario, id_partida = :id_partida");
+        $sql = $this->db->prepare("INSERT INTO $cartao SET id_usuario = :id_usuario, id_partida = :id_partida, dt_hora = :dt_hora");
 
         $sql->bindValue('id_usuario', $data['id_usuario']);
         $sql->bindValue('id_partida', $data['id_partida']);
+        $sql->bindValue('dt_hora', $data['dt_hora']);
 
         $sql->execute();
     }
 
     public function insertCartoesVermelhos($data, $cartao = 'cartoes_vermelhos')
     {
-        $sql = $this->db->prepare("INSERT INTO $cartao SET id_usuario = :id_usuario, id_partida = :id_partida");
+        $sql = $this->db->prepare("INSERT INTO $cartao SET id_usuario = :id_usuario, id_partida = :id_partida, dt_hora = :dt_hora");
 
         $sql->bindValue('id_usuario', $data['id_usuario']);
         $sql->bindValue('id_partida', $data['id_partida']);
+        $sql->bindValue('dt_hora', $data['dt_hora']);
 
         $sql->execute();
     }

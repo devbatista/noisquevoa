@@ -99,6 +99,9 @@ class PartidasController extends Controller
             'jogadores_participantes' => implode(", ", $_POST['jogadores']),
         ];
 
+        $dt_hr_partida = $this->partidas->getPartidaById($dados['id_partida']);
+        $dt_hr_partida = $dt_hr_partida['data_hora_partida'];
+
         if ($_FILES) {
             $validar = $this->validarArquivo($_FILES['sumula']);
 
@@ -122,6 +125,7 @@ class PartidasController extends Controller
                     'gol' => $_POST["gol_{$g}"],
                     'tempo' => $_POST["tempoGol_{$g}"],
                     'periodo' => $_POST["periodoGol_{$g}"],
+                    'dt_hora' => $dt_hr_partida,
                 ];
             }
         }
@@ -130,6 +134,7 @@ class PartidasController extends Controller
             if (array_key_exists("assistencia_{$a}", $_POST)) {
                 $dados['assistencias'][] = [
                     'assistencia' => $_POST["assistencia_{$a}"],
+                    'dt_hora' => $dt_hr_partida,
                 ];
             }
         }
@@ -141,6 +146,7 @@ class PartidasController extends Controller
                         $dados['faltas'][] = [
                             'falta' => $_POST["falta{$f}_{$q}"],
                             'periodo' => $f,
+                            'dt_hora' => $dt_hr_partida,
                         ];
                     }
                 }
@@ -177,6 +183,7 @@ class PartidasController extends Controller
                 $gol['gol'] = ($dados['gols'][$cont]['gol'] == "Gol contra") ? 0 : $dados['gols'][$cont]['gol'];
                 $gol['id_partida'] = $dados['id_partida'];
                 $gol['assistencia'] = ($dados['assistencias'][$cont]['assistencia'] == "Sem assistência") ? null : $dados['assistencias'][$cont]['assistencia'];
+                $gol['dt_hora'] = $dt_hr_partida;
                 $id_gol = $gols->insertGoals($gol);
                 $this->usuario->updateGoalsUser($gol['gol']);
 
@@ -184,6 +191,7 @@ class PartidasController extends Controller
                     $assistencia = $dados['assistencias'][$cont];
                     $assistencia['id_gol'] = $id_gol;
                     $assistencia['id_partida'] = $dados['id_partida'];
+                    $assistencia['dt_hora'] = $dt_hr_partida;
                     $assistencias->insertAssists($assistencia);
                     $this->usuario->updateAssistsUser($assistencia['assistencia']);
                 }
@@ -196,6 +204,7 @@ class PartidasController extends Controller
         if (isset($dados['faltas'])) {
             foreach ($dados['faltas'] as $falta) {
                 $falta['id_partida'] = $dados['id_partida'];
+                $falta['dt_hora'] = $dt_hr_partida;
                 $faltas->insertFouls($falta);
                 $this->usuario->updateFoulsUser($falta['falta']);
             }
@@ -211,12 +220,12 @@ class PartidasController extends Controller
                 switch ($cor) {
                     case 'amarelo':
                         $cartoes->insertCartoesAmarelos($cartao);
-                        $this->usuario->updateYellowCard($cartao['id_usuario']);
+                        $this->usuario->updateYellowCard($cartao['id_usuario'], $dt_hr_partida);
                         break;
 
                     case 'vermelho':
                         $cartoes->insertCartoesVermelhos($cartao);
-                        $this->usuario->updateRedCard($cartao['id_usuario']);
+                        $this->usuario->updateRedCard($cartao['id_usuario'], $dt_hr_partida);
                         break;
                 }
             }

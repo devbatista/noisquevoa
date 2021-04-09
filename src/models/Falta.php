@@ -13,11 +13,12 @@ class Falta extends Model
 
     public function insertFouls($data)
     {
-        $sql = $this->db->prepare("INSERT INTO $this->tableName SET id_usuario = :id_usuario, id_partida = :id_partida, periodo = :periodo");
+        $sql = $this->db->prepare("INSERT INTO $this->tableName SET id_usuario = :id_usuario, id_partida = :id_partida, periodo = :periodo, dt_hora = :dt_hora");
 
         $sql->bindValue('id_usuario', $data['falta']);
         $sql->bindValue('id_partida', $data['id_partida']);
         $sql->bindValue('periodo', $data['periodo']);
+        $sql->bindValue('dt_hora', $data['dt_hora']);
 
         $sql->execute();
     }
