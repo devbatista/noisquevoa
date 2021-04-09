@@ -69,7 +69,7 @@ $router->put('/admin/ligas/desativar_liga/{id}', 'admin\LigasController@disableL
 // END API
 
 // CRON
-$router->get('/admin/partidas/checar-partidas-concluidas', 'admin\PartidasController@checkPartidasConcluidas');
+$router->get('/cron/checar-partidas-concluidas', 'AgendadorController@checkPartidasConcluidas');
 // END CRON
 
 // Emails
