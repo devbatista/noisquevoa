@@ -433,9 +433,4 @@ class PartidasController extends Controller
         echo json_encode($dados);
         return true;
     }
-
-    public function checkPartidasConcluidas()
-    {
-        $this->partidas->updatePartidasConcluidas();
-    }
 }
