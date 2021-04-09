@@ -652,8 +652,8 @@ function slidePartidas() {
                 breakpoint: 1920,
                 settings: {
                     slidesToShow: qtd,
-                    slidesToScroll: 3,
-                    infinite: true,
+                    slidesToScroll: 1,
+                    infinite: infinite,
                     dots: true
                 }
             },
