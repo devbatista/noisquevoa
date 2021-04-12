@@ -66,8 +66,6 @@ function carregarPartidas(val) {
             let concluido = (value.concluido == 1) ? 'verEstatistica' : '';
             let modal = (value.concluido == 1) ? 'data-toggle="modal" data-target=".modal-estatisticas-unica"' : '';
 
-            console.log(value.estatisticas);
-
             if (value.concluido == val && value.estatisticas == 1) {
                 html += '<tr data-id="' + value.id_partida + '" ' + concluido + ' ' + modal + '>' +
                     '<td>' + value.data + ' - ' + value.horario + '</td>' +
@@ -167,8 +165,6 @@ function modalEstatisticaUnica(id) {
 
         },
         success: (dados) => {
-            console.log(dados);
-
             $('[data-horario]').html(function() {
                 return '<div class="col-12">' +
                     dados.partida.data_hora_partida +
