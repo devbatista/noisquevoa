@@ -18,12 +18,14 @@ $(document).ready(function() {
 });
 
 window.onload = function() {
-    carregarPartidas(0);
-    carregarEstatisticasEmAguardo();
+    setTimeout(() => {
+        carregarPartidas(0);
+        carregarEstatisticasEmAguardo();
+    }, 500);
 }
 
 $('button[refresh]').click(function() {
-    carregarPartidas(0);
+    $('input[value=0]').click();
     carregarEstatisticasEmAguardo();
 });
 
@@ -64,7 +66,24 @@ function carregarPartidas(val) {
             let concluido = (value.concluido == 1) ? 'verEstatistica' : '';
             let modal = (value.concluido == 1) ? 'data-toggle="modal" data-target=".modal-estatisticas-unica"' : '';
 
-            if (value.concluido == val || val == 2) {
+            console.log(value.estatisticas);
+
+            if (value.concluido == val && value.estatisticas == 1) {
+                html += '<tr data-id="' + value.id_partida + '" ' + concluido + ' ' + modal + '>' +
+                    '<td>' + value.data + ' - ' + value.horario + '</td>' +
+                    '<td><img src="' + logo_mandante + '" alt=""></td>' +
+                    '<td>' + mandante + '</td>' +
+                    '<td>' + gols_mandante + '</td>' +
+                    '<td>X</td>' +
+                    '<td>' + gols_visitante + '</td>' +
+                    '<td>' + visitante + '</td>' +
+                    '<td><img src="' + logo_visitante + '" alt=""></td>' +
+                    '<td>' + value.local + '</td>' +
+                    '<td>' + value.liga + '</td>' +
+                    '</tr>';
+            };
+
+            if (value.concluido == val && value.concluido != 1) {
                 html += '<tr data-id="' + value.id_partida + '" ' + concluido + ' ' + modal + '>' +
                     '<td>' + value.data + ' - ' + value.horario + '</td>' +
                     '<td><img src="' + logo_mandante + '" alt=""></td>' +
