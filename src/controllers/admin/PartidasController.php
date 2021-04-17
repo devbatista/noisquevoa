@@ -368,8 +368,11 @@ class PartidasController extends Controller
         foreach ($dados as $key => $value) {
             $partidas[$key] = [
                 'id_partida' => $value['id_partida'],
+                'id_liga' => $value['id_liga'],
                 'liga' => $value['liga'],
                 'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
+                'data_formatada_js' => date('Y-m-d', strtotime($value['data_hora_partida'])),
+                'id_local' => $value['id_local'],
                 'local' => $value['local'],
                 'horario' => date('H:i', strtotime($value['data_hora_partida'])),
                 'nqv' => 'Nois Que Voa',
@@ -382,6 +385,8 @@ class PartidasController extends Controller
                 'logo_adversario' => $value['logo_adversario'],
                 'concluido' => $value['concluido'],
                 'estatisticas' => $value['estatisticas'],
+                'cancelado' => $value['cancelado'],
+                'motivo_cancelamento' => $value['motivo_cancelamento'],
             ];
         }
 
@@ -426,11 +431,57 @@ class PartidasController extends Controller
         ];
 
         $dia = date('D', strtotime($dados['partida']['data_hora_partida']));
-        $data_hora_partida = $this->diaDaSemana($dia). ', '.date('d/m/Y - H:i', strtotime($dados['partida']['data_hora_partida']));
+        $data_hora_partida = $this->diaDaSemana($dia) . ', ' . date('d/m/Y - H:i', strtotime($dados['partida']['data_hora_partida']));
         $dados['partida']['data_hora_partida'] = $data_hora_partida;
         $dados['partida']['sumula'] = ($dados['partida']['sumula']) ? $dados['partida']['sumula'] : false;
 
         echo json_encode($dados);
         return true;
+    }
+
+    public function cancelarPartida()
+    {
+        $_POST['motivo'] = $this->retirarAcentos($_POST['motivo']);
+        $dados = [
+            'id' => $_POST['id'],
+            'motivo' => strtoupper($_POST['motivo']),
+        ];
+        
+        $this->partidas->cancelPartida($dados);
+        $cancelado = $this->partidas->getPartidaCancelada($dados['id']);
+        if ($cancelado) {
+            $retorno = [
+                'code' => 0,
+                'msg' => 'Partida cancelada com sucesso',
+            ];
+        } else {
+            $retorno = [
+                'code' => 1,
+                'msg' => 'Erro ao cancelar partida, atualize a página e tente novamente',
+                'submsg' => 'Persistindo o erro, entre em contato com o administrador.',
+            ];
+        }
+        echo json_encode($retorno);
+    }
+
+    public function marcarWO()
+    {
+        $dados = $_POST;
+        $this->partidas->marcarWO($dados);
+        $wo = $this->partidas->getPartidaWO($dados['id_partida']);
+        if($wo) {
+            $retorno = [
+                'code' => 0,
+                'msg' => 'WO cadastrado com sucesso, uma pena o jogo não ter acontecido'
+            ];
+        } else {
+            $retorno = [
+                'code' => 1,
+                'msg' => 'Erro ao marcar o WO, atualize a página e tente novamente',
+                'submsg' => 'Persistindo o erro, entre em contato com o administrador.',
+            ];
+        }
+
+        echo json_encode($retorno);
     }
 }

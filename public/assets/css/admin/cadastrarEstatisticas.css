@@ -115,3 +115,12 @@ input[type=number] {
     width: 100%;
     padding: 0 10px;
 }
+
+button[wo] {
+    margin-right: 10px;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+}

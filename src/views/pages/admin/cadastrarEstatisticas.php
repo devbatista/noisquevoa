@@ -18,121 +18,40 @@
                                     <h1 class="text-center">Inserir estatísticas</h1>
                                 </div>
                                 <div id="accordion">
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 text-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    Nois Que Voa x Trindade Futsal - 31/01/2020 - 10h00
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body text-center">
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 text-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                                    Nois Que Voa x Trindade Futsal - 31/01/2020 - 11h00
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body text-center">
-                                                <form action="">
-                                                    <div class="form-row">
-                                                        <div class="col-4">
-                                                            <label for="">Nois Que Voa</label>
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <input type="number" class="form-control">
-                                                        </div>
-                                                        <div class="col-2">
-                                                            X
-                                                        </div>
-                                                        <div class="col-1">
-                                                            <input type="number" class="form-control">
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <label for="">Trindade Futsal</label>
-                                                        </div>
-                                                    </div>
-
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 text-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                                    Collapsible Group Item #1
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body text-center">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 text-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                                    Collapsible Group Item #1
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body text-center">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 text-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                                                    Collapsible Group Item #1
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseFive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body text-center">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0 text-center">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                                    Collapsible Group Item #1
-                                                </button>
-                                            </h5>
-                                        </div>
-
-                                        <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                            <div class="card-body text-center">
-
-                                            </div>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-marcar-wo" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TituloModalCentralizado">Marcar WO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id_partida_wo">
+                <div class="form-check form-check-inline radio radio-danger">
+                    <input class="form-check-input" type="radio" id="vitoria_wo" value="1" name="wo" checked>
+                    <label class="form-check-label" for="vitoria_wo">Vitória</label>
+                </div>
+                <div class="form-check form-check-inline radio radio-danger">
+                    <input class="form-check-input" type="radio" id="derrota_wo" value="0" name="wo">
+                    <label class="form-check-label" for="derrota_wo">Derrota</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-danger" salvarWO>Salvar partida</button>
             </div>
         </div>
     </div>

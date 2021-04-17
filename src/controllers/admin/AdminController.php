@@ -139,7 +139,7 @@ class AdminController extends Controller
     {
         $proxPartidas = [];
         foreach ($this->partidas as $key => $value) {
-            if (($value['data_hora_partida'] > date('Y-m-d H:i:s')) && (count($proxPartidas) < 2) && ($value['concluido'] == 0)) {
+            if (($value['data_hora_partida'] > date('Y-m-d H:i:s')) && (count($proxPartidas) < 2) && ($value['concluido'] == 0) && ($value['cancelado'] == 0)) {
                 $proxPartidas[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
@@ -167,7 +167,7 @@ class AdminController extends Controller
         $key = 0;
 
         foreach ($partidas as $value) {
-            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) < 4 && $value['concluido'] == 1 && $value['estatisticas'] == 1) {
+            if ($value['data_hora_partida'] < date('Y-m-d H:i:s') && count($partidasAnteriores) < 4 && $value['concluido'] == 1 && $value['estatisticas'] == 1 && $value['cancelado'] == 0) {
                 $partidasAnteriores[$key] = [
                     'liga' => $value['liga'],
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),

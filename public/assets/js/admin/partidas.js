@@ -12,7 +12,7 @@ $(document).ready(function() {
         }
     });
 
-    $('input[name=cepLocal]').mask('00000-000');
+    $('input[name=cepLocal], input[name=add_cepLocal]').mask('00000-000');
 
     permissao();
 });
@@ -30,7 +30,7 @@ $('button[refresh]').click(function() {
 });
 
 $('input[name=mostrar]').on('change', function() {
-    let valor = $('input[name=mostrar]:checked').val()
+    let valor = $('input[name=mostrar]:checked').val();
     carregarPartidas(valor);
 })
 
@@ -63,8 +63,8 @@ function carregarPartidas(val) {
                 gols_mandante = (value.gols_contra) ? value.gols_contra : '';
             }
 
-            let concluido = (value.concluido == 1) ? 'verEstatistica' : '';
-            let modal = (value.concluido == 1) ? 'data-toggle="modal" data-target=".modal-estatisticas-unica"' : '';
+            let concluido = (value.concluido == 1) ? 'verEstatistica' : 'editarPartida';
+            let modal = (value.concluido == 1) ? 'data-toggle="modal" data-target=".modal-estatisticas-unica"' : 'data-toggle="modal" data-target=".modal-editar-partida"';
 
             if (value.concluido == val && value.estatisticas == 1) {
                 html += '<tr data-id="' + value.id_partida + '" ' + concluido + ' ' + modal + '>' +
@@ -81,7 +81,7 @@ function carregarPartidas(val) {
                     '</tr>';
             };
 
-            if (value.concluido == val && value.concluido != 1) {
+            if (value.concluido == val && value.concluido != 1 && value.cancelado == 0) {
                 html += '<tr data-id="' + value.id_partida + '" ' + concluido + ' ' + modal + '>' +
                     '<td>' + value.data + ' - ' + value.horario + '</td>' +
                     '<td><img src="' + logo_mandante + '" alt=""></td>' +
@@ -95,10 +95,29 @@ function carregarPartidas(val) {
                     '<td>' + value.liga + '</td>' +
                     '</tr>';
             };
+
+            if (val == 2 && value.cancelado == 1) {
+                html += '<tr cancelado data-id="' + value.id_partida + '" data-toggle="tooltip" title="' + value.motivo_cancelamento + '">' +
+                    '<td>' + value.data + ' - ' + value.horario + '</td>' +
+                    '<td><img src="' + logo_mandante + '" alt=""></td>' +
+                    '<td>' + mandante + '</td>' +
+                    '<td>' + gols_mandante + '</td>' +
+                    '<td>X</td>' +
+                    '<td>' + gols_visitante + '</td>' +
+                    '<td>' + visitante + '</td>' +
+                    '<td><img src="' + logo_visitante + '" alt=""></td>' +
+                    '<td>' + value.local + '</td>' +
+                    '<td>' + value.liga + '</td>' +
+                    '</tr>';
+            };
+
+            setTimeout(() => {
+                $('[data-toggle="tooltip"]').tooltip();
+            }, 150);
         });
 
         return html;
-    });
+    });    
 
     let order = (val == 1) ? '"desc"' : '"asc"';
 
@@ -133,6 +152,11 @@ function carregarPartidas(val) {
     $('tr[verEstatistica]').on('click', function() {
         let id = $(this).data('id');
         modalEstatisticaUnica(id);
+    });
+
+    $('tr[editarPartida]').on('click', function() {
+        let id = $(this).data('id');
+        modalEditarPartida(id);
     });
 
     if ($(window).width() <= 640) {
@@ -343,10 +367,22 @@ function modalEstatisticaUnica(id) {
     });
 }
 
-
-
-function preencherEstatistica(dados) {
-
+function modalEditarPartida(id) {
+    carregarLigas();
+    carregarLocais();
+    $.each(partidas, function(i, v) {
+        setTimeout(() => {
+            if (this.id_partida == id) {
+                let data_hora = this.data_formatada_js + 'T' + this.horario;
+                $('input[name=id_partida]').val(id);
+                $('input#editar_adversario').val(this.adversario).attr('disabled', true);
+                $('input#editar_abreviacao').val(this.abreviacao).attr('disabled', true);
+                $('select#editar_local').val(1);
+                $('select#editar_liga').val(this.id_liga);
+                $('input#dataHoraPartida').val(data_hora);
+            }
+        }, 250);
+    });
 }
 
 function carregarEstatisticasEmAguardo() {
@@ -449,15 +485,23 @@ function carregarLocais() {
         type: 'get',
         beforeSend: () => {
             $('select#local').html('<option disabled selected value="none" style="color:#808080">Carregando...</option>')
+            $('select#editar_local').html('<option disabled selected value="none" style="color:#808080">Carregando...</option>')
         },
         success: (dados) => {
             let html = '<option disabled selected value="0" style="color:#808080">Selecionar Local</option>';
-
             $('select#local').html(function() {
                 $.each(dados, function(i, v) {
                     html += '<option value="' + this.id_local + '">' + this.nome + '</option>';
                 });
                 return html;
+            });
+
+            let html2 = '<option disabled selected value="0" style="color:#808080">Selecionar Local</option>';
+            $('select#editar_local').html(function() {
+                $.each(dados, function(i, v) {
+                    html2 += '<option value="' + this.id_local + '">' + this.nome + '</option>';
+                });
+                return html2;
             });
         }
     });
@@ -470,15 +514,23 @@ function carregarLigas() {
         type: 'get',
         beforeSend: () => {
             $('select#liga').html('<option disabled selected value="none" style="color:#808080">Carregando...</option>')
+            $('select#editar_liga').html('<option disabled selected value="none" style="color:#808080">Carregando...</option>')
         },
         success: (dados) => {
             let html = '<option disabled selected value="0" style="color:#808080">Selecionar Liga</option>';
-
             $('select#liga').html(function() {
                 $.each(dados, function(i, v) {
                     html += '<option value="' + this.id_liga + '">' + this.nome + '</option>';
                 });
                 return html;
+            });
+
+            let html2 = '<option disabled selected value="0" style="color:#808080">Selecionar Liga</option>';
+            $('select#editar_liga').html(function() {
+                $.each(dados, function(i, v) {
+                    html2 += '<option value="' + this.id_liga + '">' + this.nome + '</option>';
+                });
+                return html2;
             });
         }
     });
@@ -498,12 +550,21 @@ $('.cadastro-locais').click(function() {
     }
 });
 
-$('input[name=cepLocal]').on('keyup', function(e) {
+$('input[name=cepLocal], input[name=add_cepLocal]').on('keyup', function(e) {
     let cep = $(this).val();
-    $('#enderecoLocal').val('').removeAttr('disabled');
-    $('#bairroLocal').val('').removeAttr('disabled');
-    $('#cidadeLocal').val('').removeAttr('disabled');
-    $('#estadoLocal').val('').removeAttr('disabled');
+    let hasClass = $(this).hasClass('cepLocal')
+    if (hasClass) {
+        $('#enderecoLocal').val('').removeAttr('disabled');
+        $('#bairroLocal').val('').removeAttr('disabled');
+        $('#cidadeLocal').val('').removeAttr('disabled');
+        $('#estadoLocal').val('').removeAttr('disabled');
+    } else {
+        $('input[name=add_enderecoLocal]').val('').removeAttr('disabled');
+        $('input[name=add_bairroLocal]').val('').removeAttr('disabled');
+        $('input[name=add_cidadeLocal]').val('').removeAttr('disabled');
+        $('input[name=add_estadoLocal]').val('').removeAttr('disabled');
+    }
+
 
     if (cep.length === 9) {
         $.ajax({
@@ -511,26 +572,47 @@ $('input[name=cepLocal]').on('keyup', function(e) {
             dataType: 'json',
             success: (dados) => {
                 if (Object.keys(dados).length > 0) {
-                    $('#enderecoLocal').val(dados.logradouro).attr('disabled', true);
-                    $('#bairroLocal').val(dados.bairro).attr('disabled', true);
-                    $('#cidadeLocal').val(dados.localidade).attr('disabled', true);
-                    $('#estadoLocal').val(dados.uf).attr('disabled', true);
+                    if (hasClass) {
+                        $('#enderecoLocal').val(dados.logradouro).attr('disabled', true);
+                        $('#bairroLocal').val(dados.bairro).attr('disabled', true);
+                        $('#cidadeLocal').val(dados.localidade).attr('disabled', true);
+                        $('#estadoLocal').val(dados.uf).attr('disabled', true);
+                    } else {
+                        $('input[name=add_enderecoLocal]').val(dados.logradouro).attr('disabled', true);
+                        $('input[name=add_bairroLocal]').val(dados.bairro).attr('disabled', true);
+                        $('input[name=add_cidadeLocal]').val(dados.localidade).attr('disabled', true);
+                        $('input[name=add_estadoLocal]').val(dados.uf).attr('disabled', true);
+                    }
                 }
             }
         });
     }
 });
 
-$('a.btn btn-secondary').click(function() {
-    let data = {
-        nome: $('#nomeLocal').val(),
-        cep: $('#cepLocal').val(),
-        endereco: $('#enderecoLocal').val(),
-        numero: $('#numeroLocal').val(),
-        complemento: $('#complementoLocal').val(),
-        bairro: $('#bairroLocal').val(),
-        cidade: $('#cidadeLocal').val(),
-        estado: $('#estadoLocal').val(),
+$('a.btn-secondary').click(function() {
+    let data = {};
+    if ($(this).hasClass('formInserir')) {
+        data = {
+            nome: $('#nomeLocal').val(),
+            cep: $('#cepLocal').val(),
+            endereco: $('#enderecoLocal').val(),
+            numero: $('#numeroLocal').val(),
+            complemento: $('#complementoLocal').val(),
+            bairro: $('#bairroLocal').val(),
+            cidade: $('#cidadeLocal').val(),
+            estado: $('#estadoLocal').val(),
+        }
+    } else {
+        data = {
+            nome: $('input[name=add_nomeLocal]').val(),
+            cep: $('input[name=add_cepLocal]').val(),
+            endereco: $('input[name=add_enderecoLocal]').val(),
+            numero: $('input[name=add_numeroLocal]').val(),
+            complemento: $('input[name=add_complementoLocal]').val(),
+            bairro: $('input[name=add_bairroLocal]').val(),
+            cidade: $('input[name=add_cidadeLocal]').val(),
+            estado: $('input[name=add_estadoLocal]').val(),
+        }
     }
 
     $.ajax({
@@ -566,6 +648,70 @@ $('.modal-cadastro-partida').find('button.btn-danger').on('click', function(e) {
     e.preventDefault();
     $('form[cadastrarPartidas]').submit();
 });
+
+$('.modal-cadastro-partida, .modal-editar-partida').on('hidden.bs.modal', function(e) {
+    if (!($('.inserir-local').hasClass('d-none'))) {
+        $('.inserir-local').addClass('d-none');
+        $(this).find('i').removeClass('fa-minus').addClass('fa-plus');
+    }
+});
+
+$('button.btn-dark').on('click', function(e) {
+    e.preventDefault();
+    $(document).off('focusin.modal');
+    let id = $(this).parent().parent().find('input[name=id_partida]').val();
+    Swal.fire({
+        title: 'Digite o motivo do cancelamento',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        cancelButtonText: 'Fechar',
+        confirmButtonText: 'Cancelar',
+        confirmButtonColor: '#d33',
+        showLoaderOnConfirm: false,
+        preConfirm: (motivo) => {
+            if (motivo.length > 0) {
+                $.ajax({
+                    url: window.origin + '/admin/partidas/cancelar-partidas',
+                    data: { id, motivo },
+                    type: 'post',
+                    dataType: 'json',
+                    success: (retorno) => {
+                        if (retorno.code === 1) {
+                            Swal.fire({
+                                title: retorno.msg,
+                                text: retorno.submsg,
+                                showCancelButton: true,
+                                showConfirmButton: false,
+                            });
+
+                            return false;
+                        } else {
+                            Swal.fire({
+                                title: retorno.msg,
+                                showCancelButton: false,
+                                confirmButtonText: 'Ok',
+                                confirmButtonColor: '#d33',
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: 'Motivo inexistente',
+                    text: 'Digite o motivo do cancelamento',
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                });
+                return false;
+            }
+        }
+    });
+})
 
 $('form[cadastrarPartidas]').on('submit', function(e) {
     e.preventDefault();

@@ -341,6 +341,7 @@ function collapsePartida(elem) {
             '</div>' +
             '</div>' +
             '<div class="pull-right">' +
+            '<button type="button" class="btn btn-dark" data-toggle="modal" data-target=".modal-marcar-wo" data-id="' + id + '" wo>WO</button>' +
             '<button type="button" class="btn btn-danger" salvar>Salvar</button>' +
             '</div>' +
             '</div>' +
@@ -525,6 +526,47 @@ function collapsePartida(elem) {
                 }
             });
         }
+    });
+
+    $('button[wo]').on('click', function() {
+        $('input[name=id_partida_wo]').val($(this).data('id'));
+    })
+
+    $('button[salvarWO]').on('click', function() {
+        let id = $('input[name=id_partida_wo]').val();
+        let wo = $('input[name=wo]:checked').val();
+        let data = {
+            id_partida: id,
+            wo: wo,
+        };
+
+        $.ajax({
+            url: window.origin + '/admin/partidas/cadastrar-estatisticas/marcar-wo',
+            dataType: 'json',
+            type: 'post',
+            data: data,
+            success: (retorno) => {
+                if (retorno.code === 1) {
+                    Swal.fire({
+                        title: retorno.msg,
+                        text: retorno.submsg,
+                        showCancelButton: true,
+                        showConfirmButton: false,
+                    });
+
+                    return false;
+                } else {
+                    Swal.fire({
+                        title: retorno.msg,
+                        showCancelButton: false,
+                        confirmButtonText: 'Ok',
+                        confirmButtonColor: '#d33',
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                }
+            }
+        })
     });
 }
 

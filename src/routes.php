@@ -40,10 +40,12 @@ $router->get('/admin/partidas/carregar-equipes', 'admin\PartidasController@carre
 $router->get('/admin/partidas/carregar-partidas', 'admin\PartidasController@carregarPartidas');
 $router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadastrarLocal');
 $router->post('/admin/partidas/cadastrar-partida', 'admin\PartidasController@inserirPartida');
+$router->post('/admin/partidas/cancelar-partidas', 'admin\PartidasController@cancelarPartida');
 $router->get('/admin/partidas/carregar-estatisticas-jogo/{id}', 'admin\PartidasController@getEstatisticasById');
 
 $router->get('/admin/partidas/cadastrar-estatisticas/carregar-dados', 'admin\PartidasController@getDataEstatisticas');
 $router->post('/admin/partidas/cadastrar-estatisticas/enviar-dados', 'admin\PartidasController@enviarDataEstatisticas');
+$router->post('/admin/partidas/cadastrar-estatisticas/marcar-wo', 'admin\PartidasController@marcarWO');
 
 $router->get('/admin/elenco/carregar_elenco', 'admin\ElencoController@getElenco');
 $router->get('/admin/elenco/carregar_por_id/{id}', 'admin\ElencoController@getElencoById');

@@ -18,7 +18,7 @@
 
     <div class="area rounded">
         <div class="cadastro">
-            <h1 class="text-center">Cadastro - Nois Que Voa Sport Club</h1>
+            <h1 class="text-center">Cadastro - Nois Que Voa Futsal e Samba</h1>
             <form cadastrar action="" data-toggle="validator" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nome">Nome: *</label>

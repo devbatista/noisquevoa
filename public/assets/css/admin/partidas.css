@@ -159,3 +159,9 @@ table[jogadores] td {
     margin-right: 20px;
     color: #aaa;
 }
+
+.swal2-file:focus, .swal2-input:focus, .swal2-textarea:focus {
+    border: 1px solid #d33;
+    outline: 0;
+    box-shadow: 0 0 3px #f5c4c4;
+}

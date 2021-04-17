@@ -14,7 +14,7 @@ class Partida extends Model
     public function getJogos($data = false)
     {
         if (!$data) {
-            $sql = $this->db->query("SELECT a.id_partida, b.nome AS liga, c.nome AS adversario, c.abreviacao , c.logo_equipe as logo_adversario, a.gols_pro, a.gols_contra, d.nome AS local, e.nome AS mandante_visitante, a.data_hora_partida, a.concluido, a.estatisticas FROM $this->tableName AS a 
+            $sql = $this->db->query("SELECT a.id_partida, b.nome AS liga, a.id_liga, c.nome AS adversario, c.abreviacao , c.logo_equipe as logo_adversario, a.gols_pro, a.gols_contra, d.nome AS local, a.id_local, e.nome AS mandante_visitante, a.data_hora_partida, a.concluido, a.estatisticas, a.cancelado, a.motivo_cancelamento FROM $this->tableName AS a 
             INNER JOIN ligas AS b ON a.id_liga = b.id_liga 
             INNER JOIN equipes AS c ON a.id_adversario = c.id_equipe 
             INNER JOIN locais AS d ON a.id_local = d.id_local 
@@ -104,7 +104,7 @@ class Partida extends Model
             INNER JOIN locais AS e ON e.id_local = a.id_local
                 WHERE id_partida = :id_partida");
 
-        $sql->bindvalue('id_partida', $id);
+        $sql->bindValue('id_partida', $id);
         $sql->execute();
 
         return $sql->fetch(\PDO::FETCH_ASSOC);
@@ -113,5 +113,43 @@ class Partida extends Model
     public function updatePartidasConcluidas()
     {
         $sql = $this->db->query("UPDATE $this->tableName SET concluido = 1 WHERE data_hora_partida < CURRENT_TIMESTAMP() + INTERVAL 1 HOUR");
+    }
+
+    public function cancelPartida($data)
+    {
+        $sql = $this->db->prepare("UPDATE $this->tableName SET cancelado = 1, motivo_cancelamento = :motivo WHERE id_partida = :id_partida");
+        $sql->bindValue('id_partida', $data['id']);
+        $sql->bindValue('motivo', $data['motivo']);
+        $sql->execute();
+    }
+
+    public function marcarWO($data)
+    {
+        $sql = $this->db->prepare("UPDATE $this->tableName SET concluido = 1, estatisticas = 1, gols_pro = :gols_pro, gols_contra = :gols_contra WHERE id_partida = :id_partida");
+
+        if ($data['wo'] == 1) {
+            $sql->bindValue(':gols_pro', 'W');
+            $sql->bindValue(':gols_contra', 'O');
+        } else {
+            $sql->bindValue(':gols_pro', 'O');
+            $sql->bindValue(':gols_contra', 'W');
+        }
+
+        $sql->bindValue('id_partida', $data['id_partida']);
+        $sql->execute();
+    }
+
+    public function getPartidaCancelada($id)
+    {
+        $sql = $this->db->query("SELECT * FROM $this->tableName WHERE id_partida = $id AND cancelado = 1");
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function getPartidaWO($id)
+    {
+        $sql = $this->db->query("SELECT * FROM $this->tableName WHERE id_partida = $id AND (gols_pro = 'W' OR gols_contra = 'W')");
+
+        return $sql->fetch(\PDO::FETCH_ASSOC);
     }
 }

@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 // Estatísticas inativas para desenvolvimento
-$('.inactive').click(function(e){
+$('.inactive').click(function(e) {
     e.preventDefault();
     $(this).css('background-color', '#bd2a38');
 })
@@ -154,18 +154,23 @@ function assistencias() {
 
     let assistencias = dados.assistencia;
     let html = '';
+    let cont = 0;
 
     $('tbody[classificacaoAssistencias]').append(function() {
         if (Object.keys(assistencias).length > 0) {
             $.each(assistencias, function(i, v) {
-                let pos = i + 1;
+                if (cont < 5) {
+                    let pos = i + 1;
 
-                html += '<tr>' +
-                    '<th scope="row">' + pos + 'º</th>' +
-                    '<td>' + this.apelido + '</td>' +
-                    '<td>' + this.assistencias + '</td>' +
-                    '<td>' + this.jogos + '</td>' +
-                    '</tr>';
+                    html += '<tr>' +
+                        '<th scope="row">' + pos + 'º</th>' +
+                        '<td>' + this.apelido + '</td>' +
+                        '<td>' + this.assistencias + '</td>' +
+                        '<td>' + this.jogos + '</td>' +
+                        '</tr>';
+
+                    cont++;
+                }
             });
         } else {
             html += '<div class="ibox-content"> Sem assistências na temporada </div>'
@@ -181,18 +186,23 @@ function artilharia() {
 
     let artilharia = dados.artilharia;
     let html = '';
+    let cont = 0;
 
     $('tbody[classificacaoArtilharia]').append(function() {
         if (Object.keys(artilharia).length > 0) {
             $.each(artilharia, function(i, v) {
-                let pos = i + 1;
+                if (cont < 6) {
+                    let pos = i + 1;
 
-                html += '<tr>' +
-                    '<th scope="row">' + pos + 'º</th>' +
-                    '<td>' + this.apelido + '</td>' +
-                    '<td>' + this.gols + '</td>' +
-                    '<td>' + this.jogos + '</td>' +
-                    '</tr>';
+                    html += '<tr>' +
+                        '<th scope="row">' + pos + 'º</th>' +
+                        '<td>' + this.apelido + '</td>' +
+                        '<td>' + this.gols + '</td>' +
+                        '<td>' + this.jogos + '</td>' +
+                        '</tr>';
+
+                    cont++;
+                }
             });
         } else {
             html += '<div class="ibox-content"> Sem gols na temporada </div>'
