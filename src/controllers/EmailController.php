@@ -289,7 +289,7 @@ class EmailController extends Controller
             $this->mailer->setFrom(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addReplyTo(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
             $this->mailer->addAddress(Config::EMAIL_SENDER, 'Diretoria - ' . Config::NOME_DO_TIME_COMPLETO);
-            // $this->mailer->addCC('batist11@gmail.com', 'Rafael Batista');
+            $this->mailer->addCC('batist11@gmail.com', 'Rafael Batista');
             // $this->mailer->addCC('alvescassio20@gmail.com', 'Cassio Lima');
 
             $this->mailer->isHTML(true);
