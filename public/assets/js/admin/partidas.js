@@ -721,15 +721,16 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
         type: 'post',
         success: (dados) => {
             if (dados.code == 0) {
+                $('.modal-cadastro-partida').modal('hide');
                 swal.fire({
                     title: 'Partida cadastrada com sucesso',
                     showConfirmButton: true,
                     showCancelButton: false,
                     confirmButtonColor: '#999',
                     confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.reload();
                 });
-
-                $('.modal-cadastro-partida').modal('hide');
                 // carregarPartidas();
             } else {
                 swal.fire({
