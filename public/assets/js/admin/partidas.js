@@ -729,7 +729,9 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
                     confirmButtonColor: '#999',
                     confirmButtonText: 'OK'
                 }).then(() => {
-                    window.location.reload();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 250);
                 });
                 // carregarPartidas();
             } else {
