@@ -117,7 +117,7 @@ function carregarPartidas(val) {
         });
 
         return html;
-    });    
+    });
 
     let order = (val == 1) ? '"desc"' : '"asc"';
 
@@ -737,8 +737,8 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
             } else {
                 swal.fire({
                     icon: 'error',
-                    title: 'Erro ao cadastrar partida',
-                    text: 'Atualize a página e tente cadastrar novamente',
+                    title: dados.msg,
+                    text: 'Tamanho permitido ' + dados.tamanho_permitido + ' / Tipos permitidos: ' + dados.tipos_permitidos,
                     showConfirmButton: false,
                     showCancelButton: true,
                     cancelButtonColor: '#999',

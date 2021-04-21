@@ -335,7 +335,7 @@ class PartidasController extends Controller
                 ];
 
                 echo json_encode($errorImg);
-                return false;
+                exit;
             }
             $logo = $this->salvarImagem($_FILES['logo'], $dados['id_adversario'], 'times');
             $logo = '/' . $logo;
