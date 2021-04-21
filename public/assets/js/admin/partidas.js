@@ -731,7 +731,7 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
                 }).then(() => {
                     setTimeout(() => {
                         window.location.reload();
-                    }, 250);
+                    }, 350);
                 });
                 // carregarPartidas();
             } else {
