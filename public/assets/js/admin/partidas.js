@@ -370,8 +370,8 @@ function modalEstatisticaUnica(id) {
 function modalEditarPartida(id) {
     carregarLigas();
     carregarLocais();
-    $.each(partidas, function(i, v) {
-        setTimeout(() => {
+    setTimeout(() => {
+        $.each(partidas, function(i, v) {
             if (this.id_partida == id) {
                 let data_hora = this.data_formatada_js + 'T' + this.horario;
                 $('input[name=id_partida]').val(id);
@@ -381,8 +381,9 @@ function modalEditarPartida(id) {
                 $('select#editar_liga').val(this.id_liga);
                 $('input#dataHoraPartida').val(data_hora);
             }
-        }, 450);
-    });
+        });
+    }, 1000);
+
 }
 
 function carregarEstatisticasEmAguardo() {
