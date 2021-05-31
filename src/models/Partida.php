@@ -152,4 +152,9 @@ class Partida extends Model
 
         return $sql->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function updatePartidas($value, $key, $id)
+    {
+        $this->db->query("UPDATE $this->tableName SET $key = $value WHERE id_partida = $id");
+    }
 }

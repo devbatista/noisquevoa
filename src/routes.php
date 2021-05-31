@@ -42,6 +42,7 @@ $router->post('/admin/partidas/cadastrar-local', 'admin\PartidasController@cadas
 $router->post('/admin/partidas/cadastrar-partida', 'admin\PartidasController@inserirPartida');
 $router->post('/admin/partidas/cancelar-partidas', 'admin\PartidasController@cancelarPartida');
 $router->get('/admin/partidas/carregar-estatisticas-jogo/{id}', 'admin\PartidasController@getEstatisticasById');
+$router->post('/admin/partidas/editar-partida', 'admin\PartidasController@editarPartida');
 
 $router->get('/admin/partidas/cadastrar-estatisticas/carregar-dados', 'admin\PartidasController@getDataEstatisticas');
 $router->post('/admin/partidas/cadastrar-estatisticas/enviar-dados', 'admin\PartidasController@enviarDataEstatisticas');

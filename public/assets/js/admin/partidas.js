@@ -765,3 +765,54 @@ $('form[cadastrarPartidas]').on('submit', function(e) {
         }
     });
 });
+
+$('.modal-editar-partida .modal-footer button.btn-danger').on('click', function(e){
+    e.preventDefault();
+    $('form[editarPartida]').submit();
+});
+
+$('form[editarPartida]').on('submit', function(e) {
+    e.preventDefault();
+    $(this).ajaxSubmit({
+        url: window.origin + '/admin/partidas/editar-partida',
+        dataType: 'json',
+        type: 'post',
+        success: (dados) => {
+            if (dados.code == 0) {
+                $('.modal-cadastro-partida').modal('hide');
+                swal.fire({
+                    title: 'Partida alterada com sucesso',
+                    showConfirmButton: true,
+                    showCancelButton: false,
+                    confirmButtonColor: '#999',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 350);
+                });
+                // carregarPartidas();
+            } else {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Tente novamente ou entre em contato com o administrador do sistema',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonColor: '#999',
+                    cancelButtonText: 'Voltar'
+                });
+            }
+        },
+        error: () => {
+            swal.fire({
+                icon: 'error',
+                title: 'Erro ao alterar partida',
+                text: 'Atualize a página e tente editar novamente',
+                showConfirmButton: false,
+                showCancelButton: true,
+                cancelButtonColor: '#999',
+                cancelButtonText: 'Voltar'
+            });
+        }
+    });
+});

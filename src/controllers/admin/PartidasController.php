@@ -360,6 +360,34 @@ class PartidasController extends Controller
         return true;
     }
 
+    public function editarPartida()
+    {
+        $code = [];
+        $id = $_POST['id_partida'];
+
+        $partida = new Partida();
+
+        $data = [
+            'id_local' => $_POST['local'],
+            'id_liga' => $_POST['editar_liga'],
+            'data_hora_partida' => date('Y-m-d H:i', strtotime($_POST['dataHoraPartida']))
+        ];
+
+        $id = $_POST['id_partida'];
+
+        foreach ($data as $key => $value) {
+            $partida->updatePartidas($value, $key, $id);
+        }
+
+        $code = [
+            'code' => 0,
+            'msg' => 'Partida alterada com sucesso',
+        ];
+        
+        echo json_encode($code);
+        return true;
+    }
+
     public function carregarPartidas()
     {
         $partidas = [];
@@ -446,7 +474,7 @@ class PartidasController extends Controller
             'id' => $_POST['id'],
             'motivo' => strtoupper($_POST['motivo']),
         ];
-        
+
         $this->partidas->cancelPartida($dados);
         $cancelado = $this->partidas->getPartidaCancelada($dados['id']);
         if ($cancelado) {
@@ -469,7 +497,7 @@ class PartidasController extends Controller
         $dados = $_POST;
         $this->partidas->marcarWO($dados);
         $wo = $this->partidas->getPartidaWO($dados['id_partida']);
-        if($wo) {
+        if ($wo) {
             $retorno = [
                 'code' => 0,
                 'msg' => 'WO cadastrado com sucesso, uma pena o jogo não ter acontecido'
