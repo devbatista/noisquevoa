@@ -377,11 +377,11 @@ function modalEditarPartida(id) {
                 $('input[name=id_partida]').val(id);
                 $('input#editar_adversario').val(this.adversario).attr('disabled', true);
                 $('input#editar_abreviacao').val(this.abreviacao).attr('disabled', true);
-                $('select#editar_local').val(1);
+                $('select#editar_local').val(this.id_local);
                 $('select#editar_liga').val(this.id_liga);
                 $('input#dataHoraPartida').val(data_hora);
             }
-        }, 300);
+        }, 450);
     });
 }
 
