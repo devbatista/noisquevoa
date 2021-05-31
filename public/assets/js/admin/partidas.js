@@ -451,15 +451,21 @@ function carregarAbreviacao() {
     if (adversario.length > 0) {
         $.each(equipes, function(i, v) {
             if (adversario == v.nome) {
-                $('#abreviacao').val(v.abreviacao);
-                $('#logo').prev().text('Alterar logo do adversário:');
+                console.log(v);
+                setTimeout(() => {
+                    $('#abreviacao').val(v.abreviacao);
+                    $('#logo').prev().text('Alterar logo do adversário:');
+                }, 250);
             } else {
-                $('#abreviacao').val('');
-                $('#logo').prev().text('Logo do adversário:');
+                setTimeout(() => {
+                    $('#abreviacao').val('');
+                    $('#logo').prev().text('Logo do adversário:');
+                }, 200);
             }
         });
     } else {
         $('#abreviacao').val('');
+        $('#logo').prev().text('Logo do adversário:');
     }
 }
 
