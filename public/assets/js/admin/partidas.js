@@ -451,7 +451,6 @@ function carregarAbreviacao() {
     if (adversario.length > 0) {
         $.each(equipes, function(i, v) {
             if (adversario == v.nome) {
-                console.log(v);
                 setTimeout(() => {
                     $('#abreviacao').val(v.abreviacao);
                     $('#logo').prev().text('Alterar logo do adversário:');
