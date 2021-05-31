@@ -6,5 +6,6 @@ public/error_log
 public/.user.ini
 public/php.ini
 public/assets/img/
+public/assets/files/
 src/Config.php
 composer.lock
