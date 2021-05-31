@@ -381,7 +381,7 @@ function modalEditarPartida(id) {
                 $('select#editar_liga').val(this.id_liga);
                 $('input#dataHoraPartida').val(data_hora);
             }
-        }, 250);
+        }, 300);
     });
 }
 
