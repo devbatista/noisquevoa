@@ -29,7 +29,7 @@ class CadastroController extends Controller
     {
         $validarImagem = false;
 
-        if ($_POST) {
+        if ($_POST != false) {
             $retorno = '';
             $jogador = filter_input(INPUT_POST, 'jogador', FILTER_VALIDATE_INT);
             $diretoria = filter_input(INPUT_POST, 'diretoria', FILTER_VALIDATE_INT);
@@ -85,26 +85,32 @@ class CadastroController extends Controller
                     array_push($falseKey, $key);
                 }
             }
+            print_r($falseKey);exit;
 
             unset($dados['confirma']);
 
             if (empty($falseKey)) {
                 $inserUser = new Usuario();
                 $retorno = $inserUser->insertUser($dados);
-            }
 
-            if ($retorno['code'] == 0 && $validarImagem) {
-                $foto = $this->salvarImagem($_FILES['foto'], $retorno['id'], 'perfil');
-                $foto = '/' . $foto;
-
-                $updateFoto = new Usuario();
-                $updateFoto->updatePhotoUser($foto, $retorno['id']);
-            }
-
-            if ($retorno['code'] == 0) {
-                $enviaEmailDiretoria = new EmailController();
-                $enviaEmailDiretoria->enviarNovoCadastro($dados);
-            }
+                if ($retorno['code'] == 0 && $validarImagem) {
+                    $foto = $this->salvarImagem($_FILES['foto'], $retorno['id'], 'perfil');
+                    $foto = '/' . $foto;
+    
+                    $updateFoto = new Usuario();
+                    $updateFoto->updatePhotoUser($foto, $retorno['id']);
+                }
+    
+                if ($retorno['code'] == 0) {
+                    $enviaEmailDiretoria = new EmailController();
+                    $enviaEmailDiretoria->enviarNovoCadastro($dados);
+                }
+            } else {
+                $retorno = [
+                    'code' => 2,
+                    'msg' => ''
+                ];
+            }           
 
             echo json_encode($retorno);
         } else {

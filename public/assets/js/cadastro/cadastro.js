@@ -1,5 +1,82 @@
 $(document).ready(function() {
-    carregarPosicao();
+    $("#wizard").steps();
+    $("#form").steps({
+        bodyTag: "fieldset",
+        onStepChanging: function(event, currentIndex, newIndex) {
+            // Always allow going backward even if the current step contains invalid fields!
+            if (currentIndex > newIndex) {
+                return true;
+            }
+
+            // Forbid suppressing "Warning" step if the user is to young
+            if (newIndex === 3 && Number($("#age").val()) < 18) {
+                return false;
+            }
+
+            var form = $(this);
+
+            // Clean up if user went backward before
+            if (currentIndex < newIndex) {
+                // To remove error styles
+                $(".body:eq(" + newIndex + ") label.error", form).remove();
+                $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+            }
+
+            // Disable validation on fields that are disabled or hidden.
+            form.validate().settings.ignore = ":disabled,:hidden";
+
+            // Start validation; Prevent going forward if false
+            return form.valid();
+        },
+        onStepChanged: function(event, currentIndex, priorIndex) {
+            // Suppress (skip) "Warning" step if the user is old enough.
+            if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                $(this).steps("next");
+            }
+
+            // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+            if (currentIndex === 2 && priorIndex === 3) {
+                $(this).steps("previous");
+            }
+        },
+        onFinishing: function(event, currentIndex) {
+            var form = $(this);
+
+            // Disable validation on fields that are disabled.
+            // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+            form.validate().settings.ignore = ":disabled";
+
+            // Start validation; Prevent form submission if false
+            return form.valid();
+        },
+        onFinished: function(event, currentIndex) {
+            var form = $(this);
+
+            // Submit form input
+            form.submit();
+        }
+    }).validate({
+        errorPlacement: function(error, element) {
+            if (element.is('#senha') || element.is('#confirmarSenha')) {
+                console.log(element.parent().prev().append(error));
+            } else if (element.is('#termos-e-condicoes')) {
+                element.parent().before(error)
+                element.parent().before('<br>');
+            } else {
+                element.before(error);
+            }
+        },
+        rules: {
+            confirm: {
+                equalTo: "#password"
+            }
+        }
+    });
+
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
 
     $('input[name=cpf]').mask('000.000.000-00');
     $('input[name=whatsapp]').mask('(00) 00000-0000');
@@ -10,6 +87,50 @@ $(document).ready(function() {
 
     $('.eye').on('mouseup', function() {
         $(this).parent().find('input').attr('type', 'password');
+    });
+
+    setTimeout(() => {
+        carregarPosicao();
+
+        $('input[name=jogador]').on('click', function() {
+            let posicao = $('select[name=posicao]');
+            if ($('input[name=jogador]').is(':checked') == true) {
+                posicao.removeAttr('disabled');
+                posicao.attr('required', true);
+            } else {
+                $('select[name=posicao]').val('0');
+                posicao.attr('disabled', true);
+                posicao.removeAttr('required');
+            }
+        })
+    }, 1000);
+
+    $('input[name=cpf]').on('keyup', function(e) {
+        let cpf = $(this).val();
+        let validador = validaCPF(cpf);
+        if (cpf.length == 0) {
+            $('#cpfInvalido').remove();
+            return false;
+        }
+        if (cpf.length === 14) {
+            if (!validador) {
+                if ($('#cpfInvalido').length == 0) {
+                    $('input[name=cpf]').after('<div id="cpfInvalido">CPF Inválido</div>');
+                }
+                return false;
+            } else {
+                $('#cpfInvalido').remove();
+                return true;
+            }
+        }
+    });
+
+    $('input[name=senha]').on('keyup', function() {
+        tamanhoSenha();
+    });
+
+    $('input[name=confirmarSenha]').on('keyup', function() {
+        validarSenhas();
     });
 });
 
@@ -95,34 +216,6 @@ function validaCPF(cpf) {
     return true
 }
 
-$('input[name=cpf]').on('keyup', function(e) {
-    let cpf = $(this).val();
-    let validador = validaCPF(cpf);
-    if (cpf.length == 0) {
-        $('#cpfInvalido').remove();
-        return false;
-    }
-    if (cpf.length === 14) {
-        if (!validador) {
-            if ($('#cpfInvalido').length == 0) {
-                $('input[name=cpf]').after('<div id="cpfInvalido">CPF Inválido</div>');
-            }
-            return false;
-        } else {
-            $('#cpfInvalido').remove();
-            return true;
-        }
-    }
-});
-
-$('input[name=senha]').on('keyup', function() {
-    tamanhoSenha();
-});
-
-$('input[name=confirmarSenha]').on('keyup', function() {
-    validarSenhas();
-});
-
 $('form[cadastrar]').on('submit', function(e) {
     e.preventDefault();
     $('form').ajaxSubmit({
@@ -174,21 +267,6 @@ $('form[cadastrar]').on('submit', function(e) {
     });
 });
 
-$('input[name=jogador]').on('click', function() {
-    let posicao = $('select[name=posicao]');
-    let comissao_tecnica = $('input[name=comissao_tecnica]');
-    if ($('input[name=jogador]').is(':checked') == true) {
-        posicao.removeAttr('disabled');
-        posicao.attr('required', true);
-        // comissao_tecnica.attr('disabled', true);
-    } else {
-        $('select[name=posicao]').val('0');
-        posicao.attr('disabled', true);
-        posicao.removeAttr('required');
-        // comissao_tecnica.removeAttr('disabled');
-    }
-})
-
 $('input[name=diretoria]').on('click', function() {
     let diretoria = $('input[name=diretoria]');
     let jogador = $('input[name=jogador]');
@@ -201,19 +279,3 @@ $('input[name=diretoria]').on('click', function() {
         posicao.attr('required', true);
     }
 });
-
-// $('input[name=comissao_tecnica]').on('click', function() {
-//     let jogador = $('input[name=jogador]');
-//     let posicao = $('select[name=posicao]');
-//     if ($('input[name=comissao_tecnica]').is(':checked') != true) {
-//         jogador.removeAttr('disabled');
-//         jogador.attr('required', true);
-//     } else {
-//         $('input[name=jogador]').prop('checked', false)
-//         $('select[name=jogador]').val('0');
-//         jogador.attr('disabled', true);
-//         jogador.removeAttr('required');
-//         posicao.attr('disabled', true);
-//         posicao.removeAttr('required');
-//     }
-// });

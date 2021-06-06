@@ -9,9 +9,9 @@ body {
 div.area {
     width: 100%;
     max-width: 1000px;
-    padding-left: 10px;
-    padding-right: 30px;
-    background: url('../../img/noisquevoa.png') no-repeat fixed top;
+    /* padding-left: 10px; */
+    /* padding-right: 30px; */
+    /* background: url('../../img/noisquevoa.png') no-repeat fixed top; */
     background-size: contain;
     -webkit-box-shadow: 0px 0px 60px 30px rgba(143, 28, 3, 0.35);
     -moz-box-shadow: 0px 0px 60px 30px rgba(143, 28, 3, 0.35);
@@ -19,8 +19,8 @@ div.area {
 }
 
 .form-control:focus {
-    border-color: #f10404;
-    box-shadow: 0 0 0 0.2rem rgb(255 2 1 / 18%);
+    border-color: #f10404!important;
+    box-shadow: 0 0 0 0.2rem rgb(255 2 1 / 18%)!important;
 }
 
 div.cadastro {
@@ -35,7 +35,6 @@ h1 {
 
 label {
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.7);
 }
 
 label.form-check-label {
@@ -55,4 +54,34 @@ div#cpfInvalido {
 input[type=file] {
     background-color: #fff;
     border: 1px solid #bbb;
+}
+
+.wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active {
+    background: #dc3545;
+    color: #fff;
+    cursor: default;
+}
+
+.wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
+    background: #dc3545;
+    color: #fff;
+    display: block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.wizard > .steps .done a, .wizard > .steps .done a:hover, .wizard > .steps .done a:active {
+    background: #dc3545;
+    color: #fff;
+}
+
+a[href$='previous'] {
+    background-color: #888!important;
+}
+
+a.termos-e-condicoes {
+    color: #000;
 }
