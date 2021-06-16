@@ -112,7 +112,7 @@ class Partida extends Model
 
     public function updatePartidasConcluidas()
     {
-        $sql = $this->db->query("UPDATE $this->tableName SET concluido = 1 WHERE data_hora_partida < CURRENT_TIMESTAMP() + INTERVAL 1 HOUR");
+        $sql = $this->db->query("UPDATE $this->tableName SET concluido = 1 WHERE data_hora_partida < CURRENT_TIMESTAMP() + INTERVAL 1 HOUR AND cancelado = 0");
     }
 
     public function cancelPartida($data)
