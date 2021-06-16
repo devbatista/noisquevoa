@@ -4,6 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="<?= $base ?>/assets/img/noisquevoa.png" />
+    <meta property="og:title" content="Nois Que Voa FS" />
+    <meta property="og:description" content="Área administrativa do time Nois Que Voa Futsal e Samba." />
+    
     <title>Nois Que Voa - Administração</title>
     <link rel="shortcut icon" type="image/x-icon" href="<?= $base ?>/assets/img/favicon.ico">
     <link rel="stylesheet" href="<?= $base ?>/assets/plugins/bootstrap/bootstrap.min.css">
