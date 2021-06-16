@@ -411,7 +411,6 @@ class Usuario extends Model
 
     public function insertUser($data)
     {
-        print_r($data);exit;
         if ($data) {
             try {
                 $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

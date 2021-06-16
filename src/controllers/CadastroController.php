@@ -30,7 +30,7 @@ class CadastroController extends Controller
         $validarImagem = false;
 
         if ($_POST != false) {
-            $retorno = '';
+            $retorno = [];
             $jogador = filter_input(INPUT_POST, 'jogador', FILTER_VALIDATE_INT);
             $diretoria = filter_input(INPUT_POST, 'diretoria', FILTER_VALIDATE_INT);
             $comissao = filter_input(INPUT_POST, 'comissao_tecnica', FILTER_VALIDATE_INT);
@@ -85,7 +85,6 @@ class CadastroController extends Controller
                     array_push($falseKey, $key);
                 }
             }
-            print_r($falseKey);exit;
 
             unset($dados['confirma']);
 
@@ -96,21 +95,31 @@ class CadastroController extends Controller
                 if ($retorno['code'] == 0 && $validarImagem) {
                     $foto = $this->salvarImagem($_FILES['foto'], $retorno['id'], 'perfil');
                     $foto = '/' . $foto;
-    
+
                     $updateFoto = new Usuario();
                     $updateFoto->updatePhotoUser($foto, $retorno['id']);
                 }
-    
+
                 if ($retorno['code'] == 0) {
                     $enviaEmailDiretoria = new EmailController();
                     $enviaEmailDiretoria->enviarNovoCadastro($dados);
                 }
             } else {
-                $retorno = [
-                    'code' => 2,
-                    'msg' => ''
-                ];
-            }           
+                $retorno['code'] = 3;
+                switch ($falseKey[0]) {
+                    case 'senha':
+                        $retorno['msg'] = 'Senhas não conferem.';
+                        break;
+
+                    case 'cpf':
+                        $retorno['msg'] = 'CPF inválido, corrija e tente novamente.';
+                        break;
+
+                    default:
+                        $retorno['msg'] = ucfirst($falseKey[0]) . ' inválido, corrija e tente novamente.';
+                        break;
+                }
+            }
 
             echo json_encode($retorno);
         } else {
