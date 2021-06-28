@@ -145,7 +145,7 @@
                         <h2>Termos e Condições</h2>
                         <div class="form-check form-check-inline checkbox checkbox-danger">
                             <input class="form-check-input" type="checkbox" id="termos-e-condicoes" value="1" name="termos-e-condicoes" required>
-                            <label class="form-check-label" for="">Declaro que li e aceito os <b><a class="termos-e-condicoes" href="">Termos e Condições</a></b></label>
+                            <label class="form-check-label" for="">Declaro que li e aceito os <b><a class="termos-e-condicoes" href="<?= $base ?>/assets/files/politica-de-privacidade.pdf">Termos e Condições</a></b></label>
                         </div>
                     </fieldset>
                 </form>
