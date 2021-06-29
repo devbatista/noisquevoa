@@ -591,7 +591,7 @@ class EmailController extends Controller
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="font-family: Arial, sans-serif; font-size: 24px; text-align: center;">Nois Que Voa</td>
+                                            <td style="font-family: Arial, sans-serif; font-size: 24px; text-align: center;">' . Config::NOME_DO_TIME_COMPLETO . '</td>
                                             <td></td>
                                             <td style="font-family: Arial, sans-serif; font-size: 24px; text-align: center">' . $dados['adversario'] . '</td>
                                         </tr>
