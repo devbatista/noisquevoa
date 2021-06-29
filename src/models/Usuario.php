@@ -307,7 +307,7 @@ class Usuario extends Model
 
     public function getAllElenco()
     {
-        $sql = $this->db->query("SELECT a.id_usuario, a.nome, a.apelido, b.nome AS posicao, a.dt_nascimento, a.foto, a.mensalista FROM $this->tableName AS a LEFT JOIN posicoes AS b ON a.posicao = b.id_posicao WHERE a.aprovado = 1 AND (a.jogador = 1  OR a.comissao_tecnica = 1) AND ativo = 1 ORDER BY a.jogador DESC, a.posicao ASC;");
+        $sql = $this->db->query("SELECT a.id_usuario, a.nome, a.apelido, a.email, b.nome AS posicao, a.dt_nascimento, a.foto, a.mensalista FROM $this->tableName AS a LEFT JOIN posicoes AS b ON a.posicao = b.id_posicao WHERE a.aprovado = 1 AND (a.jogador = 1  OR a.comissao_tecnica = 1) AND ativo = 1 ORDER BY a.jogador DESC, a.posicao ASC;");
 
         return $sql->fetchAll(\PDO::FETCH_ASSOC);
     }

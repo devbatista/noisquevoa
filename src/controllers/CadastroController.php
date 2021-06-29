@@ -102,6 +102,16 @@ class CadastroController extends Controller
 
                 if ($retorno['code'] == 0) {
                     $enviaEmailDiretoria = new EmailController();
+                    $diretoria = new Usuario();
+                    $diretoria = $diretoria->getAllDiretoria();
+                    $arrayDiretoria = [];
+                    foreach ($diretoria as $value) {
+                        $arrayDiretoria[] = [
+                            'nome' => $value['nome'],
+                            'email' => $value['email'],
+                        ];
+                    }
+                    $dados['dados_diretoria'] = $arrayDiretoria;
                     $enviaEmailDiretoria->enviarNovoCadastro($dados);
                 }
             } else {

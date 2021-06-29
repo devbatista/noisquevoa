@@ -67,6 +67,8 @@ class Partida extends Model
         $sql->bindValue('data_hora_partida', $data['data_hora_partida']);
 
         $sql->execute();
+
+        return $this->db->lastInsertId();
     }
 
     public function getPartidasConcluidas()

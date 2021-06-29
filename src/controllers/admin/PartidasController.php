@@ -3,6 +3,7 @@
 namespace src\controllers\admin;
 
 use \core\Controller;
+use \src\controllers\EmailController;
 use \src\models\Partida;
 use \src\models\Local;
 use \src\models\Liga;
@@ -344,12 +345,20 @@ class PartidasController extends Controller
             $updateLogo->updatePhotoTeam($logo, $dados['id_adversario']);
         }
 
+        $id_partida = [];
+
         for ($i = 1; $i <= $dados['quadros']; $i++) {
-            $this->partidas->createPartida($dados);
+            $id_partida[$i] = $this->partidas->createPartida($dados);
             if ($dados['quadros'] == 2) {
                 $dados['data_hora_partida'] = date("Y-m-d H:i", strtotime($dados['data_hora_partida'] . "+1 hour"));
             }
         }
+
+        $email = new EmailController();
+        $partida = $this->partidas->getPartidaById($id_partida[1]);
+        $partida['data'] = date('d/m/Y', strtotime($partida['data_hora_partida']));
+        $partida['hora'] = date('H:i', strtotime($partida['data_hora_partida']));
+        $email->enviarPartidaCadastrada($partida);
 
         $code = [
             'code' => 0,
