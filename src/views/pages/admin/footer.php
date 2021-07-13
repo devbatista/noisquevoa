@@ -482,6 +482,10 @@
                     showCancelButton: false,
                     confirmButtonColor: '#d33',
                 });
+
+                $('form[enviarConvite] input').each(function(i, v) {
+                    $(this).val('');
+                });
             }
         });
     });
