@@ -54,7 +54,7 @@ window.onload = function() {
         let elem = $(this).parent().parent();
         let id = elem.parent().parent().data('id');
 
-        
+
         Swal.fire({
             title: 'Deseja mesmo desativar a liga?',
             icon: 'warning',
@@ -80,30 +80,32 @@ window.onload = function() {
 function carregarLigas() {
     let html = '';
 
-    $('.mostrarLigas .ibox').html(function() {
-        $.each(ligas, function(i, v) {
-            let site = (this.url_site == null) ? 'Sem site' : '<a href="' + this.url_site + '" class="siteLiga" target="_blank">' + this.url_site + '</a>';
-            html += '<div class="ibox-content" data-id="' + this.id_liga + '">' +
-                '<div class="row" style="margin-top: 10px">' +
-                '<div class="col-5 text-center imgLiga"><img src="' + window.origin + this.logo_liga + '" alt="Liga" class="imgLiga"></div>' +
-                '<div class="col-7 dadosLiga text-muted">' +
-                '<div class="row titulo"><b>' + this.nome + '</b></div>' +
-                '<div class="row site">' + site + '</div>' +
-                '<div class="row icons">' +
-                '<button class="btn btn-secondary">' +
-                '<i class="fa fa-cog"></i>' +
-                '</button>' +
-                '<button class="btn btn-danger">' +
-                '<i class="fa fa-trash"></i>' +
-                '</button>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>';
-        });
+    setTimeout(() => {
+        $('.mostrarLigas .ibox').html(function() {
+            $.each(ligas, function(i, v) {
+                let site = (this.url_site == null) ? 'Sem site' : '<a href="' + this.url_site + '" class="siteLiga" target="_blank">' + this.url_site + '</a>';
+                html += '<div class="ibox-content" data-id="' + this.id_liga + '">' +
+                    '<div class="row" style="margin-top: 10px">' +
+                    '<div class="col-5 text-center imgLiga"><img src="' + window.origin + this.logo_liga + '" alt="Liga" class="imgLiga"></div>' +
+                    '<div class="col-7 dadosLiga text-muted">' +
+                    '<div class="row titulo"><b>' + this.nome + '</b></div>' +
+                    '<div class="row site">' + site + '</div>' +
+                    '<div class="row icons">' +
+                    '<button class="btn btn-secondary">' +
+                    '<i class="fa fa-cog"></i>' +
+                    '</button>' +
+                    '<button class="btn btn-danger">' +
+                    '<i class="fa fa-trash"></i>' +
+                    '</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            });
 
-        return html;
-    });
+            return html;
+        });
+    }, 500);
 }
 
 function permissao() {
