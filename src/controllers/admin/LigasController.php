@@ -37,6 +37,8 @@ class LigasController extends Controller
             'site' => (!empty($_POST['site'])) ? $_POST['site'] : null,
         ];
 
+        $id_liga = $this->ligas->addLiga($dados);
+
         if ($_FILES) {
             $validar = $this->validarArquivo($_FILES['logo']);
             if ($_FILES['logo']['type'] == 'application/pdf') {
@@ -55,7 +57,6 @@ class LigasController extends Controller
                 return false;
             }
 
-            $id_liga = $this->ligas->addLiga($dados);
             $logo = $this->salvarImagem($_FILES['logo'], $id_liga, 'ligas');
             $logo = '/' . $logo;
             $this->ligas->updateLogoLiga($logo, $id_liga);
