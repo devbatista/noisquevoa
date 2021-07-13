@@ -474,8 +474,14 @@
             beforeSubmit: () => {
 
             },
-            success: (retorno) => {
-
+            success: (e) => {
+                let icon = (e.code === 0) ? 'success' : 'error';
+                Swal.fire({
+                    title: e.msg,
+                    icon: icon,
+                    showCancelButton: false,
+                    confirmButtonColor: '#d33',
+                });
             }
         });
     });

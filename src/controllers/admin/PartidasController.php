@@ -358,11 +358,12 @@ class PartidasController extends Controller
         $partida = $this->partidas->getPartidaById($id_partida[1]);
         $partida['data'] = date('d/m/Y', strtotime($partida['data_hora_partida']));
         $partida['hora'] = date('H:i', strtotime($partida['data_hora_partida']));
-        $email->enviarPartidaCadastrada($partida);
+        $retornoEmail = $email->enviarPartidaCadastrada($partida);
 
         $code = [
             'code' => 0,
             'msg' => 'Success',
+            'email' => $retornoEmail,
         ];
 
         echo json_encode($code);
