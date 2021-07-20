@@ -140,7 +140,7 @@ function getAprovarCadastro() {
             let element = $('.modal-aprovar-cadastro').find('.modal-body');
 
             if (countData > 0) {
-                $('.float-left button').text('Aprovar Cadastro (' + countData + ')').removeClass('disabled').attr('data-toggle', 'modal');
+                $('.pull-left button').text('Aprovar Cadastro (' + countData + ')').removeClass('disabled').attr('data-toggle', 'modal');
 
                 let html = '';
 
