@@ -536,11 +536,9 @@ class EmailController extends Controller
             $this->mailer->AltBody = $msg;
 
             if (!$this->mailer->send()) {
-                echo 'Falha ao enviar o email';
-                return false;
+                return 'Falha ao enviar o email';
             } else {
-                echo 'Email enviado';
-                return true;
+                return 'Email enviado';
             }
         } catch (\Throwable $th) {
             throw $th;
