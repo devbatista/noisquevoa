@@ -32,7 +32,7 @@ $router->get('/admin/home/dados', 'admin\AdminController@getData');
 $router->get('/admin/perfil/getData/{id}', 'admin\PerfilController@getData');
 $router->post('/admin/perfil/alterar-dados', 'admin\PerfilController@updateData');
 
-$router->get('/assets/estatisticas/dados', 'admin\EstatisticasController@getData');
+$router->get('/admin/estatisticas/dados', 'admin\EstatisticasController@getData');
 
 $router->get('/admin/partidas/carregar-locais', 'admin\PartidasController@carregarLocais');
 $router->get('/admin/partidas/carregar-ligas', 'admin\PartidasController@carregarLigas');

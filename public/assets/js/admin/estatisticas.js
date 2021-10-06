@@ -76,7 +76,7 @@ window.onload = function() {
     cb(startDate, endDate);
 
     $.ajax({
-        url: window.origin + '/assets/estatisticas/dados',
+        url: window.origin + '/admin/estatisticas/dados',
         dataType: 'json',
         type: 'get',
         success: (e) => {
