@@ -57,7 +57,8 @@ class LoginController extends Controller
 
                     $return = [
                         'code' => 0,
-                        'msg' => 'Acesso liberado'
+                        'msg' => 'Acesso liberado',
+                        'apelido' => $_SESSION['logado']['apelido']
                     ];
                 }
             } else {
@@ -79,6 +80,10 @@ class LoginController extends Controller
     public function logout()
     {
         unset($_SESSION['logado']);
-        $this->redirect('/login');
+        if(isset($_GET['uri'])) {
+            echo json_encode('salve');
+            return true;
+        }
+        $this->redirect('/');
     }
 }

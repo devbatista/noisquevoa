@@ -3,6 +3,7 @@
 namespace src\controllers\site;
 
 use \core\Controller;
+use \src\models\Partida;
 
 class PartidasController extends Controller
 {

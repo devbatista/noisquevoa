@@ -48,9 +48,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="co-text">
-                        <p>Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> Todos os direitos reservados | Criado e desenvolvidor por <a href="https://www.devbatista.com" target="_blank">DevBatista</a></p>
+                        <p>Copyright &copy;<?= date('Y') ?> Todos os direitos reservados | Criado e desenvolvidor por <a href="https://www.devbatista.com" target="_blank">DevBatista</a></p>
                     </div>
                     <div class="co-widget">
                         <ul>
@@ -70,8 +68,10 @@
 <div class="login-model">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="login-close-switch"><i class="fa fa-close"></i></div>
-        <form class="login-model-form">
-            <input type="text" id="login-input" placeholder="Search here.....">
+        <form loginSite class="login-model-form">
+            <input type="email" name="email" placeholder="Email" required><br><br>
+            <input type="password" name="senha" placeholder="*******" required><br><br><br>
+            <button type="submit" class="btn btn-danger">Login</button>
         </form>
     </div>
 </div>
@@ -79,9 +79,12 @@
 
 <!-- Js Plugins -->
 <script src="<?= $base ?>/assets/site/js/jquery-3.3.1.min.js"></script>
+<script src="<?= $base ?>/assets/plugins/jquery-form/jquery-form.js"></script>
+<script src="<?= $base ?>/assets/site/js/popper.min.js"></script>
 <script src="<?= $base ?>/assets/site/js/bootstrap.min.js"></script>
 <script src="<?= $base ?>/assets/site/js/jquery.magnific-popup.min.js"></script>
 <script src="<?= $base ?>/assets/site/js/jquery.slicknav.js"></script>
+<script src="<?= $base ?>/assets/plugins/sweetalert/sweetalert.js"></script>
 <script src="<?= $base ?>/assets/site/js/owl.carousel.min.js"></script>
 <script src="<?= $base ?>/assets/site/js/main.js"></script>
 

@@ -32,7 +32,7 @@ class Partida extends Model
             INNER JOIN locais AS d ON a.id_local = d.id_local 
             INNER JOIN tipo_mv AS e ON a.tipo_mv = e.id_mv
                 WHERE concluido = 1 AND estatisticas = 1
-                    ORDER BY data_hora_partida ASC");
+                    ORDER BY data_hora_partida DESC");
 
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
             exit;

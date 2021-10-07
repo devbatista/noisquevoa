@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?= $base ?>/assets/site/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="<?= $base ?>/assets/site/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?= $base ?>/assets/site/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="<?= $base ?>/assets/plugins/sweetalert/sweetalert.css">
     <link rel="stylesheet" href="<?= $base ?>/assets/site/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<?= $base ?>/assets/site/css/style.css" type="text/css">
 </head>
@@ -43,8 +44,8 @@
             <div class="ht-info">
                 <ul>
                     <li>20:00 - May 19, 2019</li>
-                    <li><a href="#">Login</a></li>
                     <li><a href="<?= $base ?>/contato">Contato</a></li>
+                    <li><a href="#">Login</a></li>
                 </ul>
             </div>
             <div class="ht-links">
@@ -82,10 +83,19 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="ht-info">
-                            <ul>
+                            <ul class="header-info">
                                 <li>20:00 - May 19, 2019</li>
-                                <li class="login-switch">Login</li>
                                 <li><a href="<?= $base ?>/contato">Contato</a></li>
+                                <?php if (!isset($_SESSION['logado'])) : ?>
+                                    <li class="login-switch">Login</li>
+                                <?php else : ?>
+                                    <li class="logado"><a href="#" id="dropdownAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Olá, <?= $_SESSION['logado']['apelido'] ?></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownAdmin">
+                                            <a class="dropdown-item" href="<?= $base ?>/admin">Acessar Painel</a>
+                                            <a class="dropdown-item" href="" logout>Logout</a>
+                                        </div>
+                                    </li>
+                                <?php endif ?>
                             </ul>
                         </div>
                     </div>
@@ -104,9 +114,9 @@
                     <div class="col-lg-4">
                         <div class="nav-menu">
                             <ul class="main-menu">
-                                <li class="<?= ($uri == '/') ? 'active' : ''?>"><a href="<?= $base ?>">Home</a></li>
-                                <li class="<?= ($uri == '/quem-somos') ? 'active' : ''?>"><a href="<?= $base ?>/quem-somos">Quem somos</a></li>
-                                <li class="<?= ($uri == '/partidas') ? 'active' : ''?>"><a href="<?= $base ?>/partidas">Partidas</a></li>
+                                <li class="<?= ($uri == '/') ? 'active' : '' ?>"><a href="<?= $base ?>">Home</a></li>
+                                <li class="<?= ($uri == '/quem-somos') ? 'active' : '' ?>"><a href="<?= $base ?>/quem-somos">Quem somos</a></li>
+                                <li class="<?= ($uri == '/partidas') ? 'active' : '' ?>"><a href="<?= $base ?>/partidas">Partidas</a></li>
                             </ul>
                         </div>
                     </div>
@@ -118,9 +128,9 @@
                     <div class="col-lg-4">
                         <div class="nav-menu">
                             <ul class="main-menu">
-                                <li class="<?= ($uri == '/resultados') ? 'active' : ''?>" disabled="disabled">Elenco</li>
-                                <li class="<?= ($uri == '/noticias') ? 'active' : ''?>"><a href="<?= $base ?>/noticias">Notícias</a></li>
-                                <li class="<?= ($uri == '/fotos') ? 'active' : ''?>" style="margin: 0"><a href="contact.html">Fotos</a></li>
+                                <li class="<?= ($uri == '/resultados') ? 'active' : '' ?>" disabled>Elenco</li>
+                                <li class="<?= ($uri == '/noticias') ? 'active' : '' ?>"><a href="<?= $base ?>/noticias">Notícias</a></li>
+                                <li class="<?= ($uri == '/fotos') ? 'active' : '' ?>" disabled style="margin: 0">Fotos</a></li>
                             </ul>
                         </div>
                     </div>
