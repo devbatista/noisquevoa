@@ -4,8 +4,16 @@ use core\Router;
 
 $router = new Router();
 
-$router->get('/', 'HomeController@index');
+// Site
+$router->get('/', 'site\HomeController@index');
+$router->get('/contato', 'site\ContatoController@index');
+$router->get('/quem-somos', 'site\QuemSomosController@index');
+$router->get('/partidas', 'site\PartidasController@index');
+$router->get('/noticias', 'site\NoticiasController@index');
+$router->get('/noticia/{slug}', 'site\NoticiasController@noticia');
+// End Site
 
+// Admin
 $router->get('/login', 'LoginController@index');
 $router->get('/logout', 'LoginController@logout');
 $router->post('/login/autentica', 'LoginController@autentica');

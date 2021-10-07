@@ -42,7 +42,7 @@ class Controller
     {
         if (file_exists('../src/views/' . $folder . '/' . $viewName . '.php')) {
             extract($viewData);
-            // $view = fn ($vN, $vD = []) => $this->renderPartial($vN, $vD);
+            $view = fn ($vN, $vD = []) => $this->renderPartial($vN, $vD);
             $base = $this->getBaseUrl();
             require '../src/views/' . $folder . '/' . $viewName . '.php';
         }
@@ -212,5 +212,16 @@ class Controller
         );
 
         return $semana[$dia];
+    }
+
+    protected function getHeader()
+    {
+        $header = ['titulo' => 'Nois Que Voa FS'];
+        $data = [
+            'header' => $header,
+            'uri' => $_SERVER['REQUEST_URI']
+        ];
+
+        return $data;
     }
 }

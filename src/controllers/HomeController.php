@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $this->redirect('/admin');
+        // $this->loadView('site/home');
     }
 }
