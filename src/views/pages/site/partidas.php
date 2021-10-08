@@ -22,126 +22,23 @@
                     <div class="st-table">
                         <table>
                             <tbody>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-2.jpg" alt="">
-                                        <h4>Qatar</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-4.jpg" alt="">
-                                        <h4>France</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-6.jpg" alt="">
-                                        <h4>Morocco</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-8.jpg" alt="">
-                                        <h4>Uruguay</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-10.jpg" alt="">
-                                        <h4>Qatar</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-11.jpg" alt="">
-                                        <h4>Costa Rica</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-13.jpg" alt="">
-                                        <h4>Denmark</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <h4>VS</h4>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-15.jpg" alt="">
-                                        <h4>Panama</h4>
-                                    </td>
-                                </tr>
+                                <?php foreach ($partidas as $partida) : ?>
+                                    <tr>
+                                        <td class="left-team">
+                                            <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
+                                            <h4>Nois Que Voa</h4>
+                                        </td>
+                                        <td class="st-option">
+                                            <div class="so-text"><?= $partida['local'] ?></div>
+                                            <h4>VS</h4>
+                                            <div class="so-text"><?= $partida['data'] ?></div>
+                                        </td>
+                                        <td class="right-team">
+                                            <img src="<?= $base . $partida['logo_adversario'] ?>" alt="">
+                                            <h4><?= $partida['adversario'] ?></h4>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>
@@ -153,150 +50,30 @@
                     <div class="st-table">
                         <table>
                             <tbody>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-2.jpg" alt="">
-                                        <h4>Qatar</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-4.jpg" alt="">
-                                        <h4>France</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-6.jpg" alt="">
-                                        <h4>Morocco</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-8.jpg" alt="">
-                                        <h4>Uruguay</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-10.jpg" alt="">
-                                        <h4>Qatar</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-11.jpg" alt="">
-                                        <h4>Costa Rica</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-13.jpg" alt="">
-                                        <h4>Denmark</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="left-team">
-                                        <img src="<?= $base ?>/assets/site/img/logo.png" alt="">
-                                        <h4>Nois Que Voa</h4>
-                                    </td>
-                                    <td class="st-option">
-                                        <div class="so-text">MetLife Stadium</div>
-                                        <div class="st-placar">
-                                            <h5>2 : 1</h5>
-                                            <h5>2 : 1</h5>
-                                        </div>
-                                        <div class="so-text">15 September 2019</div>
-                                    </td>
-                                    <td class="right-team">
-                                        <img src="<?= $base ?>/assets/site/img/schedule/flag-15.jpg" alt="">
-                                        <h4>Panama</h4>
-                                    </td>
-                                </tr>
+                                <?php foreach ($resultados as $resultado) : ?>
+                                    <tr>
+                                        <td class="left-team">
+                                            <img src="<?= $base . $resultado['nqv'] ?>" alt="">
+                                            <h4>Nois Que Voa</h4>
+                                        </td>
+                                        <td class="st-option">
+                                            <div class="so-text"><?= $resultado['local'] ?></div>
+                                            <div class="st-placar">
+                                            <?php if (isset($resultado['gols_pro2'])) : ?>
+                                                    <h5><?= $resultado['gols_pro'] ?> : <?= $resultado['gols_contra'] ?></h5>
+                                                    <h5><?= $resultado['gols_pro2'] ?> : <?= $resultado['gols_contra2'] ?></h5>
+                                                <?php else : ?>
+                                                    <h4 class="resultado"><?= $resultado['gols_pro'] ?> : <?= $resultado['gols_contra'] ?></h4>
+                                                <?php endif ?>
+                                            </div>
+                                            <div class="so-text"><?= $resultado['local'] ?></div>
+                                        </td>
+                                        <td class="right-team">
+                                            <img src="<?= $base . $resultado['logo_adversario'] ?>" alt="">
+                                            <h4><?= $resultado['adversario'] ?></h4>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>

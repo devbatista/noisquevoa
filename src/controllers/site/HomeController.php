@@ -27,19 +27,19 @@ class HomeController extends Controller
         $partidas = new Partida();
         $partidas = $partidas->getJogos();
 
-        $proxPartidas = [];
+        $resultados = [];
         $ultimaPartida = [];
         $count = 0;
 
         foreach ($partidas as $key => $value) {
             if(!empty($ultimaPartida)) {
-                if(($ultimaPartida['adversario'] == $proxPartidas[$count - 1]['adversario']) && ($ultimaPartida['data'] == $proxPartidas[$count - 1]['data']) && ($ultimaPartida['liga'] == $proxPartidas[$count - 1]['liga'])) { 
+                if(($ultimaPartida['adversario'] == $resultados[$count - 1]['adversario']) && ($ultimaPartida['data'] == $resultados[$count - 1]['data']) && ($ultimaPartida['liga'] == $resultados[$count - 1]['liga'])) { 
                     $ultimaPartida = [];
                     continue; 
                 }
             }
-            if (($value['data_hora_partida'] > date('Y-m-d H:i:s')) && (count($proxPartidas) < 3) && ($value['concluido'] == 0) && ($value['cancelado'] == 0)) {
-                $proxPartidas[] = [
+            if (($value['data_hora_partida'] > date('Y-m-d H:i:s')) && (count($resultados) < 3) && ($value['concluido'] == 0) && ($value['cancelado'] == 0)) {
+                $resultados[] = [
                     'data' => date('d/m/Y', strtotime($value['data_hora_partida'])),
                     'local' => $value['local'],
                     'horario' => date('H:i', strtotime($value['data_hora_partida'])),
@@ -59,7 +59,7 @@ class HomeController extends Controller
             }            
         }
 
-        return $proxPartidas;
+        return $resultados;
     }
 
     private function getUltimosResultados()
